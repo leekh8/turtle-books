@@ -1,0 +1,111 @@
+body {
+  margin: 0 10% 0 10%;
+  width: 80vw;
+  height: 100vh;
+
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  margin: 10PX;
+
+}
+
+nav>span {
+  background-color: gainsboro;
+  padding: 10px;
+  border-radius: 10px 0px 0px 10px;
+}
+
+#navLeft {
+  background-color: gainsboro;
+  border-radius: 0px 10px 10px 0px;
+  padding-right: 20px;
+}
+
+#selectDelet,
+#inableDelet {
+  float: right;
+  margin: 5px 3px;
+  padding: 3px;
+}
+
+#cartInfo {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+
+aside {
+  display: inline-block;
+  border: 2px gainsboro solid;
+  border-radius: 10px;
+  width: 70%;
+  height: 250px;
+  margin-left: 20px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  font-size: small;
+}
+td {
+  padding-bottom: 15px
+}
+.numbers {
+  text-align: right;
+}
+
+#tableLine{
+  padding-top: 20px;
+  border-top: 1px solid gainsboro;
+  font-size: medium;
+  font-weight: bold;
+}
+
+#rightMenue {
+  padding: 5px;
+  margin: 20px 15px 0px 15px;
+  width: 80%;
+}
+
+#oderButton {
+  margin: 20px;
+  padding: 10px;
+  width: 80%;
+}
+
+#noItem, #haveItem {
+  text-align: center;
+  margin: 0px 20px 0px 20px;
+
+  border-top: 2px gray solid;
+  border-bottom: 1px gainsboro solid;
+}
+
+#noItem {
+  padding-top: 70px;
+  text-align: center;
+}
+
+#haveItem {
+  height: 200px;
+}
+#bookCheckbox {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 130px;
+}
+#bookImg {
+  width: 120px;
+  height: 160px;
+  margin-top: 10px;
+}
+
+#haveItem > table {
+  margin-top: 0px;
+  border-top: 1px gainsboro solid;
+}
