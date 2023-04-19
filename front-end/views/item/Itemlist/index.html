@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="search-container">
+        <input type="text" placeholder="도서 검색">
+        <p class="search-count">소설에 대한 검색 결과 총 <span class="count">0</span> 건</p>
+        <div class="sort-buttons">
+          <button>최신순</button>
+          <button>평점순</button>
+          <button>상품명순</button>
+        </div>
+        <table width="100%">
+          <tbody>
+            <tr>
+                <td width="5%">
+                    <input type="checkbox" id="myCheckbox" name="myCheckbox">
+                </td>
+                <td width="20%">
+                    <img src="book1.jpg" alt="Placeholder image" class="img1"/>
+                </td>
+                <td width="60%" class="second-table">
+                    <h2><b>브라질에 비가 내리면 스타벅스 주식을 사라</b></h2><br>
+                    <p>피터 나바로/에프엔미디어/2022.04.25</p>
+                    <p>‘숲(경제 흐름)과 나무(종목)’를 함께 보라! 전쟁, 전염병, 기후, 금리, 환율, 인플레이션… 거시경제 지표를 이해하면 변동성은 기회다!</p>
+                    <p>16,200원</p>
+                </td>
+                <td width="15%">
+                    <div class="third-table">
+                        <div class="quantity-selector">
+                            <button class="quantity-minus">-</button>
+                            <input class="quantity-input" type="number" value="1" min="1">
+                            <button class="quantity-plus">+</button>
+                        </div><br>
+                        <button>장바구니</button><br>
+                        <button>바로구매</button>
+                    </div>                    
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+  </body>
+</html>
