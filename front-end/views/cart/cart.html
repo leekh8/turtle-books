@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="cart.css">
+  <title>꼬북스 장바구니</title>
+</head>
+<body>
+  <header></header>
+  
+  
+    <nav>
+      <span><input type="checkbox" name="" id="selectAll"> 
+      <label for="selectAll">전체</label></span>
+
+      <div id="navLeft">
+      <input type="button" id="inableDelet" value="품/절판 삭제">
+      <input type="button" id="selectDelet" value="휴지통">
+      </div>
+      
+    </nav>
+    <div id="cartInfo">
+    <article id="noItem" style="display: none;"> <!--비회원 장바구니 상품 없을 경우-->
+      <p>장바구니에 담긴 상품이 없어요.</p>
+      <input type="button" value="로그인">
+    </article>
+    <article id="haveItem" style="display: inline-block;"> <!--장바구니에 상품이 있을 경우-->
+      <table>
+        <tr>
+          <td><input type="checkbox" id="bookCheckbox"></td>
+          <td><img id="bookImg" src="bookImg.png" alt="책이미지"></td>
+          <td>【<span id="bookCtgry">소설</span>】 <span id="bookTittle">충격감동 실화 자기계발서</span> <br>
+          <br> <span id="eachTotalPrice">1,000</span></td>
+          <td> <span id="bookPrice">1,000</span>
+            <div id="bookQntty">
+            <input type="button" id="minusNumber" value="-">
+            <input type="number" id="numberofBooks" style="width: 25px;">
+            <input type="button" id="plusNumber" value="+">
+            </div>
+          </td>
+          <td>
+          <span>택배발송</span>
+          <input type="button" value="X" id="deletItem">
+          <p><span id="arriveDate">내일(4/29,토)</span> 도착예정</p>
+          </td>
+        </tr>
+      </table>
+    </article>
+    <aside>
+      <div id="rightMenue"> <!--스크롤 따라다니는 메뉴(구현전)-->
+        <table>
+          <tr>
+            <td>상품금액</td>
+            <td class="numbers"> <span id="price" >0</span> 원</td>
+          </tr>
+          <tr>
+            <td>배송비</td>
+            <td class="numbers"> <span id="deliveryCharge" >2,500</span> 원</td>
+          </tr>
+        </table>
+        <table id="tableLine">
+          <tr>
+            <td>결제 예정 금액</td>
+            <td class="numbers"> <span id="totalPrice" >0</span> 원</td>         
+          </tr>
+        </table>      
+      </div>
+      <input type="button" value="주문하기" id="oderButton">
+    </aside>
+  </div>
+  <footer></footer>
+</body>
+</html>
