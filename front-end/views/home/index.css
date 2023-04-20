@@ -7,27 +7,25 @@ body {
 
 .buttonlist {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 70%;
+  width: 100%;
 }
 
 .buttonlist1 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    width: 30%;
-    border-right: 0.02px solid rgb(94, 94, 94);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 25%;
+  border-right: 1px dotted rgba(0, 0, 0, 0.2);
 }
 
-  .buttonlist2 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    width: 40%;
-    /* order: -1; */
+.buttonlist2 {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 10px;
+  width: 60%;
 }
 
 .buttonlist1 button {
@@ -46,16 +44,58 @@ body {
 }
 
 .buttonlist2 button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: white;
-    color: black;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .buttonlist2 button:hover {
-    background-color: #5dcd61;
-  }
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.buttonlist2 button:hover {
+  background-color: #5dcd61;
+}
+
+/* 셀러 */
+.seller-container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.seller-container h1 {
+  font-size: 50px;
+  text-align: left;
+  color:rgba(0, 0, 0, 0.5)
+}
+
+.sellers {
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 40px;
+}
+
+.left-arrow,
+.right-arrow {
+  cursor: pointer;
+}
+
+.left-arrow:hover,
+.right-arrow:hover {
+  background-color: #5dcd61;
+}
+
+.book {
+  transition: transform 0.5s ease-in-out;
+}
+
+/* .right-arrow:hover ~ .book, .left-arrow:hover ~ .book {
+    transform: translateX(calc(-25% - 16px));
+  } */
