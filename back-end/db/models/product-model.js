@@ -20,9 +20,9 @@ class ProductModel { // 모델 클래스를 만든다
     try {
       const productList = new Array(); // 배열 생성
 
-      for (const bid of bidArr) {
+      for (const bid of bidArr) { // _id 필드값이 bid인 상품 조회, 조회된 상품 정보에  해당 상품의 category정보 가져옴
         const product = await product.findOne({ _id: bid }).populate( "category");
-        if (product) {
+        if (product) { // 상품이 존재하면 배열에 상품추가
           productList.push(product);
         }
       }
