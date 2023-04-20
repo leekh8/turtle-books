@@ -10,11 +10,14 @@
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
     <link rel="stylesheet" href="order.css" />
-    <script src="./order.js"></script>
+    <script src="../common/loadHTML.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../common/Header/header.css" />
   </head>
   <body>
     <!-- 공통 헤더 추가할 구역 -->
-
+    <script>
+      loadHTML("../common/Header/header.html");
+    </script>
     <main class="section">
       <h2 class="title is-4" id="order-title">주문/결제</h2>
       <div class="card-content-wrap">
@@ -88,19 +91,17 @@
         </div>
       </div>
       <div class="payments-box">
-        <div>
-          <div class="box">
-            <h1 class="title">결제 정보</h1>
-            <p>상품금액 10,000원</p>
-            <p>배송비 0원</p>
-            <p>쿠폰할인 0원</p>
-            <p>포인트 사용 0원</p>
-            <hr />
-            <p>최종결제금액 10,000원</p>
-            <button class="button is-primary is-fullwidth" id="payments-btn">
-              결제하기
-            </button>
-          </div>
+        <div class="box">
+          <h1 class="title">결제 정보</h1>
+          <p>상품금액 10,000원</p>
+          <p>배송비 0원</p>
+          <p>쿠폰할인 0원</p>
+          <p>포인트 사용 0원</p>
+          <hr />
+          <p>최종결제금액 10,000원</p>
+          <button class="button is-primary is-fullwidth" id="payments-btn">
+            결제하기
+          </button>
         </div>
       </div>
     </main>
