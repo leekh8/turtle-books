@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 mongoose.connect(null);
-const db = mongooss.connection;
+const db = mongoose.connection;
 
 db.on("connected", () =>{
   console.log("MongoDB 서버에 연결되었습니다.")
