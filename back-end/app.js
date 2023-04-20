@@ -1,7 +1,7 @@
 
 import cors from 'cors';
 import express from 'express';
-import { categoryRouter, productRouter } from "./routes";
+import { productRouter, categoryRouter} from './routes';
 import { errorHandler } from './middlewares';
 import cookieParser from "cookie-parser";
 

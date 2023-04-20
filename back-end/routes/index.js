@@ -1,2 +1,2 @@
-export * from "./products/product-router";
-export * from "./category/category-router";
+export * from "./product-router";
+export * from "./category-router";
