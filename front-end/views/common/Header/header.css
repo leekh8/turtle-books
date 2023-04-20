@@ -1,7 +1,9 @@
 /* https://alvarotrigo.com/blog/hamburger-menu-css/#:~:text=Once%20you%20click%20the%20%E2%80%9Chamburger,design%2C%20creating%20a%20compact%20menu. */
 
-.body {
-  display: flex;
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .inputmargin {
