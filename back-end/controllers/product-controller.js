@@ -2,7 +2,7 @@ import { json } from 'express';
 import { productService } from '../service';
 
 class ProductController {
-  async addProduct(req, res, next) {
+  async addProduct(req, res, next) { 
     const { title, description, author, publisher, publicationDate, price, category, stock } = req.body;
 
     if(
@@ -33,14 +33,14 @@ class ProductController {
       const productList = await productService.getProductList();
       return res.status(200).json(productList);
     } else {
-      const { bId } = req.query;
-      if(!bId) {
+      const { bid } = req.query;
+      if(!bid) {
         return res.status(200).json("query data가 bId에 없습니다.");
       } 
-      const bIdarr = bId.split(",");
+      const bidArr = bid.split(",");
 
       try {
-        const productList = await productService.getProductList(bIdarr);
+        const productList = await productService.getProductList(bidArr);
         return res.status(200).json(productList);
       } catch(e) {
         next(e);
@@ -48,35 +48,52 @@ class ProductController {
     }
   }
   async getProduct(req, res, next) {
-    const { bId } = req.params;
+    const { bid } = req.params;
     
     try {
-      const product = await productService.getProductById(bId);
+      const product = await productService.getProductById(bid);
       return res.status(200).json(product);
     } catch(e) {
       next(e);
     }
   }
   async editProduct(req, res, next) {
-    const { bId } = req.params;
+    const { bid } = req.params;
     try {
-      const updateProduct = await productService.editProduct(bId, req.body);
+      const updateProduct = await productService.editProduct(bid, req.body);
       return res.status(200).json(updateProduct);
     } catch(e) {
       next(e);
     } 
   }
   async removeProduct(req, res, next) {
-    const { bId } = req.params;
+    const { bid } = req.params;
     
     try {
-      await productService.removeProduct(bId);
-      res.status(200).json(`삭제 완료 : ${bId}`);
+      await productService.removeProduct(bid);
+      res.status(200).json(`삭제 완료 : ${bid}`);
     } catch(e) {
       next(e);
     }  
   }
   async searchProduct(req, res, next) {
-
+    if(Object.keys(req.query).length === 0) {
+      try{
+        const productList = await productService.getProductList();
+        return res.status(200).json(productList);
+      } catch(e) {
+        next(e);
+      }
+    } else {
+      try {
+        const searchBook = req.query;
+        const productList = await productService.searchProduct(searchBook);
+        return res.status(200).json(productList);
+      } catch(e) {
+        next(e);
+      }
+    }
   }
 }
+const productController = new ProductController();
+export { productController };
