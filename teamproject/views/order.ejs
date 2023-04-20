@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Page</title>
+</head>
+<body>
+  <h1>Order Page</h1>
+  <form action="/order" method="POST">
+    <label for="name">이름:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="email">이메일:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="address">주소:</label>
+    <textarea id="address" name="address" required></textarea><br>
+
+    <label for="phone">연락처:</label>
+    <input type="tel" id="phone" name="phone" required><br>
+
+    <label for="items">상품:</label>
+    <textarea id="items" name="items" required></textarea><br>
+
+    <button type="submit">주문 완료</button>
+  </form>
+</body>
+</html>
