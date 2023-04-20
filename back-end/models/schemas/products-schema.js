@@ -40,5 +40,14 @@ const productSchema = new Schema (
     timestamp: true,
     collection: "product",
   }
+  
 );
+
+productSchema.static("formatHashtags", function (category) {
+  return category
+    .split(",")
+    .map((word) => (word.startsWith("#") ? word: `#${word}`))
+    .join(" ");
+})
+
 module.exports = productSchema;
