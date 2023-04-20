@@ -1,0 +1,19 @@
+{
+  "name": "turtle-books",
+  "version": "1.0.0",
+  "description": "- 책 전문 판매점",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://kdt-gitlab.elice.io/sw_track/class_04/web_project/team01/turtle-books.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.21.4"
+  }
+}

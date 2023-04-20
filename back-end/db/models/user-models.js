@@ -1,5 +1,7 @@
+// db 관련 로직은 model에
+
 import { model } from "mongoose";
-import { UserSchema } from "./schemas/user-schema";
+import { UserSchema } from "../schemas/user-schema";
 
 const User = model("users", UserSchema);
 
@@ -35,4 +37,4 @@ export class UserModel {
 
 const userModel = new UserModel();
 
-export { userModel };
+module.exports = { userModel };

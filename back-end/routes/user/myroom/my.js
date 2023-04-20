@@ -25,12 +25,12 @@ userRouter.post("/register", async (req, res, next) => {
 
     // req의 body에서 데이터 가져오기
     const { userid, email, password } = req.body;
-    /*
+
     // 유효성 검사
     if (!userid || !email || !password) {
       return res.status(400).json({ message: `input every field` });
     }
-
+    /*
     // email 중복 확인
     await User.findOne({ email }).then((user) => {
       if (user)
@@ -151,4 +151,4 @@ userRouter.patch(
   }
 );
 
-export { userRouter };
+module.exports = { userRouter };

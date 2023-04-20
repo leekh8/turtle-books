@@ -9,7 +9,7 @@ const cors = require("cors");
 // 라우터 연결
 import indexRouter from "./routes";
 import viewsRouter from "./routes/views-router";
-import usersRouter from "./routes/user/myroom/my"; // user(사용자) router 연결
+import { usersRouter } from "./routes/user/myroom/my"; // user(사용자) router 연결
 
 import { errorHandler } from "./middlewares";
 
@@ -39,6 +39,6 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use(errorHandler);
+// app.use(errorHandler);
 
-module.export = app;
+module.exports = { app };
