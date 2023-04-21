@@ -1,5 +1,5 @@
-import { categoryModel } from "../db";
 
+const categoryModel = require('../db/models/category-model');
 class CategoryService {
   async addCategory(categoryInfo) {
     const { name } = categoryInfo; 
@@ -34,4 +34,4 @@ class CategoryService {
 
 const categoryService = new CategoryService();
 
-export { categoryService };
+module.exports = new CategoryService();

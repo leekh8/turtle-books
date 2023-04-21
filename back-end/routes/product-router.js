@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { productController } from "../controllers/product-controller";
+const Router = require('express');
+const productController = require('../controllers/product-controller')
 
 const ProductRouter = Router();
 
@@ -9,4 +9,4 @@ ProductRouter.put('/:bid', productController.editProduct);
 ProductRouter.delete('/:bid', productController.removeProduct);
 ProductRouter.post('/',productController.addProduct);
 
-export { ProductRouter };
+module.exports = ProductRouter;

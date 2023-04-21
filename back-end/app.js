@@ -1,7 +1,7 @@
-
 import cors from 'cors';
 import express from 'express';
-import { productRouter, categoryRouter} from './routes';
+import { productRouter } from './routes/product-router';
+import { categoryRouter } from './routes/category-router';
 import { errorHandler } from './middlewares';
 import cookieParser from "cookie-parser";
 
@@ -17,4 +17,4 @@ app.use("/category", categoryRouter);
 
 app.use(errorHandler);
 
- export { app };
+module.exports = { app };

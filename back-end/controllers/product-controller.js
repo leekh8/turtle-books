@@ -1,16 +1,15 @@
-import { json } from 'express';
-import { productService } from '../service';
+const json = require('express');
+const productService = require('../service/product-service');
 
 class ProductController {
   async addProduct(req, res, next) { 
-    const { title, description, author, publisher, publicationDate, price, category, stock } = req.body;
+    const { title, author, publisher, published_date, price, category, stock } = req.body;
 
     if(
       !title||
-      !description||
       !author||
       !publisher||
-      !publicationDate||
+      !published_date||
       !price||
       !category||
       !stock
@@ -20,7 +19,7 @@ class ProductController {
 
     try {
       const createNProduct = await productService.addProduct({
-        title, description, author, publisher, publicationDate, price, category, stock
+        title, author, publisher, published_date, price, category, stock
       });
       return res.status(200).json(createNProduct);
     }catch(e) { 
@@ -95,5 +94,5 @@ class ProductController {
     }
   }
 }
-const productController = new ProductController();
-export { productController };
+
+module.exports = new ProductController();

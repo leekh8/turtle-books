@@ -1,11 +1,11 @@
-import { model } from 'mongoose';
-import { categorySchema } from '../schemas/category-schema';
-import { category, category } from '.';
 
-const category = model("category", categorySchema);
+const mongoose = require('mongoose');
+const categorySchema = require('../schemas/category-schema');
 
-class CategoryModel {
-  async findById(cid) {
+const category = mongoose.model("category", categorySchema);
+
+class CategoryModel { // 카테고리 모델
+  async findById(cid) { // 
     try {
       const category = await category.findOne({ _id: cid});
       return category;
@@ -62,5 +62,5 @@ class CategoryModel {
   }
 }
 
-const categoryModel = new CategoryModel();
-export { categoryModel };
+
+module.exports = new CategoryModel();

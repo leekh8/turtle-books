@@ -1,5 +1,5 @@
-import productModel from '../db'; // model을 가져온다.
-
+; // model을 가져온다.
+const productModel = require('../db/models/product-model');
 class ProductService { // 상품서비스에 대한 클래스를 만든다
   async addProduct(productInfo) { // 상품추가
     const createProduct = await productModel.create(productInfo);
@@ -32,5 +32,4 @@ class ProductService { // 상품서비스에 대한 클래스를 만든다
 
 }
 
-const productService = new ProductService();
-export { productService };
+module.exports = new ProductService();

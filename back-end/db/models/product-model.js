@@ -1,8 +1,9 @@
-import { model } from 'mongoose';
-import { ProductSchema } from '../schemas/products-schema';
-import { categoryModel } from './category-model';
 
-const product = model("product", ProductSchema); // 스키마 가져옴
+const mongoose = require('mongoose');
+const ProductSchema = require('../schemas/products-schema');
+const categoryModel = require('./category-model');
+
+const product = mongoose.model("product", ProductSchema); // 스키마 가져옴
 
 class ProductModel { // 모델 클래스를 만든다
   async findById(bid) { // 특정 상품을 찾는 기능
@@ -21,7 +22,7 @@ class ProductModel { // 모델 클래스를 만든다
       const productList = new Array(); // 배열 생성
 
       for (const bid of bidArr) { // _id 필드값이 bid인 상품 조회, 조회된 상품 정보에  해당 상품의 category정보 가져옴
-        const product = await product.findOne({ _id: bid }).populate( "category");
+        const product = await product.findOne({ _id: bid }).populate( "Category");
         if (product) { // 상품이 존재하면 배열에 상품추가
           productList.push(product);
         }
@@ -48,8 +49,8 @@ class ProductModel { // 모델 클래스를 만든다
   async create(productInfo) {
     try {
       productInfo.category = product.formatHashtags(productInfo.category);
-      let createdNewProduct = await product.create(productInfo);
-      return createdNewProduct;
+      let createdNProduct = await product.create(productInfo);
+      return createdNProduct;
     } catch (err) {
       const error = new Error("상품 생성 실패");
       error.statusCode = 400;
@@ -103,6 +104,6 @@ class ProductModel { // 모델 클래스를 만든다
   }
 }
 
-const productModel = new ProductModel();
 
-export { productModel };
+
+module.exports = new ProductModel();

@@ -1,6 +1,7 @@
-import { categoryService } from "../service";
 
-class CategoryContoller {
+const categoryService = require("../service/category-service");
+
+class CategoryController {
   async addCategory(req, res, next) {
     const { name } = req.body;
 
@@ -80,6 +81,6 @@ class CategoryContoller {
   }
 }
 
-const categoryController = new CategoryContoller();
 
-export { categoryController };
+
+module.exports = new CategoryController();
