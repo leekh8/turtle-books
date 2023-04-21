@@ -1,16 +1,18 @@
-import { Schema, model } from "mongoose";
+// user schema
+// userId:    사용자 id
+// password:  비밀번호
+// email:     이메일
+// lastName:  성
+// firstName: 이름
+// address:   배송지
+// birthDate: 생년월일
+// userRole:  사용자 권한
+
+const { Schema, model } = require("mongoose");
 
 const UserSchema = new Schema(
   {
-    email: {
-      type: String,
-      // space bar를 없애준다.
-      trim: true,
-      // 중복을 허용하지 않는다.
-      unique: 1,
-      required: true,
-    },
-    fullName: {
+    userId: {
       type: String,
       required: true,
     },
@@ -18,9 +20,19 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    phoneNumber: {
+    email: {
       type: String,
-      required: false,
+      required: true,
+      // 중복 허용 안함
+      unique: 1,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    firstName: {
+      type: String,
+      required: true,
     },
     address: {
       type: new Schema(
@@ -35,7 +47,11 @@ const UserSchema = new Schema(
       ),
       required: false,
     },
-    role: {
+    birthDate: {
+      type: String,
+      required: false,
+    },
+    userRole: {
       type: String,
       required: false,
       default: "basic-user",
