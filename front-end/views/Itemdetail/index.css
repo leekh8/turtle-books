@@ -5,13 +5,15 @@ body {
   padding: 0;
 }
 
-.container {
+main {
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
+  border-bottom: none;
 }
 
-.main {
+.item-container {
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -33,26 +35,6 @@ body {
   align-items: center;
 }
 
-.footer {
-  height: 15%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: row;
-}
-
-.footer button {
-    padding: 3px 5px;
-    font-size: 0.8rem;
-    width: fit-content;
-    height: fit-content;
-    border: none;
-    border-radius: 5px;
-    background-color: #4CAF50;
-
-}
 /* 
 .left {
     background-color: #ffcc99;
@@ -62,9 +44,6 @@ body {
     background-color: #99ccff;
   } */
 
-  .footer {
-    background-color: #cccccc;
-  }
 
   /* --- */
   .right-container {
@@ -152,6 +131,8 @@ body {
     margin-top: 10px;
     line-height: 1.5;
   }
+
+
   
   /* 수량조절 컴포넌트 */
   .quantity-selector {
@@ -181,3 +162,69 @@ body {
     width: 50px;
     text-align: center;
   }
+
+
+
+  /* footer */
+  
+.footer {
+  height: 2px;
+  position: fixed;
+  bottom: 0;
+  left: 10rem;
+  right: 10rem;
+  display: flex;
+  flex-direction: row;
+  padding: 3.5rem;
+  background-color: whitesmoke;
+}
+
+.footer p {
+  margin-right: auto;
+  margin-top: -13px;
+}
+
+.footer div {
+  margin-left: auto;
+}
+
+.footer .buttons {
+    margin-left: 20px;
+    margin-top: -10px;
+    flex-wrap: nowrap;
+}
+
+/* 바로구매 버튼 */
+.buy-now-btn {
+  background-color: #32a852;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.buy-now-btn:hover {
+  background-color: #2d8c47;
+}
+
+/* 장바구니 버튼 */
+.add-to-cart-btn {
+  background-color: #fff;
+  color: #32a852;
+  border: 2px solid #32a852;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #32a852;
+  color: #fff;
+}
