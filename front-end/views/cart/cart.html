@@ -1,76 +1,94 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="cart.css">
-  <script src="./../common/plus_minus_btn.js"></script><!--수량증감버튼-->
-  <script src="./../common/checkBox.js"></script><!--체크박스 전체 선택 해제-->
-  <title>꼬북스 장바구니</title>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>장바구니 페이지</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="cart.css">
+    <script src="./../common/loadHTML.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="./../common/Header/header.css" />
+
+    <script src="./../common/checkBox.js"></script><!--체크박스 전체 선택 해제-->
+    <script src="cart-TotalPrice.js"></script>
 </head>
 <body>
-  <header></header>
+  <script>
+    loadHTML("./../common/Header/header.html");
+  </script>
+  <main  class="section" >
+    <h2 class="title is-4" id="order-title">장바구니</h2>
     <nav>
       <span><input type="checkbox" id="selectAll"> 
       <label for="selectAll">전체</label></span>
-
       <div id="deletBtns">
-      <input type="button" id="inableDelet" value="품/절판 삭제">
-      <input type="button" id="selectDelet" value="휴지통">
+        <input type="button" id="selectDelet"  class="button is-small" value="삭제">
+        <input type="button" id="inableDelet"  class="button is-small" value="품/절판 삭제">
       </div>
-      
     </nav>
+
     <div id="cartInfo">
-    <article id="noItem" style="display: none;"> <!--비회원 장바구니 상품 없을 경우-->
+    <article id="noItem"  style="display: none;"> <!--비회원 장바구니 상품 없을 경우-->
       <p>장바구니에 담긴 상품이 없어요.</p>
-      <input type="button" value="로그인">
     </article>
-    <article id="haveItem" style="display: inline-block;"> <!--장바구니에 상품이 있을 경우-->
-      <table>
-        <tr class=cartInProdoct>
-          <td><input type="checkbox" class="checkboxs" name="checkbox"></td>
-          <td><img class="bookImg" src="bookImg.png" alt="책이미지"></td>
-          <td>【<span class="bookCtgry">소설</span>】 <span id="bookTittle">충격감동 실화 자기계발서</span> <br>
-          <br> <span class="eachTotalPrice">1,000</span></td>
-          <td> <span class="bookPrice">1,000</span>
-            <div class="bookQntty">
-              <input type="button" class="minusBtn" value="-">
-              <input type="text" class="numberInput" value="1" style="width: 25px;">
-              <input type="button" class="plusBtn" value="+">
+
+    <article id="haveItem"> <!--장바구니에 상품이 있을 경우-->
+      <div  class="productInCart" class="card"> <!--상품 추가시 이부분이-->
+      <div class="card-content">
+        <div class="content">
+            <input type="checkbox" class="checkboxs" name="checkbox">
+            <img class="productImg" src="bookImg.png" alt="책이미지">
+            <div class="productNamePrice"> 
+              <h4>
+                【<span class="productCtgry">소설</span>】
+                <span id="productTittle">충격감동 실화 스토리</span>
+              </h4>
+              <p><span class="eachPrice">1,000</span>원</p>
             </div>
-          </td>
-          <td>
-          <span>택배발송</span>
-          <input type="button" value="X" id="deletItem">
-          <p><span id="arriveDate">내일(4/29,토)</span> 도착예정</p>
-          </td>
-        </tr>
+            <div class="contentAligin">
+              <p class="subtotalPrice">000</p>
+              <div class="productQntty">
+                <input type="button" class="minusBtn" value="-">
+                <input type="text" class="numberInput" value="1"
+                style="width: 25px; text-align: center;">
+                <input type="button" class="plusBtn" value="+">
+              </div>
+            </div>
+            <div class="arriveAndDelet">
+              <input type="button" value="X" class="deletProduct">
+              <p>택배발송</p>
+              <p><span id="arriveDate">내일 (4/29, 토)</span> 도착예정</p>
+              </div>
+          </div>
+          </div>
+        </div> 
         
-      </table>
     </article>
     
-    <aside>
-      <div id="rightMenue"> <!--스크롤 따라다니는 메뉴(구현전)-->
+    <aside class="box">
+      <div id="rightMenu">
         <table>
           <tr>
             <td>상품금액</td>
-            <td class="numbers"> <span id="price" >0</span> 원</td>
+            <td class="numbers"> <span id="selctPrice">0</span> 원</td>
           </tr>
           <tr>
             <td>배송비</td>
             <td class="numbers"> <span id="deliveryCharge" >2,500</span> 원</td>
           </tr>
-        </table>
-        <table id="tableLine">
           <tr>
             <td>결제 예정 금액</td>
             <td class="numbers"> <span id="totalPrice" >0</span> 원</td>         
           </tr>
         </table>      
       </div>
-      <input type="button" value="주문하기" id="oderButton">
+      <button id="oderBtn" onclick="" class="button is-primary is-fullwidth">
+        주문하기
+      </button>
     </aside>
   </div>
-  <footer></footer>
+  </main>
 </body>
 </html>
