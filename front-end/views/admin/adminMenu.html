@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="admin-Menu_and_Header.css">
+  <script src="accordion-Menu.js"></script>
+  <title>admin 메뉴</title>
+</head>
+
+<body>
+<div id="container">
+  <header>
+    <div id="headerMiddle">
+      <h1>Tutle-books 관리자 페이지</h1>
+      <div id="search">
+        <input id="searchbox" type="text">
+        <input id="searchBtn" type="button" value="검색">
+      </div>
+    </div>
+    <div id="headerBtn">
+      <input id="goToMallPage" type="button" value="쇼핑몰 이동">
+      <input id="logout" type="button" value="로그아웃">
+    </div>
+  </header>
+  <nav id="menuWrap">
+    <button  class="mainMenu" onclick="collapse(this);">유저 관리</button>
+    <div class="subMenu">
+      <a  src="">정보 수정</a>
+      <a  href="">모든 정보 보기</a>
+    </div>
+    <button  class="mainMenu" onclick="collapse(this);">상품 관리</button>
+    <div class="subMenu">
+      <a  href="">상품 등록</a>
+      <a  href="">상품 유형관리</a><!--분류변경, 세일여부, 재고관리(검색 및 정렬,필터 기능필요)-->
+    </div>
+    <button  class="mainMenu" onclick="collapse(this);">주문 관리</button>
+    <div class="subMenu">
+      <a  href="">주문 확인</a> <!--모든 유저들 주문보기(검색 및 필터, 정렬 기능)-->
+      <a  href="">결제 관리</a><!--결제 여부 변경 및 주문 취소-->
+      <a  href="">배송 관리</a><!--배송진행사항 변경 가능-->
+    </div>
+    </nav>
+
+<article>
+</article>
+</div>
+</body>
+<footer></footer>
+</html>
