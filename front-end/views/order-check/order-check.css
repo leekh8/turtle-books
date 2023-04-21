@@ -1,0 +1,18 @@
+.order-check-content {
+  float: right;
+}
+
+.column {
+  text-align: center;
+}
+
+#order-check-table {
+  width: 100%;
+}
+
+.card {
+  background-color: rgb(204, 204, 204);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 400;
+}
