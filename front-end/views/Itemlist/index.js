@@ -1,10 +1,3 @@
-// import { headerNav } from "../../common/Header/header.html"
-// /* nav Template */
-// function addNav() {
-// 	const header = document.querySelector('.headerNav');
-// 	header.innerHTML = navTemplate();
-// }
-// addNav();
 
 const booktable = document.querySelector("#booktable");
 
@@ -22,7 +15,7 @@ const books = [
   },
   {
     id: 2,
-    title: "브라질에 비가 내리면 스타벅스 주식을 사라2",
+    title: "챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
     author: "피터 나바로",
     publisher: "에프엔미디어",
     publishDate: "2022.04.25",
@@ -47,13 +40,13 @@ books.forEach((book) => {
             />
         </td>
         <td width="60%" class="second-table">
-            <h2><b>"${book.title}"</b></h2>
+            <h2><b>${book.title}</b></h2>
             <br />
-            <p>"${book.author}/${book.publisher}/${book.publishDate}"</p>
+            <p>${book.author}/${book.publisher}/${book.publishDate}</p>
             <p>
-            "${book.description}"
+            ${book.description}
             </p>
-            <p>"${book.price}"원</p>
+            <p>${book.price}원</p>
         </td>
         <td width="15%">
             <div class="third-table">
@@ -74,4 +67,36 @@ books.forEach((book) => {
         </td>
     `;
     booktable.appendChild(tr);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const minusBtns = document.querySelectorAll(".quantity-minus"); // '-'버튼
+  const numberInputs = document.querySelectorAll(".quantity-input"); //input
+  const plusBtns = document.querySelectorAll(".quantity-plus"); //'+' 버튼
+
+  function minusNum(e) {
+    const input = e.target.nextElementSibling;
+    if (parseInt(input.value) > 1) {
+      //1이하일 경우
+      input.value = parseInt(input.value) - 1;
+    } else {
+      if (confirm("삭제하시겠습니까?")) {
+        input.value = 1;
+      }
+    }
+  }
+
+  function plusNum(e) {
+    const input = e.target.previousElementSibling;
+    input.value = parseInt(input.value) + 1;
+  }
+
+  // 체크 박스가 다수일 경우
+  for (let i = 0; i < minusBtns.length; i++) {
+    minusBtns[i].addEventListener("click", minusNum);
+  }
+
+  for (let i = 0; i < plusBtns.length; i++) {
+    plusBtns[i].addEventListener("click", plusNum);
+  }
 });
