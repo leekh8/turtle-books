@@ -1,98 +1,71 @@
-const json = require('express');
-const productService = require('../service/product-service');
+// 클라이언트로부터 받은 요청 처리, 데이터 컨트롤
+// 추출한 데이터는  Model한테 전달
 
-class ProductController {
-  async addProduct(req, res, next) { 
-    const { title, author, publisher, published_date, price, category, stock } = req.body;
+const ProductService = require('../service/product-service');
 
-    if(
-      !title||
-      !author||
-      !publisher||
-      !published_date||
-      !price||
-      !category||
-      !stock
-    ){
-      return res.status(400).json("입력하지않은 데이터가 있습니다.");
-    }
-
+class productController {
+  // 새로운 책 생성하는데 필요한 데이터 추출, 데이터는 service에 전달하고 새로운 책 생성
+  async createProduct(req, res) {
     try {
-      const createNProduct = await productService.addProduct({
-        title, author, publisher, published_date, price, category, stock
-      });
-      return res.status(200).json(createNProduct);
-    }catch(e) { 
-      next(e); 
+      const { title, author, publisher, published_date, price, category, stock } = req.body;
+      const product = await ProductService.createProduct({title, author, publisher, published_date, price, category, stock});
+      res.status(201).json({success: true, product});
+    } catch(err) {
+      res.status(400).json({success: false, message: res.message});;
     }
   }
+  // 책 삭제, 클라이언트로부터 받은 요청처리, 삭제할 책 id추출
+  // 추출된 id는 service에 전달하고 상품 삭제
+  async deleteProduct (req, res) {
+    try {
+      const { id } = req.params;
 
-  async getProductList(req, res, next) { //카테고리별
-    if(Object.keys(req.query).length === 0) {
-      const productList = await productService.getProductList();
-      return res.status(200).json(productList);
-    } else {
-      const { bid } = req.query;
-      if(!bid) {
-        return res.status(200).json("query data가 bId에 없습니다.");
-      } 
-      const bidArr = bid.split(",");
+      await ProductService.deleteProduct(id);
+      res.status(200).json({success: true});
+    } catch(err) {
+      res.status(400).json({
+        success: false, message: err.message
+      })
+    }
+  }
+  // 상품수정, 요청처리, 수정할 책 id와 수정할 내용 추출, 추출한 정보 service에 전달, 상품 수정
+  async updateProduct(req, res) {
+    try {
+      const { id } = req.params;
+      const update = req.body;
 
-      try {
-        const productList = await productService.getProductList(bidArr);
-        return res.status(200).json(productList);
-      } catch(e) {
-        next(e);
+      const updateProduct = await ProductService.updateProduct(id, update);
+      res.status(200).json({success: true, data: updateProduct});
+    } catch(err) {
+      res.status(400).json({success: false, message: err.message});
+    }
+  }
+  // 특정상품조회, id추출, 해당id로 ProductService호출
+  // ProductService로 해당상품id 데이터베이스 조회
+  async getProductById(req, res) {
+    try {
+      const { id } = req.params;
+      const product = await ProductService.getProductById(id);
+      if(!product) {
+        return res.status(404).json({success: false, message: "상품을 찾을 수 없습니다."});
       }
+      res.status(200).json({success: true, data: product});
+    } catch(err) {
+      res.status(400).json({success: false, message: err.message});
     }
   }
-  async getProduct(req, res, next) {
-    const { bid } = req.params;
-    
+  // 카테고리별 상품조회, 클라언트로부터 받은 요청에서 카테고리를 추출 후
+  // 해당 카테고리로 ProductService를 호출
+  // ProductService에서는 해당 카테고리에 해당하는 상품들을 데이터베이스에서 조회
+  async getProductByCategory (req, res) {
     try {
-      const product = await productService.getProductById(bid);
-      return res.status(200).json(product);
-    } catch(e) {
-      next(e);
-    }
-  }
-  async editProduct(req, res, next) {
-    const { bid } = req.params;
-    try {
-      const updateProduct = await productService.editProduct(bid, req.body);
-      return res.status(200).json(updateProduct);
-    } catch(e) {
-      next(e);
-    } 
-  }
-  async removeProduct(req, res, next) {
-    const { bid } = req.params;
-    
-    try {
-      await productService.removeProduct(bid);
-      res.status(200).json(`삭제 완료 : ${bid}`);
-    } catch(e) {
-      next(e);
-    }  
-  }
-  async searchProduct(req, res, next) {
-    if(Object.keys(req.query).length === 0) {
-      try{
-        const productList = await productService.getProductList();
-        return res.status(200).json(productList);
-      } catch(e) {
-        next(e);
-      }
-    } else {
-      try {
-        const searchBook = req.query;
-        const productList = await productService.searchProduct(searchBook);
-        return res.status(200).json(productList);
-      } catch(e) {
-        next(e);
-      }
+      const { category } = req.params;
+      const products = await ProductService.getProductByCategory(category);
+      res.status(200).json({ success: true, data: products });
+    } catch(err) {
+      res.status(400).json({ success: false, message: err.message });
     }
   }
 }
 
-module.exports = new ProductController();
+module.exports = new productController();
