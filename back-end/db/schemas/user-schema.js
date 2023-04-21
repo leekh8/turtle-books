@@ -1,13 +1,15 @@
-// user schema
-// userId:    사용자 id
-// password:  비밀번호
-// email:     이메일
-// lastName:  성
-// firstName: 이름
-// address:   배송지
-// birthDate: 생년월일
-// userRole:  사용자 권한
-
+// user-schema.js
+/*
+--- user schema ---
+userId:    사용자 id
+password:  비밀번호
+email:     이메일
+lastName:  성
+firstName: 이름
+address:   배송지
+birthDate: 생년월일
+userRole:  사용자 권한
+*/
 const { Schema, model } = require("mongoose");
 
 const UserSchema = new Schema(
