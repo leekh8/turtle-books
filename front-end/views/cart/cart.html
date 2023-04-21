@@ -11,7 +11,6 @@
     <script src="./../common/loadHTML.js" type="text/javascript"></script>
     <link rel="stylesheet" href="./../common/Header/header.css" />
 
-    
     <script src="./../common/checkBox.js"></script><!--체크박스 전체 선택 해제-->
     <script src="cart-TotalPrice.js"></script>
 </head>
@@ -24,7 +23,6 @@
     <nav>
       <span><input type="checkbox" id="selectAll"> 
       <label for="selectAll">전체</label></span>
-
       <div id="deletBtns">
         <input type="button" id="selectDelet"  class="button is-small" value="삭제">
         <input type="button" id="inableDelet"  class="button is-small" value="품/절판 삭제">
@@ -32,12 +30,12 @@
     </nav>
 
     <div id="cartInfo">
-    <article id="noItem"> <!--비회원 장바구니 상품 없을 경우-->
+    <article id="noItem"  style="display: none;"> <!--비회원 장바구니 상품 없을 경우-->
       <p>장바구니에 담긴 상품이 없어요.</p>
-      <input type="button" value="로그인" >
     </article>
-    <article id="haveItem" style="display: none;"> <!--장바구니에 상품이 있을 경우-->
-      <div class="card" class="productInCart">
+
+    <article id="haveItem"> <!--장바구니에 상품이 있을 경우-->
+      <div  class="productInCart" class="card"> <!--상품 추가시 이부분이-->
       <div class="card-content">
         <div class="content">
             <input type="checkbox" class="checkboxs" name="checkbox">
@@ -66,6 +64,7 @@
           </div>
           </div>
         </div> 
+        
     </article>
     
     <aside class="box">
@@ -73,7 +72,7 @@
         <table>
           <tr>
             <td>상품금액</td>
-            <td class="numbers"> <span id="price">0</span> 원</td>
+            <td class="numbers"> <span id="selctPrice">0</span> 원</td>
           </tr>
           <tr>
             <td>배송비</td>

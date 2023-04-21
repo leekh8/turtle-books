@@ -61,7 +61,7 @@ aside {
   margin-top: 3rem;
 } 
 
-#price, #deliveryCharge, #totalPrice
+#selctPrice, #deliveryCharge, #totalPrice
 {
   font-weight: bold;
 }
@@ -74,6 +74,7 @@ tr[class="numbers"]{
 }
 
 #noItem {
+  height: 210px;
   padding-top: 70px;
   text-align: center;
   border-bottom: 1px gainsboro solid;
