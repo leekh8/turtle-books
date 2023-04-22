@@ -4,10 +4,10 @@ const Product = require('../db/models/product-model');
 class ProductService {
   // 상품 추가 로직 서비스
   // 저장한 데이터 controller에 반환
-  async createProduct({title, author, publisher, published_date, price, category, stock}) {
-    const product = new Product({title, author, publisher, published_date, price, category, stock});
+  async createProduct(newProduct) {
+    const product = newProduct;
     await product.save();
-    return product;
+    return res.status(201).json(product);
   }
   // 삭제 로직 서비스
   async deleteProduct(id) {
@@ -29,7 +29,9 @@ class ProductService {
     if(!id) throw Error("특정상품을 가져오기 위한 id가 없습니다.");
     
     const product = await Product.findById(id);
-    
+    if(!product) {
+      return res.status(404).json({success: false, message: "상품을 찾을 수 없습니다."});
+    }
     return product;
   }
   // 카테고리별 상품조회 로직서비스

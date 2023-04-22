@@ -9,9 +9,9 @@ class productController {
     try {
       const { title, author, publisher, published_date, price, category, stock } = req.body;
       const product = await ProductService.createProduct({title, author, publisher, published_date, price, category, stock});
-      res.status(201).json({success: true, product});
+      res.status(201).json({success: true});
     } catch(err) {
-      res.status(400).json({success: false, message: res.message});;
+      res.status(400).json({success: false, message: err.message});;
     }
   }
   // 책 삭제, 클라이언트로부터 받은 요청처리, 삭제할 책 id추출
@@ -46,9 +46,7 @@ class productController {
     try {
       const { id } = req.params;
       const product = await ProductService.getProductById(id);
-      if(!product) {
-        return res.status(404).json({success: false, message: "상품을 찾을 수 없습니다."});
-      }
+      
       res.status(200).json({success: true, data: product});
     } catch(err) {
       res.status(400).json({success: false, message: err.message});
