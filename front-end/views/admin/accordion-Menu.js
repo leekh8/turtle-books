@@ -7,7 +7,7 @@ function collapse(element) {
   }
   element.classList.toggle("active"); // 활성화 여부 toggle
 
-  let content = element.nextElementSibling;
+  const content = element.nextElementSibling;
   if (content.style.maxHeight != 0) {
     // 버튼 다음 요소가 펼쳐져 있으면
     content.style.maxHeight = null; // 접기
