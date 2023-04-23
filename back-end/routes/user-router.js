@@ -24,6 +24,7 @@ userRole:  사용자 권한
 
 // express
 const { Router } = require("express");
+const userService = require("../services/user-service");
 
 const userRouter = Router();
 
@@ -51,7 +52,9 @@ userRouter.post("/login", async (req, res, next) => {
   try {
     const { userId, password } = req.body;
 
-    res.status(200).json();
+    const user = await userService.findUser(userId, password);
+
+    res.status(200).json(user);
   } catch (error) {
     next(error);
   }
@@ -71,6 +74,18 @@ userRouter.patch("/user/:userId", async (req, res, next) => {
       birthDate,
       userRole,
     } = req.body;
+
+    const updatedUser = await userService.updatedUser(userId, {
+      password,
+      email,
+      lastName,
+      firstName,
+      address,
+      birthDate,
+      userRole,
+    });
+
+    res.status(200).json(updatedUser);
   } catch (error) {
     next(error);
   }
@@ -79,6 +94,11 @@ userRouter.patch("/user/:userId", async (req, res, next) => {
 // delete my info
 userRouter.delete("/user/:userId", async (req, res, next) => {
   try {
+    const userId = req.params.userId;
+
+    await userService.deleteUser(userId);
+
+    res.status(204).end();
   } catch (error) {
     next(error);
   }
