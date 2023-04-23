@@ -32,6 +32,12 @@ const productSchema = new Schema (
       defautlt : 10,
       required: true,
     },
+    topic: {
+      type : String,
+      required: true,
+      default: "normal",
+      //new, best, steady, normal
+    },
   },
   {
     timestamp: true,
