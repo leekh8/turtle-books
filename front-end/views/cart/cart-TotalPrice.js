@@ -4,15 +4,10 @@ window.onload = function () {
   const checkBoxes = document.querySelectorAll(".checkboxs"); //개별 체크박스
 
   selectAllCheckbox.addEventListener("click", function () {
-    if (this.checked) {
-      checkBoxes.forEach(function (checkbox) {
-        checkbox.checked = true;
-      });
-    } else {
-      checkBoxes.forEach(function (checkbox) {
-        checkbox.checked = false;
-      });
-    }
+    checkBoxes.forEach(function (checkbox) {
+      //forEach 반복문을 사용하여
+      checkbox.checked = this.checked; //각 checkBoxes에 checked 속성을 selectAllCheckbox속성과 같게 해줌
+    });
     updateTotalPrice();
   });
 };
@@ -34,12 +29,12 @@ function MinusNum(numberInput, productInCart) {
   if (parseInt(numberInput.value) > 1) {
     numberInput.value = parseInt(numberInput.value) - 1;
     updateSubtotalPrice(productInCart);
-  } else {
-    if (confirm("삭제하시겠습니까?")) {
-      numberInput.value = 1;
-      updateSubtotalPrice(productInCart);
-    }
   }
+  return; //early return
+}
+if (confirm("삭제하시겠습니까?")) {
+  numberInput.value = 1;
+  updateSubtotalPrice(productInCart);
 }
 
 function PlusNum(numberInput, productInCart) {

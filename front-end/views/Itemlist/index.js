@@ -27,8 +27,8 @@ const books = [
 ];
 
 books.forEach((book) => {
-  const tr = document.createElement("tr");
-  tr.innerHTML = ` 
+  booktable.innerHTML += `
+      <tr> 
         <td width="5%">
             <input type="checkbox" id="${book.id}" name="myCheckbox" />
         </td>
@@ -65,8 +65,8 @@ books.forEach((book) => {
             <button>바로구매</button>
             </div>
         </td>
+      </tr>
     `;
-    booktable.appendChild(tr);
 });
 
 document.addEventListener("DOMContentLoaded", function () {
