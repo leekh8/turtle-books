@@ -50,7 +50,6 @@ const books = [
     imagesrc: "../assets/book2.jpg",
     topic: "best",
     category: "소설",
-
   },
   {
     id: 4,
@@ -63,7 +62,6 @@ const books = [
     imagesrc: "../assets/book2.jpg",
     topic: "best",
     category: "소설",
-
   },
   {
     id: 5,
@@ -76,7 +74,6 @@ const books = [
     imagesrc: "../assets/book2.jpg",
     topic: "normal",
     category: "소설",
-
   },
   {
     id: 6,
@@ -93,6 +90,7 @@ const books = [
   // ... 다른 책들
 ];
 
+// best만 html로 뿌려주기
 const bestitems = document.querySelector(".slider-items");
 
 books.forEach((book) => {
@@ -107,12 +105,15 @@ books.forEach((book) => {
   }
 });
 
+// 양쪽 버튼에 넘어가는 함수 구현
 const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
 const sliderItems = document.querySelector(".slider-items");
 
 const itemWidth = sliderItems.firstElementChild.getBoundingClientRect().width;
-const visibleItems = Math.floor(sliderItems.parentElement.clientWidth / itemWidth);
+const visibleItems = Math.floor(
+  sliderItems.parentElement.clientWidth / itemWidth
+);
 const totalItems = sliderItems.children.length;
 let currentPosition = 0;
 
@@ -131,3 +132,39 @@ prevBtn.addEventListener("click", () => slideItems("prev"));
 nextBtn.addEventListener("click", () => slideItems("next"));
 
 updateButtons();
+
+// 베스트, 신작, 스테디 버튼에 스크롤 onclick 함수 달아주기
+const bestbutton = document.querySelector("#bestbutton");
+const newbutton = document.querySelector("#newbutton");
+const steadybutton = document.querySelector("#steadybutton");
+
+bestbutton.addEventListener("click", scrolltoBest);
+newbutton.addEventListener("click", scrolltoNew);
+steadybutton.addEventListener("click", scrolltoSteady);
+
+function scrolltoBest() {
+  const best = document.querySelector("#best");
+  const topPos = best.offsetTop;
+  window.scrollTo({
+    top: topPos - 55,
+    behavior: "smooth",
+  });
+}
+
+function scrolltoNew() {
+  const news = document.querySelector("#new");
+  const topPos = news.offsetTop;
+  window.scrollTo({
+    top: topPos,
+    behavior: "smooth",
+  });
+}
+
+function scrolltoSteady() {
+  const steady = document.querySelector("#steady");
+  const topPos = steady.offsetTop;
+  window.scrollTo({
+    top: topPos,
+    behavior: "smooth",
+  });
+}

@@ -102,6 +102,7 @@ body {
   width: 80%;
   overflow: hidden;
   position: relative;
+  margin-bottom: 100px;
 }
 
 .slider-items {
