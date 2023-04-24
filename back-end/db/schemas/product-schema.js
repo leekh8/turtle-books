@@ -31,6 +31,15 @@ const productSchema = new Schema (
       default: 10,
       required: true,
     },
+    topic: {
+      type: String,
+      required: true, // best, steady, new, normal
+    },
+    description: {
+      type: String,
+      required: true,
+      default: "책 소개 준비중",
+    }
   },
   {
     timestamp: true,

@@ -6,9 +6,10 @@ const ProductRouter = Router();
 
 ProductRouter.post('/', productController.createProduct);
 ProductRouter.delete('/:id', productController.deleteProduct);
-ProductRouter.put('/:id', productController.updateProduct);
-ProductRouter.get('/',)
-ProductRouter.get('/:id',)
+ProductRouter.patch('/:id', productController.updateProduct);
+ProductRouter.get('/', productController.getProductByCategory);
+ProductRouter.get('/', productController.getProductByToopic)
+ProductRouter.get('/:id',productController.getProductById);
 
 module.exports = ProductRouter;
 

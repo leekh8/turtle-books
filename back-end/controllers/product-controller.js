@@ -7,8 +7,10 @@ class productController {
   // 새로운 책 생성하는데 필요한 데이터 추출, 데이터는 service에 전달하고 새로운 책 생성
   async createProduct(req, res) {
     try {
-      const { title, author, publisher, published_date, price, category, stock } = req.body;
-      const product = await ProductService.createProduct({title, author, publisher, published_date, price, category, stock});
+      const { title, author, publisher, published_date, price, category, stock, topic, decription } = req.body;
+      
+      const product = await ProductService.createProduct({title, author, publisher, published_date, price, category, stock, topic, decription});
+      
       res.status(201).json({success: true});
     } catch(err) {
       res.status(400).json({success: false, message: err.message});;
@@ -21,6 +23,7 @@ class productController {
       const { id } = req.params;
 
       await ProductService.deleteProduct(id);
+
       res.status(200).json({success: true});
     } catch(err) {
       res.status(400).json({
@@ -35,6 +38,7 @@ class productController {
       const update = req.body;
 
       const updateProduct = await ProductService.updateProduct(id, update);
+      
       res.status(200).json({success: true, data: updateProduct});
     } catch(err) {
       res.status(400).json({success: false, message: err.message});
@@ -45,6 +49,7 @@ class productController {
   async getProductById(req, res) {
     try {
       const { id } = req.params;
+     
       const product = await ProductService.getProductById(id);
       
       res.status(200).json({success: true, data: product});
@@ -58,10 +63,23 @@ class productController {
   async getProductByCategory (req, res) {
     try {
       const { category } = req.params;
+      
       const products = await ProductService.getProductByCategory(category);
+      
       res.status(200).json({ success: true, data: products });
     } catch(err) {
       res.status(400).json({ success: false, message: err.message });
+    }
+  }
+  async getProductByTopic(req, res) {
+    try {
+      const { topic } = req.params;
+      
+      const product = await ProductService.getProductByTopic(topic);
+      
+      res.status(200).json({ success: true, data: product }); 
+    } catch(err) {
+      res.status(400).json({ success: false, message: err.message});
     }
   }
 }

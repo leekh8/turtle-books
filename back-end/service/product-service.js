@@ -5,13 +5,18 @@ class ProductService {
   // 상품 추가 로직 서비스
   // 저장한 데이터 controller에 반환
   async createProduct(newProduct) {
-    const product = newProduct;
+    if (!newName) throw new Error('상품 추가를 위한 데이터가 필요합니다.');
+    
+    const product = new Product(newProduct);
+    
     await product.save();
+    
     return res.status(201).json(product);
   }
   // 삭제 로직 서비스
   async deleteProduct(id) {
     if(!id) throw new Error("제품을 삭제하기 위한 id가 필요합니다.");
+    
     await Product.findByIdAndDelete(id);
   }
   // 상품수정 로직
@@ -42,5 +47,13 @@ class ProductService {
 
     return products;
   }
+  async getProductByTopic (topic) {
+    if(!topic) throw new Error("상품을 가져오기 위한 토픽이 없습니다.");
+    
+    const products = await Product.find({ topic });
+
+    return products;
+  }
+  
 }
 module.exports = new ProductService();
