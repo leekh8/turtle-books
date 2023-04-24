@@ -2,6 +2,8 @@
 
 // db 관련 로직
 // db에서 데이터 저장, 조회, 수정, 삭제 가능한 메서드 제공
+// default로 true 값을 가지는 withReturn 값 생성
+// false 일 경우 return 안함
 
 /*
 --- user schema ---
@@ -21,32 +23,43 @@ const UserSchema = require("../schemas/user-schema");
 const User = model("users", UserSchema);
 
 export class UserModel {
-  async findByEmail(email) {
+  async findByEmail(email, withReturn = true) {
     const user = await User.findOne({ email });
-    return user;
+    if (withReturn) {
+      return user;
+    }
   }
 
-  async findById(userId) {
+  async findById(userId, withReturn = true) {
     const user = await User.findOne({ _id: userId });
-    return user;
+    if (withReturn) {
+      return user;
+    }
   }
 
-  async create(userInfo) {
+  async create(userInfo, withReturn = true) {
     const createdNewUser = await User.create(userInfo);
-    return createdNewUser;
+    if (withReturn) {
+      return createdNewUser;
+    }
   }
 
-  async findAll() {
+  async findAll(withReturn = true) {
     const users = await User.find({});
-    return users;
+    if (withReturn) {
+      return users;
+    }
   }
 
-  async update({ userId, update }) {
+  async update({ userId, update }, withReturn = true) {
     const filter = { _id: userId };
     const option = { returnOriginal: false };
 
     const updatedUser = await User.findOneAndUpdate(filter, update, option);
-    return updatedUser;
+
+    if (withReturn) {
+      return updatedUser;
+    }
   }
 }
 
