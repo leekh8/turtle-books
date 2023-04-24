@@ -3,7 +3,7 @@
 
 const ProductService = require('../service/product-service');
 
-class productController {
+class ProductController {
   // 새로운 책 생성하는데 필요한 데이터 추출, 데이터는 service에 전달하고 새로운 책 생성
   async createProduct(req, res) {
     try {
@@ -83,5 +83,5 @@ class productController {
     }
   }
 }
-
-module.exports = new productController();
+const productController = new ProductController();
+module.exports = productController;

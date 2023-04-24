@@ -32,5 +32,6 @@ class CategorService {
     return updatedCategory;
   };
 }
+const categorService = new CategorService()
 
-module.exports = new CategorService();
+module.exports = categorService;

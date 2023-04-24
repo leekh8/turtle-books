@@ -56,4 +56,6 @@ class ProductService {
   }
   
 }
-module.exports = new ProductService();
+
+const productService = new ProductService();
+module.exports = productService;
