@@ -33,6 +33,8 @@ const cors = require("cors");
 
 // 라우터 연결
 const usersRouter = require("./routes/user-router"); // user(사용자) router 연결
+const productRouter = require("./routes/product-router");
+const categoryRouter = require("./routes/category-router");
 
 const app = express();
 
@@ -43,6 +45,9 @@ app.use(express.urlencoded({ extended: ture })); // url-encoded body parser
 
 // api 라우터
 app.use("/user", usersRouter);
+app.use("/user/myroom/order-list", router); // order-list 연결
+app.use("/product", productRouter);
+app.use("/category", categoryRouter);
 
 // 에러 처리
 app.use((err, req, res, next) => {

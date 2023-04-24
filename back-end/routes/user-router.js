@@ -29,6 +29,7 @@ const userService = require("../services/user-service");
 const userRouter = Router();
 
 // register
+// 실제로는 /user/register
 userRouter.post("/register", async (req, res, next) => {
   try {
     // req의 body에서 데이터 가져옴
@@ -48,6 +49,7 @@ userRouter.post("/register", async (req, res, next) => {
 });
 
 // login
+// 실제로는 /user/login
 userRouter.post("/login", async (req, res, next) => {
   try {
     const { userId, password } = req.body;
@@ -60,8 +62,23 @@ userRouter.post("/login", async (req, res, next) => {
   }
 });
 
+// get user-list
+// 실제로는 /user/userList
+userRouter.get("/userList", async function (req, res, next) {
+  try {
+    // 전체 사용자 목록 받아오기
+    const user = await userService.getUsers();
+
+    // 사용자 목록 프론트에 보내기
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // edit my info
-userRouter.patch("/user/:userId", async (req, res, next) => {
+// 실제로는 /user/myroom/:userId
+userRouter.patch("myroom/:userId", async (req, res, next) => {
   try {
     const userId = req.params.userId;
 
@@ -92,7 +109,8 @@ userRouter.patch("/user/:userId", async (req, res, next) => {
 });
 
 // delete my info
-userRouter.delete("/user/:userId", async (req, res, next) => {
+// 실제로는 /user/myroom/:userId
+userRouter.delete("myroom/:userId", async (req, res, next) => {
   try {
     const userId = req.params.userId;
 
