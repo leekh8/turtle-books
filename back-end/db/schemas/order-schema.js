@@ -16,12 +16,19 @@ const OrderSchema = new Schema(
     type: String,
     required: true,
   },
+  recipientName: {
+    type : String,
+    required : true,
+  },
+  recipientPhoneNumber: {
+    type : Number,
+    required : true,
+  },
   totalAmount: {
     type: String,
     required: true,
   },
   // 장바구니세션에서 받아오기
-
   cartItems : [{
     title: {
       type : String,

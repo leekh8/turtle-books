@@ -10,28 +10,18 @@ const router = express.Router();
 
 // order-list 메인 화면, 주문 목록 가져오기
 router.get('/', async (req, res)=>{
-    res.render('user/order-list-main');
+
+    res.send("렌더 함수로 메인 페이지 띄우기")
     
 });
 
-router.get('/preparing', async (req, res)=>{
-    
-    res.render('user/order-list-preparing');
-});
+router.get('/', (req,res)=>{
+    const { status } = req.query;
+    const orders = OrderModel.find().populate()
+    if(status === preparing){
 
-router.get('/shipping', async (req, res)=>{
-    
-    res.render('user/order-list-shipping');
-});
+    }
+})
 
-router.get('/delivery ', async (req, res)=>{
-    
-    res.render('user/order-list-delivery');
-});
-
-router.get('/refund', async (req, res)=>{
-    
-    res.render('user/order-list-refund');
-});
 
 module.exports = router;

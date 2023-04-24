@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     const products = await Product.find();
     res.json(products);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).send(err);
   }
 });
 
@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
     const newProduct = await product.save();
     res.status(201).json(newProduct);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(400).send(err);
   }
 });
 
