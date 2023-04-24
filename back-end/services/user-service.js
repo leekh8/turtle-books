@@ -24,6 +24,7 @@ const jwt = require("jsonwebtoken");
 
 class UserService {
   constructor(userModel) {
+    // 모델을 프로퍼티로 묶어 db와 상호작용 하는 모든 기능을 하나의 객체로 묶음
     this.userModel = userModel;
   }
 
@@ -33,7 +34,7 @@ class UserService {
       userInfo;
 
     // 입력값 확인
-    if (!userInfo.email || !userInfo.password || !userInfo.userId) {
+    if (!email || !password || !userId) {
       throw new Error(`please check your input`);
     }
     // 중복 확인
@@ -71,7 +72,7 @@ class UserService {
     const { userId, password } = userInfo;
 
     // ID가 db에 존재하는 지 확인
-    const user = await this.userModel.findbyEmail(email);
+    const user = await this.userModel.findbyId(userId);
     if (!user) {
       throw new Error("not our ID. check again please");
     }
@@ -117,8 +118,8 @@ class UserService {
 
   // edit my info
   // 비밀번호 필요
-  async editUser(requiredUserInfo, updateUserInfo) {
-    const { userId, currentPassword } = requiredUserInfo;
+  async editUser(userInfo, updateUserInfo) {
+    const { userId, currentPassword } = userInfo;
 
     // 주어진 userId로 사용자 찾기
     const user = await this.userModel.findById(userId);
@@ -141,21 +142,75 @@ class UserService {
       throw new Error(`not correct password. check again please.`);
     }
 
+    // 업데이트 할 필드 객체
+    const updateFeilds = {};
+
     // 비밀번호 변경 시
-    const password = updateUserInfo;
-    // 해쉬 해서 새로 저장
-    if (password) {
-      const newHashedPassword = await bcrypt.hash(password, 10);
-      updateUserInfo.password = newHashedPassword;
+    // 새 비밀번호 해싱해서 저장
+    if (updateUserInfo.password) {
+      const newHashedPassword = await bcrypt.hash(updateUserInfo.password, 10);
+      updateFeilds.password = newHashedPassword;
+    }
+
+    // 그 외 나머지 필드 업데이트
+    if (updateUserInfo.email) {
+      updateFeilds.email = updateUserInfo.email;
+    }
+    if (updateUserInfo.lastName) {
+      updateFeilds.lastName = updateUserInfo.lastName;
+    }
+    if (updateUserInfo.firstName) {
+      updateFeilds.firstName = updateUserInfo.firstName;
+    }
+    if (updateUserInfo.address) {
+      updateFeilds.address = updateUserInfo.address;
+    }
+    if (updateUserInfo.birthDate) {
+      updateFeilds.birthDate = updateUserInfo.birthDate;
     }
 
     // 업데이트
-    user = await this.userModel.update({ userId, update: updateUserInfo });
+    const updateUser = await this.userModel.update({
+      userId,
+      update: updateFeilds,
+    });
 
-    return user;
+    return updateUser;
+  }
+
+  // delete my info
+  // user/:userId로 userId를 요청 파라미터로 받아와 deleteUser 호출
+  async deleteUser(userId, currentPassword) {
+    try {
+      // 입력받은 id로 db에서 사용자 조회
+      const user = await this.userModel.findById(userId);
+
+      if (!user) {
+        // 조회된 사용자 없으면 에러
+        throw new Error(`User with userId: ${userId} not founded`);
+      }
+
+      // 입력한 비밀번호와 db의 비밀번호가 맞는지 확인
+      // currentPassword: 입력한 비밀번호
+      // correctHashedPassword: db에서 온 비밀번호
+      const MatchPassword = await bcrypt.compare(
+        currentPassword,
+        correctHashedPassword
+      );
+
+      if (!MatchPassword) {
+        throw new Error(`not correct password. check again please.`);
+      }
+
+      // 조회된 사용자 있으면 db에서 삭제
+      await userModel.deleteUser(userId);
+      // 삭제된 사용자 객체 반환
+      return user;
+    } catch (error) {
+      throw error;
+    }
   }
 }
-
 const userService = new UserService(userModel);
 
 module.exports = userService;
