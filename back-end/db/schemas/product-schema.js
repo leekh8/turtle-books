@@ -1,4 +1,5 @@
-const Schema = require('mongoose');
+
+const { Schema } = require('mongoose');
 
 const productSchema = new Schema (
   {
@@ -14,8 +15,8 @@ const productSchema = new Schema (
       type: String,
       required: true,
     },
-    published_Date: { // 발행일
-      type: Number,
+    published_date: { // 발행일
+      type: Date,
       required: true,
     },
     price: { // 가격
@@ -42,10 +43,8 @@ const productSchema = new Schema (
     }
   },
   {
-    timestamp: true,
-    // collection: "product",
+    timestamps: true
   }
-  
 );
 
 module.exports = productSchema;
