@@ -26,8 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //장바구니 버튼 alert
   function showalert() {
-    const result = confirm("장바구니에 담겼습니다.\n 장바구니로 이동하시겠습니까?");
+    const result = confirm("장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?");
     if(result) {
+      // 로컬스토리지 저장 
       // 장바구니로 이동
     } else {
       return;

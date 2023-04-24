@@ -168,3 +168,10 @@ function scrolltoSteady() {
     behavior: "smooth",
   });
 }
+
+//카테고리 목록 따오기
+const categoryContainer = document.querySelector(".buttonlist2");
+
+var button = document.createElement("button")
+//각 카테고리마다 button 하나씩 만들어서 내용 넣어줌
+//리스트 형태도 ok 

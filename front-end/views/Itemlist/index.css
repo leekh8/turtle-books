@@ -77,8 +77,8 @@ body {
   }
 
   .img1 {
-    height: auto;
-    max-width: 40%;
+    width: auto;
+    max-height: 200px
 }
 
 .second-table {
