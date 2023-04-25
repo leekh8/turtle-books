@@ -5,11 +5,11 @@ const productController = require('../controllers/product-controller');
 const ProductRouter = Router();
 
 ProductRouter.post('/', productController.createProduct);
-ProductRouter.delete('/product/:id', productController.deleteProduct);
-ProductRouter.patch('/product/:id', productController.updateProduct);
+ProductRouter.delete('/admin/:id', productController.deleteProduct);
+ProductRouter.patch('/admin/:id', productController.updateProduct);
 ProductRouter.get('/', productController.getProductByCategory);
 ProductRouter.get('/', productController.getProductByTopic)
-ProductRouter.get('/api/product/:id',productController.getProductById);
+ProductRouter.get('/product/:id',productController.getProductById);
 
 module.exports = ProductRouter;
 
