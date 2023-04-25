@@ -15,13 +15,22 @@ const productSchema = new Schema (
       type: String,
       required: true,
     },
-    published_date: { // 발행일
+    publishDate: { // 발행일
       type: Date,
       required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+      default: "책 소개 준비중",
     },
     price: { // 가격
       type: Number,
       required: true,
+    },
+    topic: {
+      type: String,
+      required: true, // best, steady, new, normal
     },
     category: { // 분류
       type: String,
@@ -31,19 +40,11 @@ const productSchema = new Schema (
       type: Number,
       default: 10,
       required: true,
-    },
-    topic: {
-      type: String,
-      required: true, // best, steady, new, normal
-    },
-    description: {
-      type: String,
-      required: true,
-      default: "책 소개 준비중",
     }
   },
   {
-    timestamps: true
+    timestamps: true,
+    collection: "products"
   }
 );
 

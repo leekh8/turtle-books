@@ -11,9 +11,9 @@ class ProductController {
       
       const product = await ProductService.createProduct({title, author, publisher, published_date, price, category, stock, topic, decription});
       
-      res.status(201).json({success: true});
+      res.status(201).json({success: true, data: product});
     } catch(err) {
-      res.status(400).json({success: false, message: err.message});;
+      res.status(err.statusCode || 500).json({success: false, message: err.message});;
     }
   }
   // 책 삭제, 클라이언트로부터 받은 요청처리, 삭제할 책 id추출
@@ -24,7 +24,7 @@ class ProductController {
 
       await ProductService.deleteProduct(id);
 
-      res.status(200).json({success: true});
+      res.status(204).ok();
     } catch(err) {
       res.status(400).json({
         success: false, message: err.message

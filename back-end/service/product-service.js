@@ -11,7 +11,7 @@ class ProductService {
     
     await product.save();
     
-    return res.status(201).json(product);
+    return product;
   }
   // 삭제 로직 서비스
   async deleteProduct(id) {

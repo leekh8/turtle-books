@@ -9,6 +9,7 @@ const categorySchema = new Schema(
   },
   {
     timestamps: true,
+    collation: "categories"
   }
 );
 
