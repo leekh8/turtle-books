@@ -1,13 +1,19 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
 
 const OrderSchema = new Schema(
-  //user 스키마에서 유저 정보를 받아서 buyer로 저장.
   {
     buyer: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
+    productList: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+        required: true,
+      },
+    ],
     shippingStatus: {
       type: String,
       default: "배송준비중",
@@ -15,6 +21,15 @@ const OrderSchema = new Schema(
     shippingPostCode: {
       type: String,
       required: true,
+    },
+    shippingAddress : {
+      type: String,
+      required : true,
+    },
+    shippingRequestMessage : {
+      type: String,
+      required : true,
+      default : "요청 메시지 없음"
     },
     totalAmount: {
       type: Number,
@@ -28,18 +43,6 @@ const OrderSchema = new Schema(
       type: Number,
       required: true,
     },
-    // 장바구니세션에서 받아오기
-    cartItems: [{
-      product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-        required: true,
-      },
-      quantity : {
-        type : Number,
-        required: true,
-      }
-    }]
   },
   {
     timestamps: true,
@@ -47,6 +50,5 @@ const OrderSchema = new Schema(
   }
 );
 
-const OrderModel = model("Order", OrderSchema);
-module.exports = OrderModel;
+module.exports = OrderSchema;
 
