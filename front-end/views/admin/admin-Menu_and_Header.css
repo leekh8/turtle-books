@@ -1,96 +1,151 @@
-
 #container {
   display: grid;
   grid-template-columns: 15% 85%;
-  grid-template-rows: 15vh 85vh;
+  grid-template-rows: 10vh 7vh 83vh;
 }
+
 header {
   grid-column: span 2;
   display: grid;
   grid-template-columns: 15% 70% 15%;
-  border-bottom: 2px gray solid;
+  border-bottom: 2px #00d1b248 solid;
+}
+h1 {
+  font-size: xxx-large;
 }
 
-
-#admininfo {
-  grid-column-start: 1;
-  grid-column-end: 1;
+nav {
+  grid-column: span 2;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  border-bottom: 2px #00d1b248 solid;
+  display: grid;
+  grid-template-columns: 15% 11.5% 62% 11.5%;
 }
+
+nav > label {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  font-size: medium;
+}
+
+#search {
+  grid-column-start: 3;
+  grid-column-end: 3;
+}
+
 #headerMiddle {
   grid-column-start: 2;
   grid-column-end: 2;
-  
 }
 
-h1, #search {
+h1, #search, nav > label, #btns {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-}
-h1 {
   margin: 20px;
 }
-#searchbox{
+
+#searchbox {
   width: 40%;
   height: 25px;
-
 }
+
 #searchBtn {
   height: 30px;
 }
+
+#btns{
+  justify-content:space-around;
+}
+
 #headerBtn {
   grid-column-start: 3;
   grid-column-end: 3;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items:baseline;
+  align-items: baseline;
+  justify-content:space-around;
+  margin-top: 20px;
 }
+
 #goToMallPage {
   margin-right: 10px;
 }
-nav {
+
+#menuWrap {
   width: 100%;
   height: 100%;
-  background-color: gray;
+  background-color: #00d1b2;
   grid-column-start: 1;
-  grid-row-start: 2;
+  grid-row-start: 3;
 }
-.mainMenu {
-    background-color: gray;
-    color: white;
-    cursor: pointer;
+
+a, .tabButtons {
+  padding: 18px;
+  padding-left: 72px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  font-size: larger;
+  cursor: pointer;
 }
-.active,
-.mainMenu:hover {
-    background-color: #555;
+.tabButtons{
+  background-color: #00d1b2;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tabButtons:hover {
+  background-color: rgb(234, 234, 234);
+  color: black;
 }
 .subMenu {
-    padding-left: 15px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-    background-color: gainsboro;
+  max-height: 50;
+  display: none;
+  transition: max-height 0.2s ease-out;
+  background-color: #c2e8e2 ;
+}
+.subMenu>a:hover {
+background-color: rgb(204, 204, 204);
+font-weight: bold;
+}
+/* .tabButtons:active {
+  background-color: white;
+  color: black;
+} */
+a{
+  padding-left: 90px;
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 article {
   grid-column-start: 2;
   grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 3;
   margin: 40px;
 }
-
-a, .mainMenu {
-  padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
+.tabContents{ /* 탭 */
+  overflow: hidden;
 }
-a{
-  display: block;
-  color: inherit;
-  text-decoration: none;
+.active { /* 탭 */
+  background-color: white;
+  color: black;
+}
+
+/* 표 */
+tr>.btnTd {
+  border: none;
+  background-color: white;
+}
+table>.th {
+  text-align: center;
+}
+tbody>tr:hover{
+  background-color: #00d1b223;
 }
