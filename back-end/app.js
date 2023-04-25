@@ -44,7 +44,7 @@ app.use(express.json()); // content-type: application/json 형태. post 요청�
 app.use(express.urlencoded({ extended: ture })); // url-encoded body parser
 
 // api 라우터
-app.use("/user", usersRouter);
+app.use("/api/user", usersRouter);
 app.use("/user/myroom/order-list", router); // order-list 연결
 app.use("/product", productRouter);
 app.use("/category", categoryRouter);
@@ -52,7 +52,7 @@ app.use("/category", categoryRouter);
 // 에러 처리
 app.use((err, req, res, next) => {
   console.log(err.stack);
-  res.status(500).json({ message: `server error occured` });
+  res.status(err.statusCode || 500).json({ message: `server error occured` });
 });
 
 module.exports = app;
