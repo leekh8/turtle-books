@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>주문 완료 페이지</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="order-complete.css" />
+    <link rel="stylesheet" href="order-complete.css" />
+    <script src="../common/loadHTML.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../common/Header/header.css" />
+  </head>
+  <body>
+    <script>
+      loadHTML("../common/Header/header.html");
+    </script>
+    <main>
+      <div class="container">
+        <h1>주문이 완료되었습니다</h1>
+        <p>아래는 주문 내역입니다.</p>
+        <div class="order-summary">
+          <h2>주문 내역</h2>
+          <ul>
+            <li>
+              <span>상품명:</span>
+              <span>책 A </span>
+            </li>
+            <li>
+              <span>결제 금액:</span>
+              <span>￦10,000</span>
+            </li>
+            <li>
+              <span>배송 정보:</span>
+              <span>경기도 ~~</span>
+            </li>
+          </ul>
+        </div>
+        <a href="/" class="btn">홈으로 돌아가기</a>
+      </div>
+    </main>
+  </body>
+</html>

@@ -14,6 +14,7 @@
     <script src="order.js" type="module" defer></script>
     <link rel="stylesheet" href="../common/Header/header.css" />
     <link rel="stylesheet" href="../common/style/global.css" />
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   </head>
   <body>
     <!-- 공통 헤더 구역 -->
@@ -56,7 +57,8 @@
                     <p class="control">
                       <input
                         class="input"
-                        id="postalCode"
+                        placeholder="배송받을 주소를 검색해주세요"
+                        id="address"
                         type="text"
                         readonly
                       />
@@ -71,7 +73,7 @@
                     <p class="control">
                       <input
                         class="input"
-                        id="address2"
+                        id="detailAddress"
                         type="text"
                         placeholder="상세주소를 입력하세요"
                         autocomplete="on"
@@ -135,7 +137,7 @@
           <p>포인트 사용 0원</p>
           <hr />
           <p>최종결제금액 10,000원</p>
-          <button class="button is-primary is-fullwidth" id="payments-btn">
+          <button class="button is-primary is-fullwidth" id="paymentsBtn">
             결제하기
           </button>
         </div>
