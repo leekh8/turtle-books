@@ -49,13 +49,12 @@ const orderRouter = require("./routes/order-router");
 const adminRouter = require("./routes/admin-router");
 const categoryRouter = require("./routes/category-router");
 const productRouter = require("./routes/product-router");
-const productService = require("./service/product-service");
 
 // api 라우터
 app.use("/user", usersRouter);
 app.use("/api/order", orderRouter);
 app.use("/admin", adminRouter);
-app.use("/product", productRouter);
-app.use("/category", categoryRouter);
+app.use("/api/product", productRouter);
+app.use("/api/category", categoryRouter);
 
 // module.exports = app;
