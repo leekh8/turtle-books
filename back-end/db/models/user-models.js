@@ -22,43 +22,43 @@ const UserSchema = require("../schemas/user-schema");
 
 const User = model("users", UserSchema);
 
-export class UserModel {
-  async findByEmail(email, withReturn = true) {
-    const user = await User.findOne({ email });
-    if (withReturn) {
-      return user;
+class UserModel {
+  async findByEmail(email, withReturn) {
+    if (!withReturn) {
+      await User.findOne({ email });
     }
+    return User.findOne({ email });
   }
 
-  async findById(userId, withReturn = true) {
-    const user = await User.findOne({ _id: userId });
-    if (withReturn) {
-      return user;
+  async findById(userId, withReturn) {
+    if (!withReturn) {
+      await User.findOne({ _id: userId });
     }
+    return User.findOne({ _id: userId });
   }
 
-  async create(userInfo, withReturn = true) {
-    const createdNewUser = await User.create(userInfo);
-    if (withReturn) {
-      return createdNewUser;
+  async create(userInfo, withReturn) {
+    if (!withReturn) {
+      await User.create(userInfo);
     }
+    return User.create(userInfo);
   }
 
-  async findAll(withReturn = true) {
-    const users = await User.find({});
-    if (withReturn) {
-      return users;
+  async findAll(withReturn) {
+    if (!withReturn) {
+      await User.find({});
     }
+    return User.find({});
   }
 
-  async update({ userId, update }, withReturn = true) {
-    const filter = { _id: userId };
-    const option = { returnOriginal: false };
-
-    const updatedUser = await User.findOneAndUpdate(filter, update, option);
-
-    if (withReturn) {
-      return updatedUser;
+  async update({ userId, update }, withReturn) {
+    if (!withReturn) {
+      await User.findOneAndUpdate({ _id: userId }, update, {
+        returnOriginal: false,
+      });
+      return User.findOneAndUpdate({ _id: userId }, update, {
+        returnOriginal: false,
+      });
     }
   }
 }
