@@ -13,7 +13,7 @@ class CategoryController {
   
       const category = await CategoryService.createCategory(name);
   
-      res.status(201).json({ success: true });
+      res.status(201).json({ success: true, data: category });
     } catch (err) {
       res.status(400).json({ success: false, message: err.message });
     }
@@ -26,7 +26,7 @@ class CategoryController {
   
       await CategoryService.deleteCategory(id);
   
-      res.status(200).json({ success: true });
+      res.status(204).ok();
     } catch (err) {
       res.status(400).json({ success: false, message: err.message });
     }

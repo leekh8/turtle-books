@@ -19,7 +19,7 @@ const productSchema = new Schema (
       type: Date,
       required: true,
     },
-    description: {
+    description: { // 책 소개
       type: String,
       required: true,
       default: "책 소개 준비중",
@@ -28,9 +28,9 @@ const productSchema = new Schema (
       type: Number,
       required: true,
     },
-    topic: {
+    topic: { // best, steady, new
       type: String,
-      required: true, // best, steady, new, normal
+      required: true, 
     },
     category: { // 분류
       type: String,
