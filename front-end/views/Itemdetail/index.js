@@ -23,3 +23,17 @@ document.addEventListener("DOMContentLoaded", function () {
     minusBtn.addEventListener("click", minusNum);
     plusBtn.addEventListener("click", plusNum);
   });
+
+  //장바구니 버튼 alert
+  function showalert() {
+    const result = confirm("장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?");
+    if(result) {
+      // 로컬스토리지 저장 
+      // 장바구니로 이동
+    } else {
+      return;
+    }
+  }
+
+  const cartbutton = document.querySelector(".add-to-cart-btn")
+  cartbutton.addEventListener("click", showalert);
