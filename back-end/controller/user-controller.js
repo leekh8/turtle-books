@@ -23,7 +23,10 @@ exports.registerUser = async (req, res, next) => {
     const { userId, email, password } = req.body;
     const newUser = await userService.addUser({
       userId,
+      lastName,
+      firstName,
       email,
+      address,
       password,
     });
     res.status(201).json({ success: true, newUser });
