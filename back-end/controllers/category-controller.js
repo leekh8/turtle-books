@@ -13,7 +13,7 @@ class CategoryController {
       const categories = await CategoryService.getCategoryList();
       res.json(categories);
     } catch(err) {
-      next(err)
+      res.status(err.statusCode || 500).json({success: false, message: err.message});
     }
   }
   // 카테고리 추가 컨트롤러

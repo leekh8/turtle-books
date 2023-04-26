@@ -13,7 +13,7 @@ class ProductController {
       
       res.status(201).json({success: true, data: product});
     } catch(err) {
-      res.status(err.statusCode || 500).json({success: false, message: err.message});;
+      res.status(err.statusCode || 500).json({success: false, message: err.message});
     }
   }
   // 책 삭제, 클라이언트로부터 받은 요청처리, 삭제할 책 id추출
