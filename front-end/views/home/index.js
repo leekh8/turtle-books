@@ -160,6 +160,29 @@ newitemlist.forEach((item, idx) => {
   });
 });
 
+////////////////////////
+
+// steady만 html로 뿌려주기
+const steadybooks = books.filter(e=>e.topic==="steady") //배열
+const steadyitems = document.querySelector(".steady-items"); //div
+
+steadybooks.forEach((book, idx) => {
+    steadyitems.innerHTML += `
+            <div class="slider-item">
+                <img src=${book.imagesrc} alt="Book cover">
+                <p class="category">${book.category}</p>
+                <p class="title">${book.title}</p>
+            </div>
+        `;
+});
+
+//각 아이템에 해당 상세 페이지 넘어가게 하는 이벤트 달아주기
+const steadyitemlist = document.querySelectorAll(".steady-container .slider-item");
+steadyitemlist.forEach((item, idx) => {
+  item.addEventListener("click", () => {
+    window.location.href = `../Itemdetail/index.html?id=${steadybooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
+  });
+});
 
 // 양쪽 버튼에 넘어가는 함수 구현
 const prevBtn = document.querySelector(".prev-btn");
