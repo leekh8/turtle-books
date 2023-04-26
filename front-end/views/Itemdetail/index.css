@@ -11,6 +11,12 @@ main {
   height: 100%;
   position: relative;
   border-bottom: none;
+  /* 기존 global 여기에만 적용 */
+  background-color: rgb(240, 240, 240);
+  margin: 10rem;
+  margin-top: 2rem;
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 8px;
 }
 
 .item-container {
