@@ -9,6 +9,7 @@
 
   <title>admin test 메뉴</title>
 </head>
+
 <body>
   <div id="container">
     <header>
@@ -41,7 +42,7 @@
       </div>
       <div>
         <button id="product-tap" class="tabButtons" data-tab="productContents">상품 관리</button>
-        <button class="subMenu modal-button" data-modal-target="#productAdd">상품 등록</button>        
+        <button class="subMenu modal-button" data-modal-target="#productAdd">상품 등록</button>
       </div>
       <div>
         <button id="category-tab" class="tabButtons" data-tab="categoryContents">카테고리 관리</button>
@@ -59,10 +60,12 @@
         <table class="table is-bordered is-narrow is-fullwidth">
           <thead style="background-color: rgba(220, 220, 220, 0.303);">
             <tr>
-              <th class="th"><button class="button is-small">삭제</button></th>
+              <th class="deltButnTh" th class="th"><button class="button is-small">삭제</button></th>
               <th class="th">아이디</th>
               <th class="th">이메일</th>
+              <th class="th">성</th>
               <th class="th">이름</th>
+              <th class="th">생년월일</th>
               <th class="th">핸드폰</th>
               <th class="th">주소</th>
               <th class="th">비밀번호</th>
@@ -70,14 +73,15 @@
           </thead>
           <tbody>
             <tr>
-              <td class="btnTd"><input type="checkbox"></td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-              <td>6</td>
-              <td class="btnTd"><button class="button is-small">수정</button></td>
+              <td class="checkboxTd"><input type="checkbox"></td>
+              <td>ggobooks</td>
+              <td>ggobooks@gamil.com</td>
+              <td>김</td>
+              <td>거북</td>
+              <td>1752.08.08</td>
+              <td>010-8080-8080</td>
+              <td>경기도 거북시 거북동 거북로 808 202동 808호</td>
+              <td>pw는시크릿</td>
             </tr>
           </tbody>
         </table>
@@ -88,49 +92,77 @@
         <table class="table is-bordered is-narrow is-fullwidth">
           <thead style="background-color: rgba(220, 220, 220, 0.303);">
             <tr>
-              <th class="th"><button class="button is-small">삭제</button></th>
+              <th class="deltButnTh" th class="th"><button class="button is-small">삭제</button></th>
+              <th class="th">상품 이미지</th>
               <th class="th">상품코드</th>
               <th class="th">카테고리</th>
+              <th class="th">Topic</th>
               <th class="th">제목</th>
+              <th class="th">가격</th>
+              <th class="th">재고</th>
+              <th class="th">책소개</th>
               <th class="th">작가</th>
               <th class="th">출판사</th>
-              <th class="th">가격</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="btnTd"><input type="checkbox"></td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-              <td>6</td>
-              <td class="btnTd" class="td"><button class="button is-small">수정</td>
+              <td class="checkboxTd"><input type="checkbox"></td>
+              <td><span class=" changeImg" class="productImg"><img src="bookImg.png" alt=""></span></td>
+              <td>상품코드</td>
+              <td><span class="categorySelctBox">자기계발</span></td>
+              <td><span class="topicSelctBox"">steady</span></td>
+              <td><span class=" changeText">대충 책 제목</span></td>
+              <td><span class="changeText">1,000</span> 원</td>
+              <td><span class="changeText">500</span> 개</td>
+              <td><span class="changeText">대충 멋진 책 소개</span></td>
+              <td><span class="changeText">철수나르철수철수</span></td>
+              <td><span class="changeText">안믿음사</span></td>
+              <td class="btnTd" class="td"><button  class="changeBtn" class="button is-small">수정</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div id="categoryContents" class="tabContents">
-        <h2>카테고리 목록</h2>
-        <table class="table is-bordered is-narrow is-fullwidth">
-          <thead style="background-color: rgba(220, 220, 220, 0.303);">
-            <tr>
-              <th class="th"><button class="button is-small">삭제</button></th>
-              <th class="th">카테고리 명</th>
-              <th class="th">timestamps</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="btnTd"><input type="checkbox"></td>
-              <td>1</td>
-              <td>2</td>
-              <td class="btnTd"><button class="button is-small">수정</button></td>
-            </tr>
-          </tbody>
-        </table>
+        <div id="categoryTabpage">
+          <div id="categoryTable">
+            <h2>카테고리 목록</h2>
+            <table class="table is-bordered is-narrow is-fullwidth">
+              <thead style="background-color: rgba(220, 220, 220, 0.303);">
+                <tr>
+                  <th class="deltButnTh" th class="th"><button class="button is-small">삭제</button></th>
+                  <th class="th">카테고리 명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="checkboxTd"><input type="checkbox"></td>
+                  <td><span  class="changeText" class="categorySelctBoxContent">자기계발</span></td>
+                  <td class="btnTd"><button  class="changeBtn" class="button is-small">수정</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="topicTable">
+            <h2>Topic 목록</h2>
+          <table class="table is-bordered is-narrow is-fullwidth">
+            <thead style="background-color: rgba(220, 220, 220, 0.303);">
+              <tr>
+                <th class="deltButnTh" th class="th"><button class="button is-small">삭제</button></th>
+                <th class="th">카테고리 명</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="checkboxTd"><input type="checkbox"></td>
+                <td><span  class="changeText" class="topicSelctBoxContent">Best</span></td>
+                <td class="btnTd"><button  class="changeBtn" class="button is-small">수정</button></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
       </div>
 
       <div id="oderContents" class="tabContents">
@@ -138,65 +170,80 @@
         <table class="table is-bordered is-narrow is-fullwidth">
           <thead style="background-color: rgba(220, 220, 220, 0.303);">
             <tr>
-              <th class="th"><button class="button is-small">삭제</button></th>
+              <th class="deltButnTh" th class="th"><button class="button is-small">삭제</button></th>
               <th class="th">배송번호</th>
               <th class="th">아이디</th>
               <th class="th">이름</th>
               <th class="th">총 가격</th>
               <th class="th">주소</th>
-              <th class="th">배송상태</th>
+              <th class="th"><span id="deliveryStateSelctBox">배송상태</span></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="btnTd"><input type="checkbox"></td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-              <td>6</td>
-              <td class="btnTd"><button class="button is-small">수정</button></td>
+              <td class="checkboxTd"><input type="checkbox"></td>
+              <td>106454</td>
+              <td>ggobooks</td>
+              <td>김거북</td>
+              <td>5,000</td>
+              <td>경기도 거북시 거북동 거북로 808 202동 808호</td>
+              <th class="th"><span class="deliveryStateSelctBox">상품 준비중</span></th>
+              <td class="btnTd"><button  class="changeBtn" class="button is-small">수정</button></td>
             </tr>
           </tbody>
         </table>
       </div>
     </article>
 
-<div id="modals">
-  <div id="productAdd" class="modal" class="modal-content">
-      <button style="background-color: gainsboro;" class="modal-close is-large" aria-label="close"></button>
-      <h2>상품 추가</h2>
-      <p>제목 : <input type="text"></p>
-      <p>작가 : <input type="text"></p>
-      <p>발행처 : <input type="text"></p>
-      <p>발행일 : <input type="text"></p>
-      <p>책 소개 : <input type="text"></p>
-      <p>가격 : <input type="text"></p>
-      <p>topic : <select id="productType-tap">
-        <option value=""> - </option>
-        <option value="best"> Best </option>
-        <option value="steady"> Steady </option>
-        <option value="new"> New </option>
-      </select></p>
-      <p>
-        category : <select id="productType-tap">
-          <option value=""> - </option>
-        </select>
-      </p>
-      <p>재고 : <input type="text"></p>
-      <input type="submit">
-    </div>
-  <div id="categoryAdd" class="modal" class="card" class="modal-content">
-      <button style="background-color: gainsboro;" class="modal-close is-large" aria-label="close"></button>
-      <h2>카테고리 추가</h2>
-      <p>이름 : <input type="text"></p>
-      <p></p>
-      <input type="submit">
+    <div id="modals">
+      <div id="productAdd" class="modal" class="modal-content">
+        <button style="background-color: gainsboro;" class="modal-close is-large" aria-label="close"></button>
+        <h2>상품 추가</h2>
+        <div id="productAddContent">
+          <div id="addProductImg">
+            <div class="preProductImg" ></div>
+            <input type="file" id="file-input" style="display: block;">
+          </div>
+        
+          <div  id="productAddBox">
+            <p>상품코드 : <input type="text"></p>
+            <p>
+              category : <select id="category-tap">
+                <option value=""> - </option>
+              </select>
+            </p>
+            <p style="display: inline;">topic : <select id="topic-tap">
+                <option class='topic' value=""> - </option>
+                <option value="best"> Best </option>
+                <option value="steady"> Steady </option>
+                <option value="new"> New </option>
+              </select></p>
+            <p>제목 : <input type="text"></p>
+            <p>가격 : <input type="text"></p>
+            <p>재고 : <input type="text"></p>
+            <p>작가 : <input type="text"></p>
+            <p>출판사 : <input type="text"></p>
+            <p>책 소개 : <input type="text"></p>
+            <input  class="button is-primary" type="submit" value="등록" style="width: 160px;">
+          </div>
+        </div>
+      </div>
+      <div id="categoryAdd" class="modal" class="card" class="modal-content">
+        <button style="background-color: gainsboro;" class="modal-close is-large" aria-label="close"></button>
+        <div class="ctgrAdd" style="  border: 1px solid gray;">
+          <h2>카테고리 추가</h2>
+          <input class="categoryAddtextbox" type="text">
+          <input class="button is-primary" type="submit" value="등록" style="width: 160px;">
+        </div>
+        <div class="tpcAdd">
+          <h2>Topic 추가</h2>
+          <input class="categoryAddtextbox" type="text">
+          <input class="button is-primary" type="submit" value="등록" style="width: 160px;">
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<script src="admin.js"></script>
+  <script src="admin.js"></script>
 </body>
 <footer></footer>
 

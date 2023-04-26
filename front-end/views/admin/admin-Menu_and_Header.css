@@ -10,6 +10,7 @@ header {
   grid-template-columns: 15% 70% 15%;
   border-bottom: 10px #00d1b2 solid;
 }
+
 h1 {
   font-size: xxx-large;
   display: flex;
@@ -18,55 +19,16 @@ h1 {
   align-items: center;
   margin-top: 40px;
 }
+
 h2 {
   font-size: xx-large;
   margin: 0 0 30px 40px;
 }
-/* nav {
-  grid-column: span 2;
-  grid-row-start: 2;
-  grid-row-end: 2;
-  border-bottom: 2px #00d1b248 solid;
-  display: grid;
-  grid-template-columns: 15% 11.5% 62% 11.5%;
-} */
-/* 
-nav > label {
-  grid-column-start: 2;
-  grid-column-end: 2;
-  font-size: medium;
-}
-
-#search {
-  grid-column-start: 3;
-  grid-column-end: 3;
-} */
 
 #headerMiddle {
   grid-column-start: 2;
   grid-column-end: 2;
 }
-/* 
-#search, nav > label, #btns {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-}
-
-#searchbox {
-  width: 40%;
-  height: 25px;
-}
-
-#searchBtn {
-  height: 30px;
-}
-
-#btns{
-  justify-content:space-around;
-} */
 
 #headerBtn {
   grid-column-start: 3;
@@ -75,7 +37,7 @@ nav > label {
   flex-direction: row;
   justify-content: flex-end;
   align-items: baseline;
-  justify-content:space-around;
+  justify-content: space-around;
   margin-top: 20px;
 }
 
@@ -91,7 +53,7 @@ nav > label {
   grid-row-start: 2;
 }
 
- .tabButtons {
+.tabButtons {
   padding: 18px;
   padding-left: 72px;
   width: 100%;
@@ -99,11 +61,8 @@ nav > label {
   text-align: left;
   font-size: larger;
   cursor: pointer;
-}
-.tabButtons{
   background-color: #00d1b2;
   color: white;
-  cursor: pointer;
   font-weight: bold;
 }
 
@@ -111,6 +70,7 @@ nav > label {
   background-color: rgb(234, 234, 234);
   color: black;
 }
+
 .subMenu {
   display: none;
   border: none;
@@ -118,19 +78,16 @@ nav > label {
   font-size: larger;
   padding: 18px 0 18px 90px;
   transition: max-height 0.2s ease-out;
-  background-color: #c2e8e2 ;
+  background-color: #c2e8e2;
   cursor: pointer;
   font-weight: bold;
   text-align: left;
 }
+
 .subMenu:hover {
-background-color: rgb(204, 204, 204);
-font-weight: bold;
+  background-color: rgb(204, 204, 204);
+  font-weight: bold;
 }
-/* .tabButtons:active {
-  background-color: white;
-  color: black;
-} */
 
 article {
   grid-column-start: 2;
@@ -139,25 +96,47 @@ article {
   grid-row-end: 2;
   margin: 40px;
 }
-.tabContents{ /* 탭 */
+
+.tabContents {
   display: none;
   overflow: hidden;
 }
-.active { /* 탭 */
+
+.active {
   background-color: white;
   color: black;
 }
 
-/* 표 */
-tr>.btnTd {
+tr > .btnTd {
   border: none;
   background-color: white;
 }
-table>.th {
+
+table > .th {
   text-align: center;
 }
-tbody>tr:hover{
+
+tbody > tr:hover {
   background-color: #00d1b223;
+}
+
+.deltButnTh {
+  width: 60px;
+}
+
+.checkboxTd > input {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+.checkboxTd {
+  text-align: center !important;
+}
+
+#categoryTabpage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .modal {
@@ -165,15 +144,87 @@ tbody>tr:hover{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #f7fbfa ;
+  background-color: #f7fbfa;
   width: 60%;
   height: 70%;
   overflow: auto;
   z-index: 1000;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding: 0;
 }
 
 .modal-content {
   position: relative;
   padding: 1rem;
+}
+
+#productAddContent {
+  display: flex;
+  width: 90%;
+  height: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#addProductImg {
+  border: solid 1px black;
+  height: 100%;
+  width: 80%;
+  margin-left: 50px;
+}
+
+#addProductImg > div {
+  border: gray solid 2px;
+  width: 90%;
+  height: 85%;
+}
+
+#productAddBox,
+#addProductImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 0;
+}
+
+select {
+  width: 170px;
+}
+
+#categoryAdd > div {
+  border: 1px solid gray;
+  padding: 50px;
+  height: 40%;
+  margin: 20px 0;
+  width: 50%;
+}
+
+#categoryAdd > h2 {
+  margin: 0;
+}
+
+#productType-tap,
+.ctgrAdd,
+.tpcAdd {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ctgrAdd > input,
+.tpcAdd > input,
+#productAddBox > input {
+  width: 30%;
+}
+
+.categoryAddtextbox {
+  font-size: large;
+  margin-bottom: 30px;
+}
+
+td > .changeText {
+  border: none;
 }
