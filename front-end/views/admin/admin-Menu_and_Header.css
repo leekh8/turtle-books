@@ -1,28 +1,36 @@
 #container {
   display: grid;
   grid-template-columns: 15% 85%;
-  grid-template-rows: 10vh 7vh 83vh;
+  grid-template-rows: 15vh 85vh;
 }
 
 header {
   grid-column: span 2;
   display: grid;
   grid-template-columns: 15% 70% 15%;
-  border-bottom: 2px #00d1b248 solid;
+  border-bottom: 10px #00d1b2 solid;
 }
 h1 {
   font-size: xxx-large;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
 }
-
-nav {
+h2 {
+  font-size: xx-large;
+  margin: 0 0 30px 40px;
+}
+/* nav {
   grid-column: span 2;
   grid-row-start: 2;
   grid-row-end: 2;
   border-bottom: 2px #00d1b248 solid;
   display: grid;
   grid-template-columns: 15% 11.5% 62% 11.5%;
-}
-
+} */
+/* 
 nav > label {
   grid-column-start: 2;
   grid-column-end: 2;
@@ -32,14 +40,14 @@ nav > label {
 #search {
   grid-column-start: 3;
   grid-column-end: 3;
-}
+} */
 
 #headerMiddle {
   grid-column-start: 2;
   grid-column-end: 2;
 }
-
-h1, #search, nav > label, #btns {
+/* 
+#search, nav > label, #btns {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -58,7 +66,7 @@ h1, #search, nav > label, #btns {
 
 #btns{
   justify-content:space-around;
-}
+} */
 
 #headerBtn {
   grid-column-start: 3;
@@ -80,10 +88,10 @@ h1, #search, nav > label, #btns {
   height: 100%;
   background-color: #00d1b2;
   grid-column-start: 1;
-  grid-row-start: 3;
+  grid-row-start: 2;
 }
 
-a, .tabButtons {
+ .tabButtons {
   padding: 18px;
   padding-left: 72px;
   width: 100%;
@@ -104,12 +112,18 @@ a, .tabButtons {
   color: black;
 }
 .subMenu {
-  max-height: 50;
   display: none;
+  border: none;
+  width: 100%;
+  font-size: larger;
+  padding: 18px 0 18px 90px;
   transition: max-height 0.2s ease-out;
   background-color: #c2e8e2 ;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: left;
 }
-.subMenu>a:hover {
+.subMenu:hover {
 background-color: rgb(204, 204, 204);
 font-weight: bold;
 }
@@ -117,20 +131,16 @@ font-weight: bold;
   background-color: white;
   color: black;
 } */
-a{
-  padding-left: 90px;
-  display: block;
-  color: inherit;
-  text-decoration: none;
-}
+
 article {
   grid-column-start: 2;
   grid-column-end: 2;
-  grid-row-start: 3;
-  grid-row-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
   margin: 40px;
 }
 .tabContents{ /* 탭 */
+  display: none;
   overflow: hidden;
 }
 .active { /* 탭 */
@@ -148,4 +158,22 @@ table>.th {
 }
 tbody>tr:hover{
   background-color: #00d1b223;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f7fbfa ;
+  width: 60%;
+  height: 70%;
+  overflow: auto;
+  z-index: 1000;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: relative;
+  padding: 1rem;
 }

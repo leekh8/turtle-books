@@ -1,34 +1,63 @@
-const tabButtons = document.querySelectorAll(".tabButtons");
-const tabContents = document.querySelectorAll(".tabContents");
+document.addEventListener("DOMContentLoaded", function () {
+  const tabButtons = document.querySelectorAll(".tabButtons");
+  const tabContents = document.querySelectorAll(".tabContents");
+  const subMenu = document.querySelectorAll(".subMenu");
+  const modalButtons = document.querySelectorAll(".modal-button");
+  const modals = document.querySelectorAll(".modal");
+  const closeModalButtons = document.querySelectorAll(".modal-close");
 
-tabButtons.forEach((tabButton) => {
-  tabButton.addEventListener("click", () => {
-    // toggle active class
-    tabButtons.forEach((tb) => {
-      if (tb !== tabButton) {
-        tb.classList.remove("active");
-      }
-    });
-    tabButton.classList.toggle("active");
+  // 탭 기능
+  function changeTab(e) {
+    const targetTab = e.target.dataset.tab;
 
-    // toggle subMenus
-    const subMenus = tabButton.parentNode.querySelectorAll(".subMenu");
-    subMenus.forEach((subMenu) => {
-      if (tabButton.classList.contains("active")) {
-        subMenu.style.display = "block";
-      } else {
-        subMenu.style.display = "none";
-      }
+    tabButtons.forEach((btn) => {
+      btn.classList.remove("active");
     });
 
-    // show tabContent
-    const tab = tabButton.getAttribute("data-tab");
-    tabContents.forEach((tc) => {
-      if (tc.getAttribute("id") === tab) {
-        tc.style.display = "block";
-      } else {
-        tc.style.display = "none";
-      }
+    tabContents.forEach((content) => {
+      content.style.display = "none";
     });
+
+    e.target.classList.add("active");
+    document.getElementById(targetTab).style.display = "block";
+  }
+
+  tabButtons.forEach((btn) => {
+    btn.addEventListener("click", changeTab);
+  });
+
+  // 아코디언 기능
+  function toggleSubMenu(e) {
+    const subMenu = e.target.nextElementSibling;
+
+    if (subMenu.style.display === "none" || subMenu.style.display === "") {
+      subMenu.style.display = "block";
+    } else {
+      subMenu.style.display = "none";
+    }
+  }
+
+  tabButtons.forEach((btn) => {
+    btn.addEventListener("click", toggleSubMenu);
+  });
+
+  // 모달 기능
+  function openModal(e) {
+    const targetModalId = e.target.dataset.modalTarget;
+    const targetModal = document.querySelector(targetModalId);
+    targetModal.classList.add("is-active");
+  }
+
+  function closeModal(e) {
+    const modal = e.target.closest(".modal");
+    modal.classList.remove("is-active");
+  }
+
+  modalButtons.forEach((btn) => {
+    btn.addEventListener("click", openModal);
+  });
+
+  closeModalButtons.forEach((btn) => {
+    btn.addEventListener("click", closeModal);
   });
 });

@@ -9,7 +9,6 @@
 
   <title>admin test 메뉴</title>
 </head>
-
 <body>
   <div id="container">
     <header>
@@ -18,10 +17,10 @@
       </div>
       <div id="headerBtn">
         <input id="goToMallPage" class="button is-light" type="button" value="쇼핑몰 이동">
-        <input id="logout"  class="button is-light" type="button" value="로그아웃">
+        <input id="logout" class="button is-light" type="button" value="로그아웃">
       </div>
     </header>
-    <nav>
+    <!-- <nav>
       <label for="selectAll">
         <input type="checkbox" id="selectAll">
         전체
@@ -35,30 +34,32 @@
         <button>삭제</button>
         <button>저장</button>
       </div>
-    </nav>
+    </nav> -->
     <aside id="menuWrap">
       <div>
         <button id="user-tap" class="tabButtons" data-tab="userContents">유저 관리</button>
       </div>
       <div>
         <button id="product-tap" class="tabButtons" data-tab="productContents">상품 관리</button>
-        <div class="subMenu"><a href="">상품 등록</a></div> <!--모달 창이 보인 후 상품관리 페이지를 보여줌-->
+        <button class="subMenu modal-button" data-modal-target="#productAdd">상품 등록</button>        
       </div>
       <div>
         <button id="category-tab" class="tabButtons" data-tab="categoryContents">카테고리 관리</button>
-        <div class="subMenu"><a href="">카테고리 등록</a></div>  
+        <button class="subMenu modal-button" data-modal-target="#categoryAdd">카테고리 등록</button>
       </div>
       <div>
         <button id="oder-tap" class="tabButtons" data-tab="oderContents">주문/결제 관리</button>
       </div>
-      
+
     </aside>
 
     <article>
       <div id="userContents" class="tabContents">
+        <h2>유저 목록</h2>
         <table class="table is-bordered is-narrow is-fullwidth">
           <thead style="background-color: rgba(220, 220, 220, 0.303);">
             <tr>
+              <th class="th"><button class="button is-small">삭제</button></th>
               <th class="th">아이디</th>
               <th class="th">이메일</th>
               <th class="th">이름</th>
@@ -69,6 +70,7 @@
           </thead>
           <tbody>
             <tr>
+              <td class="btnTd"><input type="checkbox"></td>
               <td>1</td>
               <td>2</td>
               <td>3</td>
@@ -82,9 +84,11 @@
       </div>
 
       <div id="productContents" class="tabContents">
+        <h2>상품 목록</h2>
         <table class="table is-bordered is-narrow is-fullwidth">
           <thead style="background-color: rgba(220, 220, 220, 0.303);">
             <tr>
+              <th class="th"><button class="button is-small">삭제</button></th>
               <th class="th">상품코드</th>
               <th class="th">카테고리</th>
               <th class="th">제목</th>
@@ -95,28 +99,32 @@
           </thead>
           <tbody>
             <tr>
+              <td class="btnTd"><input type="checkbox"></td>
               <td>1</td>
               <td>2</td>
               <td>3</td>
               <td>4</td>
               <td>5</td>
               <td>6</td>
-              <td class="btnTd"><button class="button is-small">수정</td>
+              <td class="btnTd" class="td"><button class="button is-small">수정</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div id="categoryContents" class="tabContents">
+        <h2>카테고리 목록</h2>
         <table class="table is-bordered is-narrow is-fullwidth">
           <thead style="background-color: rgba(220, 220, 220, 0.303);">
             <tr>
-              <th class="th">제목</th>
+              <th class="th"><button class="button is-small">삭제</button></th>
+              <th class="th">카테고리 명</th>
               <th class="th">timestamps</th>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <td class="btnTd"><input type="checkbox"></td>
               <td>1</td>
               <td>2</td>
               <td class="btnTd"><button class="button is-small">수정</button></td>
@@ -126,9 +134,11 @@
       </div>
 
       <div id="oderContents" class="tabContents">
+        <h2>주문 목록</h2>
         <table class="table is-bordered is-narrow is-fullwidth">
           <thead style="background-color: rgba(220, 220, 220, 0.303);">
             <tr>
+              <th class="th"><button class="button is-small">삭제</button></th>
               <th class="th">배송번호</th>
               <th class="th">아이디</th>
               <th class="th">이름</th>
@@ -139,6 +149,7 @@
           </thead>
           <tbody>
             <tr>
+              <td class="btnTd"><input type="checkbox"></td>
               <td>1</td>
               <td>2</td>
               <td>3</td>
@@ -151,8 +162,41 @@
         </table>
       </div>
     </article>
+
+<div id="modals">
+  <div id="productAdd" class="modal" class="modal-content">
+      <button style="background-color: gainsboro;" class="modal-close is-large" aria-label="close"></button>
+      <h2>상품 추가</h2>
+      <p>제목 : <input type="text"></p>
+      <p>작가 : <input type="text"></p>
+      <p>발행처 : <input type="text"></p>
+      <p>발행일 : <input type="text"></p>
+      <p>책 소개 : <input type="text"></p>
+      <p>가격 : <input type="text"></p>
+      <p>topic : <select id="productType-tap">
+        <option value=""> - </option>
+        <option value="best"> Best </option>
+        <option value="steady"> Steady </option>
+        <option value="new"> New </option>
+      </select></p>
+      <p>
+        category : <select id="productType-tap">
+          <option value=""> - </option>
+        </select>
+      </p>
+      <p>재고 : <input type="text"></p>
+      <input type="submit">
+    </div>
+  <div id="categoryAdd" class="modal" class="card" class="modal-content">
+      <button style="background-color: gainsboro;" class="modal-close is-large" aria-label="close"></button>
+      <h2>카테고리 추가</h2>
+      <p>이름 : <input type="text"></p>
+      <p></p>
+      <input type="submit">
+    </div>
   </div>
-  <script src="admin.js"></script>
+</div>
+<script src="admin.js"></script>
 </body>
 <footer></footer>
 

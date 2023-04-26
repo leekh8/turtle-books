@@ -1,15 +1,16 @@
-const { Schema }= require('mongoose');
 
+const { Schema } = require('mongoose');
 const categorySchema = new Schema(
   {
-      name: {
-        type: String,
-        require: true,
-      },
+    name: {
+      type: String,
+      required: true,
+    }
   },
   {
     timestamps: true,
-    collection: "category",
+    collation: "categories"
   }
 );
+
 module.exports = categorySchema;
