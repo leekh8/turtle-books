@@ -10,7 +10,7 @@ address:   배송지
 birthDate: 생년월일
 userRole:  사용자 권한
 */
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
 
 const UserSchema = new Schema(
   {
@@ -64,6 +64,5 @@ const UserSchema = new Schema(
     timestamps: true,
   }
 );
-const userSchema = model("User", UserSchema);
 
-module.exports = userSchema;
+module.exports = UserSchema;

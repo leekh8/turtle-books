@@ -5,8 +5,8 @@ class ProductService {
   // 상품 추가 로직 서비스
   // 저장한 데이터 controller에 반환
   async createProduct(newProduct) {
-    if (!newName) throw new Error('상품 추가를 위한 데이터가 필요합니다.');
-    
+    if (!newProduct) throw new Error('상품 추가를 위한 데이터가 필요합니다.');
+  
     const product = new Product(newProduct);
     
     await product.save();

@@ -17,7 +17,7 @@ birthDate: 생년월일
 userRole:  사용자 권한
 */
 
-const model = require("mongoose");
+const { model } = require("mongoose");
 const UserSchema = require("../schemas/user-schema");
 
 const User = model("users", UserSchema);

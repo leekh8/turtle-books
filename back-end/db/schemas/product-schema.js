@@ -1,4 +1,3 @@
-
 const { Schema } = require('mongoose');
 
 const productSchema = new Schema (
@@ -39,6 +38,10 @@ const productSchema = new Schema (
     stock: { // 재고
       type: Number,
       default: 10,
+      required: true,
+    },
+    imageUrl: {
+      type: String,
       required: true,
     }
   },
