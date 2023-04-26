@@ -7,9 +7,9 @@ class ProductController {
   // 새로운 책 생성하는데 필요한 데이터 추출, 데이터는 service에 전달하고 새로운 책 생성
   async createProduct(req, res) {
     try {
-      const { title, author, publisher, publishDate, price, category, stock, topic, decription } = req.body;
+      const { title, author, publisher, publishDate, price, category, stock, topic, decription, imageUrl } = req.body;
       
-      const product = await ProductService.createProduct({title, author, publisher, publishDate, price, category, stock, topic, decription});
+      const product = await ProductService.createProduct({title, author, publisher, publishDate, price, category, stock, topic, decription, imageUrl});
       
       res.status(201).json({success: true, data: product});
     } catch(err) {

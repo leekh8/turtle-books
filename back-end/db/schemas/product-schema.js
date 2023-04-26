@@ -40,6 +40,10 @@ const productSchema = new Schema (
       type: Number,
       default: 10,
       required: true,
+    },
+    imageUrl: { // 이미지 경로
+      type: String,
+      required: true,
     }
   },
   {
