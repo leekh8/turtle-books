@@ -23,9 +23,10 @@ userRole:  사용자 권한
 */
 
 // express
-const { Router } = require("express");
-const userService = require("../services/user-service");
+const Router = require("express");
+const UserController = require("../controllers/user-controller");
 
+const userController = new UserController();
 const userRouter = Router();
 
 userRouter.post("/register", userController.registerUser);
@@ -34,4 +35,4 @@ userRouter.get("/userList", userController.getUserList);
 userRouter.patch("/myroom/:userId", userController.updateUserInfo);
 userRouter.delete("/myroom/:userId", userController.deleteUserInfo);
 
-module.exports = { userRouter };
+module.exports = userRouter;

@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 const { Schema } = require("mongoose");
 
 const productSchema = new Schema(
+=======
+const { Schema } = require('mongoose');
+
+const productSchema = new Schema (
+>>>>>>> 3437cec78674f8d05c30272b827dc9c1dcfcf073
   {
     title: {
       // 제목
@@ -49,6 +55,13 @@ const productSchema = new Schema(
       default: 10,
       required: true,
     },
+<<<<<<< HEAD
+=======
+    imageUrl: {
+      type: String,
+      required: true,
+    }
+>>>>>>> 3437cec78674f8d05c30272b827dc9c1dcfcf073
   },
   {
     timestamps: true,

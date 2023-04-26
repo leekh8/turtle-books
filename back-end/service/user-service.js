@@ -222,4 +222,4 @@ class UserService {
 }
 const userService = new UserService(userModel);
 
-module.exports = userService;
+module.exports = { userService };
