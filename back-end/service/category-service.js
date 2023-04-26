@@ -2,6 +2,16 @@
 const Category = require('../db/models/category-model');
 
 class CategorService {
+  // 카테고리 조회 서비스 로직
+  // 인자를 받지않고 모든 카테고리 정보 반환
+  async getCategoryList() {
+    try {
+      const categories = await Category.find({});
+      return categories;
+    } catch(err) {
+      throw err;
+    }
+  }
   // 카테고리 추가 서비스 로직
   // Category 모델을 사용하여 새로운 카테고리 추가
   async createCategory(newName){
