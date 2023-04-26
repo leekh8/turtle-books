@@ -1,10 +1,11 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const tabButtons = document.querySelectorAll(".tabButtons");
   const tabContents = document.querySelectorAll(".tabContents");
-  const subMenu = document.querySelectorAll(".subMenu");
+  const subMenus = document.querySelectorAll(".subMenu");
   const modalButtons = document.querySelectorAll(".modal-button");
   const modals = document.querySelectorAll(".modal");
   const closeModalButtons = document.querySelectorAll(".modal-close");
+  const changeBtns = document.querySelectorAll(".changeBtn");
 
   // 탭 기능
   function changeTab(e) {
@@ -29,16 +30,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // 아코디언 기능
   function toggleSubMenu(e) {
     const subMenu = e.target.nextElementSibling;
-
-    if (subMenu.style.display === "none" || subMenu.style.display === "") {
-      subMenu.style.display = "block";
-    } else {
-      subMenu.style.display = "none";
-    }
+    subMenu.style.display = subMenu.style.display === "none" ? "block" : "none";
   }
 
-  tabButtons.forEach((btn) => {
-    btn.addEventListener("click", toggleSubMenu);
+  subMenus.forEach((subMenu) => {
+    subMenu.previousElementSibling.addEventListener("click", toggleSubMenu);
   });
 
   // 모달 기능
@@ -59,5 +55,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
   closeModalButtons.forEach((btn) => {
     btn.addEventListener("click", closeModal);
+  });
+
+  // 수정버튼 기능
+  changeBtns.forEach((button) => {
+    button.addEventListener("click", () => {
+      const isEditMode = button.textContent.trim() === "수정";
+
+      button.textContent = isEditMode ? "저장" : "수정";
+      button.type = isEditMode ? "submit" : "button";
+
+      const changeTextElements =
+        button.parentElement.parentElement.querySelectorAll(".changeText");
+
+      changeTextElements.forEach((el) => {
+        if (isEditMode) {
+          const input = document.createElement("input");
+          input.type = "text";
+          input.value = el.textContent;
+          input.classList.add("changeText"); // 스타일 유지를 위해 'changeText' 클래스 추가
+          el.replaceWith(input);
+        } else {
+          const td = document.createElement("td");
+          td.textContent = el.value;
+          td.classList.add("changeText");
+          el.replaceWith(td);
+        }
+      });
+    });
   });
 });
