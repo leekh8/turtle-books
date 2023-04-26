@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "turtle-books",
   "version": "1.0.0",
@@ -21,3 +22,24 @@
     "nodemon": "^2.0.22"
   }
 }
+=======
+{
+  "name": "turtle-books",
+  "version": "1.0.0",
+  "description": "- 책 전문 판매점",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.4",
+    "nanoid": "^4.0.2"
+  }
+}
+>>>>>>> 8ce0ea11a7b0825837d5188a6b1365b50a653cf0

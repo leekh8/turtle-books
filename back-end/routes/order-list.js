@@ -1,6 +1,8 @@
-const express = require('express');
-const OrderModel = require('../db/schemas/order-schema');
-const router = express.Router();
+const { Router } = require('express');
+const router = Router();
+
+const {Order} = require('../db/models/order-model');
+
 
 
 //Order.find로 shippingStatus에 따라 준비/배송/도착/취소및환불로 나눠 화면에만 송출.. 가능?
@@ -17,7 +19,7 @@ router.get('/', async (req, res)=>{
 
 router.get('/', (req,res)=>{
     const { status } = req.query;
-    const orders = OrderModel.find().populate()
+    const orders = Order.find().populate()
     if(status === preparing){
 
     }
