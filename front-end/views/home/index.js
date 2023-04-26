@@ -65,14 +65,14 @@ const books = [
   },
   {
     id: 5,
-    title: "normal5",
+    title: "newone",
     author: "피터 나바로",
     publisher: "에프엔미디어",
     publishDate: "2022.04.25",
     description: "22",
     price: 17000,
     imagesrc: "../assets/book2.jpg",
-    topic: "normal",
+    topic: "new",
     category: "소설",
   },
   {
@@ -87,14 +87,38 @@ const books = [
     topic: "best",
     category: "만화",
   },
+  {
+    id: 7,
+    title: "new2",
+    author: "피터 나바로",
+    publisher: "에프엔미디어",
+    publishDate: "2022.04.25",
+    description: "22",
+    price: 17000,
+    imagesrc: "../assets/book2.jpg",
+    topic: "new",
+    category: "만화",
+  },
+  {
+    id: 8,
+    title: "steady1",
+    author: "피터 나바로",
+    publisher: "에프엔미디어",
+    publishDate: "2022.04.25",
+    description: "22",
+    price: 17000,
+    imagesrc: "../assets/book2.jpg",
+    topic: "steady",
+    category: "만화",
+  },
   // ... 다른 책들
 ];
 
 // best만 html로 뿌려주기
-const bestitems = document.querySelector(".slider-items");
+const bestbooks = books.filter(e=>e.topic==="best") //배열
+const bestitems = document.querySelector(".best-items"); //div
 
-books.forEach((book) => {
-  if (book.topic === "best") {
+bestbooks.forEach((book, idx) => {
     bestitems.innerHTML += `
             <div class="slider-item">
                 <img src=${book.imagesrc} alt="Book cover">
@@ -102,8 +126,40 @@ books.forEach((book) => {
                 <p class="title">${book.title}</p>
             </div>
         `;
-  }
 });
+
+//각 아이템에 해당 상세 페이지 넘어가게 하는 이벤트 달아주기
+const bestitemlist = document.querySelectorAll(".best-container .slider-item");
+bestitemlist.forEach((item, idx) => {
+  item.addEventListener("click", () => {
+    window.location.href = `../Itemdetail/index.html?id=${bestbooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
+  });
+});
+
+////////////////////////
+
+// new만 html로 뿌려주기
+const newbooks = books.filter(e=>e.topic==="new") //배열
+const newitems = document.querySelector(".new-items"); //div
+
+newbooks.forEach((book, idx) => {
+    newitems.innerHTML += `
+            <div class="slider-item">
+                <img src=${book.imagesrc} alt="Book cover">
+                <p class="category">${book.category}</p>
+                <p class="title">${book.title}</p>
+            </div>
+        `;
+});
+
+//각 아이템에 해당 상세 페이지 넘어가게 하는 이벤트 달아주기
+const newitemlist = document.querySelectorAll(".new-container .slider-item");
+newitemlist.forEach((item, idx) => {
+  item.addEventListener("click", () => {
+    window.location.href = `../Itemdetail/index.html?id=${newbooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
+  });
+});
+
 
 // 양쪽 버튼에 넘어가는 함수 구현
 const prevBtn = document.querySelector(".prev-btn");
@@ -172,6 +228,6 @@ function scrolltoSteady() {
 //카테고리 목록 따오기
 const categoryContainer = document.querySelector(".buttonlist2");
 
-var button = document.createElement("button")
+var button = document.createElement("button");
 //각 카테고리마다 button 하나씩 만들어서 내용 넣어줌
-//리스트 형태도 ok 
+//리스트 형태도 ok
