@@ -17,6 +17,7 @@ class ProductController {
         stock,
         topic,
         decription,
+        imageUrl,
       } = req.body;
 
       const product = await ProductService.createProduct({
@@ -29,6 +30,7 @@ class ProductController {
         stock,
         topic,
         decription,
+        imageUrl,
       });
 
       res.status(201).json({ success: true, data: product });
