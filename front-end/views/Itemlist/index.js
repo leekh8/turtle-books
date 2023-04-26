@@ -27,10 +27,9 @@ const books = [
 ];
 
 books.forEach((book) => {
-  const tr = document.createElement("tr");
-  tr.innerHTML = ` 
+  booktable.innerHTML += `
+      <tr> 
         <td width="5%">
-            <input type="checkbox" id="${book.id}" name="myCheckbox" />
         </td>
         <td width="20%">
             <img
@@ -61,12 +60,12 @@ books.forEach((book) => {
                 <button class="quantity-plus">+</button>
             </div>
             <br />
-            <button>장바구니</button><br />
+            <button class="cartbutton">장바구니</button><br />
             <button>바로구매</button>
             </div>
         </td>
+      </tr>
     `;
-    booktable.appendChild(tr);
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -100,3 +99,17 @@ document.addEventListener("DOMContentLoaded", function () {
     plusBtns[i].addEventListener("click", plusNum);
   }
 });
+
+//장바구니 버튼 alert
+function showalert() {
+  const result = confirm("장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?");
+  if(result) {
+    // 로컬스토리지 저장
+    // 장바구니로 이동
+  } else {
+    return;
+  }
+}
+
+const cartbutton = document.querySelector(".cartbutton")
+cartbutton.addEventListener("click", showalert);

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -43,3 +44,10 @@ const productSchema = new Schema (
 
 module.exports = mongoose.model('Product', productSchema);
 
+=======
+const mongoose = require('mongoose');
+const productSchema = require('../schemas/product-schema');
+
+module.exports = mongoose.model('Product', productSchema);
+
+>>>>>>> 3437cec78674f8d05c30272b827dc9c1dcfcf073
