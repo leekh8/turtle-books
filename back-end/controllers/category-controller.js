@@ -11,7 +11,7 @@ class CategoryController {
   async getCatetory(req, res, next) {
     try{
       const categories = await CategoryService.getCategoryList();
-      res.json(categories);
+      res.status(200).json(categories);
     } catch(err) {
       next(err)
     }
