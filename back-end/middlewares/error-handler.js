@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-function errorHandler(error, req, res, next) {
-  if (error) {
-    return res.status(error.statusCode).json(error.message);
-  }
-}
-
-export { errorHandler };
-=======
 // error-handler.js
 
 // 에러 처리 전담 미들웨어
@@ -21,4 +12,3 @@ function errorHandler(error, req, res, next) {
 }
 
 module.exports = errorHandler;
->>>>>>> 3437cec78674f8d05c30272b827dc9c1dcfcf073
