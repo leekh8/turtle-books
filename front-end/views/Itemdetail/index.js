@@ -1,3 +1,18 @@
+const clickedbook = {
+  id: 1,
+  title: "브라질에 비가 내리면 스타벅스 주식을 사라",
+  author: "피터 나바로",
+  publisher: "에프엔미디어",
+  publishDate: "2022.04.25",
+  description:
+    "‘숲(경제 흐름)과 나무(종목)’를 함께 보라! 전쟁, 전염병, 기후, 금리, 환율, 인플레이션… 거시경제 지표를 이해하면 변동성은 기회다!",
+  price: 16200,
+  imagesrc: "../assets/book1.jpg",
+  topic: "best",
+  category: "소설",
+};
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const minusBtn = document.querySelector(".quantity-minus"); // '-'버튼
     const numberInput = document.querySelector(".quantity-input"); //input
@@ -30,8 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function showalert() {
     const result = confirm("장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?");
     if(result) {
-      // 로컬스토리지 저장 
-      // 장바구니로 이동
+      window.location.href = "../cart/cart.html" // 장바구니로 이동
     } else {
       return;
     }
@@ -39,11 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //담은거 로컬스토리지에 넣기
   function pushlocal() {
-    // const item = document.querySelector() //book을 식별가능한 id를 넣고 장바구니 렌더링 할 때 id로 db를 찾아서 다른 정보들을 가져와야할까? 
-    const item = "id1"
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    cartItems.push(item);
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    const item = clickedbook; //객체 통째로 
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; //로컬에 기존 있던거 붙이려고 꺼냄 
+    cartItems.push(item); //붙임 
+    localStorage.setItem("cartItems", JSON.stringify(cartItems)); //다시 로컬 넣음 
   }
 
   const cartbutton = document.querySelector(".add-to-cart-btn")
