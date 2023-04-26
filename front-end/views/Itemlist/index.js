@@ -12,19 +12,96 @@ const books = [
       "‘숲(경제 흐름)과 나무(종목)’를 함께 보라! 전쟁, 전염병, 기후, 금리, 환율, 인플레이션… 거시경제 지표를 이해하면 변동성은 기회다!",
     price: 16200,
     imagesrc: "../assets/book1.jpg",
+    topic: "best",
+    category: "소설",
   },
   {
     id: 2,
-    title: "챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
+    title: "2챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
     author: "피터 나바로",
     publisher: "에프엔미디어",
     publishDate: "2022.04.25",
     description: "22",
     price: 17000,
     imagesrc: "../assets/book2.jpg",
+    topic: "best",
+    category: "소설",
+  },
+  {
+    id: 3,
+    title: "3챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
+    author: "피터 나바로",
+    publisher: "에프엔미디어",
+    publishDate: "2022.04.25",
+    description: "22",
+    price: 17000,
+    imagesrc: "../assets/book2.jpg",
+    topic: "best",
+    category: "소설",
+  },
+  {
+    id: 4,
+    title: "4챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
+    author: "피터 나바로",
+    publisher: "에프엔미디어",
+    publishDate: "2022.04.25",
+    description: "22",
+    price: 17000,
+    imagesrc: "../assets/book2.jpg",
+    topic: "best",
+    category: "소설",
+  },
+  {
+    id: 5,
+    title: "newone",
+    author: "피터 나바로",
+    publisher: "에프엔미디어",
+    publishDate: "2022.04.25",
+    description: "22",
+    price: 17000,
+    imagesrc: "../assets/book2.jpg",
+    topic: "new",
+    category: "소설",
+  },
+  {
+    id: 6,
+    title: "6챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
+    author: "피터 나바로",
+    publisher: "에프엔미디어",
+    publishDate: "2022.04.25",
+    description: "22",
+    price: 17000,
+    imagesrc: "../assets/book2.jpg",
+    topic: "best",
+    category: "만화",
+  },
+  {
+    id: 7,
+    title: "new2",
+    author: "피터 나바로",
+    publisher: "에프엔미디어",
+    publishDate: "2022.04.25",
+    description: "22",
+    price: 17000,
+    imagesrc: "../assets/book2.jpg",
+    topic: "new",
+    category: "만화",
+  },
+  {
+    id: 8,
+    title: "steady1",
+    author: "피터 나바로",
+    publisher: "에프엔미디어",
+    publishDate: "2022.04.25",
+    description: "22",
+    price: 17000,
+    imagesrc: "../assets/book2.jpg",
+    topic: "steady",
+    category: "만화",
   },
   // ... 다른 책들
 ];
+
 
 books.forEach((book) => {
   booktable.innerHTML += `
@@ -103,13 +180,22 @@ document.addEventListener("DOMContentLoaded", function () {
 //장바구니 버튼 alert
 function showalert() {
   const result = confirm("장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?");
+  localStorage.setItem()
   if(result) {
-    // 로컬스토리지 저장
     // 장바구니로 이동
   } else {
     return;
   }
 }
 
+//담은거 로컬스토리지에 넣기
+function pushlocal() {
+  const item = clickedbook; //객체 통째로 
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; //로컬에 기존 있던거 붙이려고 꺼냄 
+  cartItems.push(item); //붙임 
+  localStorage.setItem("cartItems", JSON.stringify(cartItems)); //다시 로컬 넣음 
+}
+
 const cartbutton = document.querySelector(".cartbutton")
 cartbutton.addEventListener("click", showalert);
+cartbutton.addEventListener("click", pushlocal);
