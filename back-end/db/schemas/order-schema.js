@@ -16,6 +16,7 @@ const OrderSchema = new Schema(
     ],
     shippingStatus: {
       type: String,
+      required: true,
       default: "배송준비중",
     },
     shippingPostCode: {

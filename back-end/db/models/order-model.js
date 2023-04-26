@@ -5,6 +5,7 @@ const { OrderSchema } = require("../schemas/order-schema");
 const Order = model("Order", OrderSchema);
 
 class OrderModel {
+  //특정 주문 번호에 맞는 주문 정보 가져오기
   async findById(oid) {
     try {
       const order = await Order.findOne({ _id: oid })
@@ -12,12 +13,12 @@ class OrderModel {
         .populate("productList");
       return order;
     } catch (err) {
-      const error = new Error("ID 기반으로 주문을 검색하는 과정에서 에러발생");
+      const error = new Error("특정 주문 정보를 불러오는데에 실패했습니다.");
       error.statusCode = 400;
       throw error;
     }
   }
-
+  // 다수의 주문 번호로 주문 정보를 한번에 조회
   async findByIds(oidArr) {
     const orderList = new Array();
     try {
@@ -30,14 +31,14 @@ class OrderModel {
         }
       }
     } catch (err) {
-      const error = new Error("주문리스트를 불러오는 과정에서 에러발생");
+      const error = new Error("다수의 주문 정보를 불러오는데에 실패했습니다.");
       error.statusCode = 400;
       throw error;
     }
 
     return orderList;
   }
-
+  // db에 누적된 모든 유저들의 주문 정보 가져오기
   async findAll() {
     try {
       const orderList = await Order.find({})
@@ -45,12 +46,12 @@ class OrderModel {
         .populate("productList");
       return orderList;
     } catch (err) {
-      const error = new Error("주문 전체목록을 불러들이는데 실패하였습니다.");
+      const error = new Error("현재까지 누적된 주문 목록을 불러들이는데 실패했습니다.");
       error.statusCode = 400;
       throw error;
     }
   }
-
+  // 
   async create(orderInfo, buyerFromDB) {
     try {
       let createdNewOrder = await Order.create(orderInfo);
@@ -100,4 +101,4 @@ class OrderModel {
 const orderModel = new OrderModel();
 
 module.exports = orderModel;
-module.exports = order
+module.exports = order;
