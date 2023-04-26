@@ -70,7 +70,7 @@
   - **`feature`**: 새로운 기능을 추가할 때 사용하는 브랜치로 **dev** 브랜치에서 분기하여 진행되며, 개발이 완료된 기능은 **dev** 브랜치로 merge
   - 프로젝트에서는 사용하지 않는 브랜치
 
-  - gitflow 전략에서는 다음 2개의 브랜치를 추가로 사용하지만 이 브랜치는 실제로 운영되고 있는 서비스를 개발하면서 사용되며, 프로젝트의 경우 **master, dev, feature 브랜치**는 필수적으로 사용하는 것이 좋지만, release, hotfix 브랜치는 사용하지 않아도 됩니다.
+  - gitflow 전략에서는 다음 2개의 브랜치를 추가로 사용하지만 이 브랜치는 실제로 운영되고 있는 서비스를 개발하면서 사용되며, 프로젝트의 경우 **master, dev, feature 브랜치**는 필수적으로 사용하는 것이 좋지만, release, hotfix 브랜치는 사용하지 않아도 됩니다.,
 
 - [**마크다운 문법**](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
