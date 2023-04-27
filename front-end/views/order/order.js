@@ -77,14 +77,14 @@ paymentsBox.innerHTML += `
 
           <p class="paymentsLabel">주문상품 </p> <p> ${totalCost}원</p>
 
-          <p class="paymentsLabel">배송비</p> <p> 3000원</p>
+          <p class="paymentsLabel">배송비</p> <p> 2500원</p>
 
           <p class="paymentsLabel">쿠폰할인 </p> 
           <p>0원</p>
           <hr>
 
           <p class="totalCost">총 결제금액</p>
-          <p>${totalCost + 3000}원</p>
+          <p>${totalCost + 2500}원</p>
           <button class="button is-primary is-fullwidth" id="paymentsBtn">
             결제하기
           </button>
@@ -138,7 +138,7 @@ paymentsBtn.addEventListener("click", async () => {
           orderItems: directItem, // 주문받는 아이템 내역 (로컬스토리지 이용)
         }),
       });
-
+      console.log(detailAddress, address);
       if (response.ok) {
         const data = await response.json();
         location.href = "/order-complete.html";
