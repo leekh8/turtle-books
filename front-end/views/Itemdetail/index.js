@@ -75,7 +75,7 @@ itemcontainer.innerHTML = `
 const footer = document.querySelector(".footer");
 const totaltag = document.querySelector("#totaltag");
 totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price}원`;
-let totalcount = 0;
+let totalcount = 1;
 
 
 document.addEventListener("DOMContentLoaded", function () {
