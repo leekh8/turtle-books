@@ -1,10 +1,9 @@
 //모델과 뷰를 연결하여 사용자의 요청을 처리(모델과 뷰를 관리), 서비스 사용.
-const { orderService } =  require("../service/orderService");
+const { orderService } = require("../service/order-service");
 
 class OrderController {
-
-  async pageRender(req, res, next){
-    res.send('주문 페이지 로드');
+  async pageRender(req, res, next) {
+    res.send("주문 페이지 로드");
   }
   // 주문 추가
   async addOrder(req, res, next) {
@@ -19,7 +18,6 @@ class OrderController {
       recipientName,
       recipientPhoneNumber,
     } = req.body;
-
 
     productList = productList.split(",");
 
@@ -65,7 +63,9 @@ class OrderController {
     } else {
       const { orderId } = req.query;
       if (!orderId) {
-        return res.status(400).json("에러 : 쿼리 스트링에 orderId가 존재해야 함");
+        return res
+          .status(400)
+          .json("에러 : 쿼리 스트링에 orderId가 존재해야 함");
       }
 
       try {
@@ -100,9 +100,7 @@ class OrderController {
     if (buyer || productList || totalAmount) {
       return res
         .status(400)
-        .json(
-          "에러 : 해당 주문 정보는 변경할 수 없는 값입니다."
-        );
+        .json("에러 : 해당 주문 정보는 변경할 수 없는 값입니다.");
     }
 
     try {
