@@ -117,7 +117,8 @@ bestbooks.forEach((book, idx) => {
 const bestitemlist = document.querySelectorAll(".best-container .slider-item");
 bestitemlist.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `../Itemdetail/index.html?id=${bestbooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
+    window.location.href = `../itemDetail/itemDetail.html.html?id=${bestbooks[idx].id}` 
+  //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
   });
 });
 
@@ -141,7 +142,7 @@ newbooks.forEach((book, idx) => {
 const newitemlist = document.querySelectorAll(".new-container .slider-item");
 newitemlist.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `../Itemdetail/index.html?id=${newbooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
+    window.location.href = `../itemDetail/itemDetail.html?id=${newbooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
   });
 });
 
@@ -165,7 +166,7 @@ steadybooks.forEach((book, idx) => {
 const steadyitemlist = document.querySelectorAll(".steady-container .slider-item");
 steadyitemlist.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `../Itemdetail/index.html?id=${steadybooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
+    window.location.href = `../itemDetail/itemDetail.html?id=${steadybooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
   });
 });
 
@@ -257,6 +258,6 @@ categorys.forEach(e=>{
 const catebuttons = document.querySelectorAll(".catebutton") //버튼들의 리스트
 catebuttons.forEach((catebutton,i)=>{
   catebutton.addEventListener("click", ()=>{ 
-    window.location.href = `../Itemlist/index.html?category=${categorys[i]}`;
+    window.location.href = `../itemList/itemList.html?category=${categorys[i]}`;
   })
 });
