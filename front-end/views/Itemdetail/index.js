@@ -12,6 +12,71 @@ const clickedbook = {
   category: "소설",
 };
 
+const itemcontainer = document.querySelector(".item-container");
+
+itemcontainer.innerHTML = `
+  <div class="left">
+    <div
+      class="card"
+      style="width: 35%; margin-top: 5%; margin-right: -10%"
+    >
+      <div class="card-image" style="width: 100%">
+        <img src="${clickedbook.imagesrc}" alt="Placeholder image" />
+      </div>
+      <div class="card-content" style="padding: 1rem">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-6">
+              ${clickedbook.title}  
+            </p>
+            <p class="subtitle is-7">${clickedbook.author}</p>
+          </div>
+        </div>
+        <div class="content" style="font-size: small">
+          ${clickedbook.publisher}
+          <br />
+          ${clickedbook.publishDate}
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="right">
+    <div class="right-container">
+      <div class="price">
+        <div>
+          <button>무료배송</button>
+          <button>소득공제</button>
+        </div>
+        <br />
+        <h1><b>${clickedbook.price}원</b></h1>
+      </div>
+      <div class="tags">
+        <ul>
+          <li>미디어 추천도서</li>
+          <li>MD의 선택</li>
+          <li>주간베스트</li>
+        </ul>
+        <div>
+          <a>국내도서 > </a><a>경제/경영 > </a><a>재테크/금융 > </a
+          ><a>주식/증권 > </a><a>${clickedbook.category}</a>
+        </div>
+      </div>
+      <div class="description">
+        <h3><b>Description</b></h3>
+        <p>
+          ${clickedbook.description}
+        </p>
+        <p><b>Rating</b>: 4.5/5</p>
+      </div>
+    </div>
+  </div>
+`
+
+const footer = document.querySelector(".footer");
+const totaltag = document.querySelector("#totaltag");
+totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price}원`;
+let totalcount = 0;
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const minusBtn = document.querySelector(".quantity-minus"); // '-'버튼
@@ -28,18 +93,20 @@ document.addEventListener("DOMContentLoaded", function () {
           input.value = 1;
         }
       }
+      totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price * input.value}원`;
+      totalcount = Number(input.value);
     }
   
     function plusNum(e) {
       const input = e.target.previousElementSibling;
       input.value = parseInt(input.value) + 1;
+      totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price * input.value}원`;
+      totalcount = Number(input.value);
     }
   
     minusBtn.addEventListener("click", minusNum);
     plusBtn.addEventListener("click", plusNum);
   });
-
-
 
   //장바구니 버튼 alert
   function showalert() {
@@ -53,7 +120,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //담은거 로컬스토리지에 넣기
   function pushlocal() {
-    const item = clickedbook; //객체 통째로 
+    const item = [];
+    item.push(clickedbook); //객체 통째로 
+    item.push(totalcount);
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; //로컬에 기존 있던거 붙이려고 꺼냄 
     cartItems.push(item); //붙임 
     localStorage.setItem("cartItems", JSON.stringify(cartItems)); //다시 로컬 넣음 
