@@ -117,7 +117,7 @@ bestbooks.forEach((book, idx) => {
 const bestitemlist = document.querySelectorAll(".best-container .slider-item");
 bestitemlist.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `../itemDetail/itemDetail.html.html?id=${bestbooks[idx].id}` 
+    window.location.href = `../itemDetail/itemDetail.html?id=${bestbooks[idx].id}` 
   //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
   });
 });
