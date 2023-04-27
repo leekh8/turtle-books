@@ -6,7 +6,7 @@ const usersRouter = require("./routes/user-router"); // user(사용자) router �
 const orderRouter = require("./routes/order-router");
 const productRouter = require("./routes/product-router");
 const categoryRouter = require("./routes/category-router");
-const adminRouter = require("./middlewares/admin-required");
+const adminRouter = require("./routes/admin-router");
 const errorHandler = require("./middlewares/error-handler");
 
 // 미들웨어 적용
