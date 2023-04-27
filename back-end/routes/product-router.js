@@ -9,7 +9,7 @@ ProductRouter.delete('/admin/:id', productController.deleteProduct);
 ProductRouter.patch('/admin/:id', productController.updateProduct);
 ProductRouter.get('/', productController.getProductByCategory);
 ProductRouter.get('/', productController.getProductByTopic)
-ProductRouter.get('/product/:id',productController.getProductById);
+ProductRouter.get('/:id',productController.getProductById);
 
 module.exports = ProductRouter;
 
