@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const orderRouter = Router();
 const orderController = require("../controllers/order-controller");
-const { bodyChecker } = require("../middlewares/body-checker");
+const bodyChecker = require("../middlewares/body-checker");
 
 orderRouter.get("/", orderController.pageRender); // 주문 페이지 렌더링
 orderRouter.post("/", orderController.addOrder); //주문 생성
