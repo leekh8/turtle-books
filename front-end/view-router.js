@@ -1,5 +1,5 @@
-import express from "express";
-import path from "path";
+const express = require("express");
+const path = require("path");
 
 const viewsRouter = express.Router();
 //home
@@ -24,6 +24,6 @@ function serveStatic(resource) {
 }
 
 //expoert
-export { viewsRouter };
+module.exports = viewsRouter;
 
 //우리 폴더 위치와 싱크 시킬지
