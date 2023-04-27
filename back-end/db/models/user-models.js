@@ -7,7 +7,7 @@
 
 /*
 --- user schema ---
-userId:    사용자 id
+userName:    사용자 id
 password:  비밀번호
 email:     이메일
 lastName:  성
@@ -17,11 +17,11 @@ birthDate: 생년월일
 userRole:  사용자 권한
 */
 
-const { model } = require("mongoose");
+const mongoose = require("mongoose");
 const UserSchema = require("../schemas/user-schema");
 
-const User = model("users", UserSchema);
-
+const User = mongoose.model("User", UserSchema);
+const withReturn = true;
 class UserModel {
   async findByEmail(email, withReturn) {
     if (!withReturn) {
@@ -30,7 +30,7 @@ class UserModel {
     return User.findOne({ email });
   }
 
-  async findById(userId, withReturn) {
+  async findById(userName, withReturn) {
     if (!withReturn) {
       await User.findOne({ _id: userId });
     }
@@ -51,12 +51,12 @@ class UserModel {
     return User.find({});
   }
 
-  async update({ userId, update }, withReturn) {
+  async update({ userName, update }, withReturn) {
     if (!withReturn) {
-      await User.findOneAndUpdate({ _id: userId }, update, {
+      await User.findOneAndUpdate({ _id: userName }, update, {
         returnOriginal: false,
       });
-      return User.findOneAndUpdate({ _id: userId }, update, {
+      return User.findOneAndUpdate({ _id: userName }, update, {
         returnOriginal: false,
       });
     }
@@ -65,4 +65,4 @@ class UserModel {
 
 const userModel = new UserModel();
 
-module.exports = { userModel };
+module.exports = userModel;
