@@ -24,9 +24,8 @@ userRole:  사용자 권한
 
 // express
 const Router = require("express");
-const UserController = require("../controllers/user-controller");
+const userController = require("../controllers/user-controller");
 
-const userController = new UserController();
 const userRouter = Router();
 
 userRouter.post("/register", userController.registerUser);
