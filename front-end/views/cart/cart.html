@@ -30,13 +30,13 @@
     </nav>
 
     <div id="cartInfo">
-    <article id="noItem"  style="display: none;"> <!--비회원 장바구니 상품 없을 경우-->
-      <p>장바구니에 담긴 상품이 없어요.</p>
+    <article id="noItem"> <!--비회원 장바구니 상품 없을 경우-->
+      <p>장바구니에 담긴 상품이 없습니다.</p>
     </article>
 
     <article id="haveItem"> <!--장바구니에 상품이 있을 경우-->
-      <div  class="productInCart">
-        <div class="card"> <!--상품 추가시 이부분이-->
+      <div  id="productInCart">
+        <!-- <div class="card"> <!--상품 추가시 이부분이
           <div class="card-content">
             <div class="content">
                 <input type="checkbox" class="checkboxs" name="checkbox">
@@ -63,62 +63,7 @@
                   </div>
               </div>
               </div>
-            </div>
-            <div class="card"> <!--상품 추가시 이부분이-->
-              <div class="card-content">
-                <div class="content">
-                    <input type="checkbox" class="checkboxs" name="checkbox">
-                    <img class="productImg" src="bookImg.png" alt="책이미지">
-                    <div class="productNamePrice"> 
-                      <h4>
-                        【<span class="productCtgry">소설</span>】
-                        <span id="productTittle">충격감동 실화 스토리</span>
-                      </h4>
-                      <p><span class="eachPrice">1,000</span>원</p>
-                    </div>
-                    <div class="contentAligin">
-                      <p class="subtotalPrice">000</p>
-                      <div class="productQntty">
-                        <input type="button" class="minusBtn" value="-">
-                        <input type="text" class="numberInput" value="1"
-                        style="width: 25px; text-align: center;">
-                        <input type="button" class="plusBtn" value="+">
-                      </div>
-                    </div>
-                    <div class="arriveAndDelet">
-                      <input type="button" value="X" class="deletProduct">
-                      <p>택배발송</p>
-                      </div>
-                  </div>
-                  </div>
-                </div><div class="card"> <!--상품 추가시 이부분이-->
-                  <div class="card-content">
-                    <div class="content">
-                        <input type="checkbox" class="checkboxs" name="checkbox">
-                        <img class="productImg" src="bookImg.png" alt="책이미지">
-                        <div class="productNamePrice"> 
-                          <h4>
-                            【<span class="productCtgry">소설</span>】
-                            <span id="productTittle">충격감동 실화 스토리</span>
-                          </h4>
-                          <p><span class="eachPrice">1,000</span>원</p>
-                        </div>
-                        <div class="contentAligin">
-                          <p class="subtotalPrice">000</p>
-                          <div class="productQntty">
-                            <input type="button" class="minusBtn" value="-">
-                            <input type="text" class="numberInput" value="1"
-                            style="width: 25px; text-align: center;">
-                            <input type="button" class="plusBtn" value="+">
-                          </div>
-                        </div>
-                        <div class="arriveAndDelet">
-                          <input type="button" value="X" class="deletProduct">
-                          <p>택배발송</p>
-                          </div>
-                      </div>
-                      </div>
-                    </div>
+            </div> --> 
       </div>
       </article>
     
@@ -139,9 +84,7 @@
           </tr>
         </table>      
       </div>
-      <button id="orderBtn" onclick="location.href='../order/order.html'" class="button is-primary is-fullwidth">
-        주문하기
-      </button>
+      <input id="orderBtn" class="button is-primary is-fullwidth" type="button" value="주문하기">
     </aside>
   </div>
   </main>

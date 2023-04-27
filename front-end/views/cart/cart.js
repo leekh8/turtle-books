@@ -1,3 +1,117 @@
+// 로컬스토리지 데이터 변수 할당
+const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+//로컬스토리지 HTML 화면 표시
+const displayDataOnHtml = () => {
+  const productInCart = document.getElementById("productInCart");
+  const noItem = document.getElementById("noItem");
+  const haveItem = document.getElementById("haveItem");
+
+  if (cartItems.length === 0) {
+    // table 요소 숨기기
+    haveItem.style.display = "none";
+    noItem.style.display = "";
+    return;
+  } else {
+    haveItem.style.display = "";
+    noItem.style.display = "none";
+  }
+
+  cartItems.forEach((item) => {
+    const book = item[0];
+    const id = item[1];
+
+    const div = document.createElement("div");
+    div.innerHTML = `
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <input type="checkbox" class="checkboxs" name="checkbox" id="checkbox_${
+              book.id
+            }">
+            <img class="productImg" src="${book.imagesrc}" alt="책이미지">
+            <div class="productNamePrice">
+              <h4>
+                【<span class="productCtgry">${book.category}</span>】
+                <span id="productTittle">${book.title}</span>
+              </h4>
+              <p><span class="eachPrice">${book.price}</span>원</p>
+            </div>
+            <div class="contentAligin">
+              <p class="subtotalPrice">${book.price * id}</p>
+              <div class="productQntty">
+                <input type="button" class="minusBtn" value="-">
+                <input type="text" class="numberInput" value="${id}" style="width: 25px; text-align: center;">
+                <input type="button" class="plusBtn" value="+">
+              </div>
+            </div>
+            <div class="arriveAndDelet">
+              <input type="button" value="X" class="deletProduct">
+              <p>택배발송</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    productInCart.appendChild(div);
+
+    // 카드에 이벤트 추가
+    const minusBtn = div.querySelector(".minusBtn");
+    const plusBtn = div.querySelector(".plusBtn");
+    const numberInput = div.querySelector(".numberInput");
+    const checkbox = div.querySelector(".checkboxs");
+    const deletProduct = div.querySelector(".deletProduct");
+    const selectAll = document.querySelector("#selectAll");
+
+    //전체선택
+    selectAll.addEventListener("click", () => {
+      const checkBoxes = document.querySelectorAll(".checkboxs");
+      checkBoxes.forEach(function (checkbox) {
+        checkbox.checked = selectAll.checked;
+      });
+
+      updateTotalPrice();
+    });
+    minusBtn.addEventListener("click", function () {
+      MinusNum(numberInput, div);
+      updateTotalPrice();
+    });
+
+    plusBtn.addEventListener("click", function () {
+      PlusNum(numberInput, div);
+      updateTotalPrice();
+    });
+
+    numberInput.addEventListener("input", function () {
+      changeToNumber(numberInput, div);
+      updateTotalPrice();
+    });
+
+    checkbox.addEventListener("click", function () {
+      const index = cartItems.findIndex((item) => item[0].id === book.id);
+      if (checkbox.checked) {
+        cartItems[index][2] = "true";
+      } else {
+        cartItems[index][2] = "false";
+      }
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      updateTotalPrice();
+    });
+
+    deletProduct.addEventListener("click", function () {
+      const index = cartItems.findIndex((item) => item[0].id === book.id);
+      cartItems.splice(index, 1);
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      div.remove();
+      updateTotalPrice();
+    });
+  });
+};
+
+// 페이지 로딩 후, HTML 화면에 데이터 표시하기
+window.onload = displayDataOnHtml;
+
 function updateSubtotalPrice(productInCart) {
   const eachPrice = productInCart.querySelector(".eachPrice").textContent;
   const inputNum = productInCart.querySelector(".numberInput").value;
@@ -5,6 +119,24 @@ function updateSubtotalPrice(productInCart) {
     parseInt(eachPrice.replace(",", "")) * parseInt(inputNum);
   productInCart.querySelector(".subtotalPrice").textContent =
     subtotalPrice.toLocaleString();
+
+  // update the cartItems in localStorage
+  const productTittle =
+    productInCart.querySelector("#productTittle").textContent;
+  const product = {
+    title: productTittle,
+    price: eachPrice,
+    imagesrc: productInCart.querySelector(".productImg").src,
+  };
+  const quantity = parseInt(inputNum);
+
+  for (let i = 0; i < cartItems.length; i++) {
+    if (cartItems[i][0].title === product.title) {
+      cartItems[i][1] = quantity;
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      break;
+    }
+  }
 }
 
 function MinusNum(numberInput, productInCart) {
@@ -26,12 +158,16 @@ function PlusNum(numberInput, productInCart) {
   numberInput.value = parseInt(numberInput.value) + 1;
   updateSubtotalPrice(productInCart);
 }
-
-function changeToNumber(numberInput, productInCart) {
-  if (parseInt(numberInput.value) < 1 || isNaN(numberInput.value) === true) {
-    numberInput.value = 1;
-  }
-  updateSubtotalPrice(productInCart);
+function removeCartItem(bookId) {
+  // 화면에서 삭제될때 로컬스토리지도 삭제
+  const index = cartItems.findIndex((item) => item[0].id === bookId);
+  cartItems.splice(index, 1);
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+}
+function removeCartItem(bookId) {
+  const index = cartItems.findIndex((item) => item[0].id === bookId);
+  cartItems.splice(index, 1);
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
 function initializeCart() {
@@ -42,6 +178,7 @@ function initializeCart() {
     const plusBtn = productInCart.querySelector(".plusBtn");
     const numberInput = productInCart.querySelector(".numberInput");
     const checkbox = productInCart.querySelector(".checkboxs");
+    const deletProduct = productInCart.querySelector(".deletProduct");
 
     minusBtn.addEventListener("click", function () {
       MinusNum(numberInput, productInCart);
@@ -62,17 +199,27 @@ function initializeCart() {
       updateTotalPrice();
     });
 
+    deletProduct.addEventListener("click", function () {
+      const card = deletProduct.closest(".card");
+      const bookId = card.querySelector(".checkboxs").id.split("_")[1];
+      card.remove();
+      removeCartItem(bookId);
+      updateTotalPrice();
+    });
+
     // 초기값으로 계산된 subtotalPrice 값을 출력
     updateSubtotalPrice(productInCart);
   });
 
-  // 선택 삭제 버튼 이벤트 리스너 추가
+  // 선택 삭제 버튼 이벤트 리스너
   const selectDeleteBtn = document.querySelector("#selectDelet");
   selectDeleteBtn.addEventListener("click", () => {
     const checkBoxes = document.querySelectorAll(".checkboxs:checked");
     checkBoxes.forEach(function (checkbox) {
       const card = checkbox.closest(".card");
+      const bookId = checkbox.id.split("_")[1];
       card.remove();
+      removeCartItem(bookId);
     });
     updateTotalPrice();
   });
@@ -81,13 +228,33 @@ function initializeCart() {
   deletProduct.forEach(function (deletBtn) {
     deletBtn.addEventListener("click", () => {
       const card = deletBtn.closest(".card");
+      const bookId = card.querySelector(".checkboxs").id.split("_")[1];
       card.remove();
+      removeCartItem(bookId);
       updateTotalPrice();
     });
   });
 
   // 초기화 후 총합 계산하여 출력
   updateTotalPrice();
+
+  // 주문하기 버튼 클릭 이벤트 리스너 추가
+  const orderButton = document.querySelector("#orderBtn");
+  orderButton.addEventListener("click", function () {
+    // 선택된 상품들의 정보를 가지고 있는 cartItems 배열에서 해당 상품들을 삭제
+    const checkBoxes = document.querySelectorAll(".checkboxs:checked");
+    const newCartItems = cartItems.filter(function (item) {
+      return !Array.from(checkBoxes).some(function (checkbox) {
+        return item[0].id === checkbox.id.split("_")[1];
+      });
+    });
+
+    // 새로운 cartItems 배열을 localStorage에 저장
+    localStorage.setItem("cartItems", JSON.stringify(newCartItems));
+
+    // order.html 페이지로 이동
+    window.location.href = "../order/order.html";
+  });
 }
 
 document.addEventListener("DOMContentLoaded", initializeCart);
