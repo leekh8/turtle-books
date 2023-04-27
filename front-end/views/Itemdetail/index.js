@@ -75,6 +75,7 @@ itemcontainer.innerHTML = `
 const footer = document.querySelector(".footer");
 const totaltag = document.querySelector("#totaltag");
 totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price}원`;
+let totalcount = 0;
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -93,19 +94,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
       totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price * input.value}원`;
+      totalcount = Number(input.value);
     }
   
     function plusNum(e) {
       const input = e.target.previousElementSibling;
       input.value = parseInt(input.value) + 1;
       totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price * input.value}원`;
+      totalcount = Number(input.value);
     }
   
     minusBtn.addEventListener("click", minusNum);
     plusBtn.addEventListener("click", plusNum);
   });
-
-
 
   //장바구니 버튼 alert
   function showalert() {
@@ -119,7 +120,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //담은거 로컬스토리지에 넣기
   function pushlocal() {
-    const item = clickedbook; //객체 통째로 
+    const item = [];
+    item.push(clickedbook); //객체 통째로 
+    item.push(totalcount);
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; //로컬에 기존 있던거 붙이려고 꺼냄 
     cartItems.push(item); //붙임 
     localStorage.setItem("cartItems", JSON.stringify(cartItems)); //다시 로컬 넣음 
