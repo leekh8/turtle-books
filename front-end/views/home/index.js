@@ -1,4 +1,3 @@
-
 const books = [
   {
     id: 1,
@@ -118,7 +117,8 @@ bestbooks.forEach((book, idx) => {
 const bestitemlist = document.querySelectorAll(".best-container .slider-item");
 bestitemlist.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `../Itemdetail/index.html?id=${bestbooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
+    window.location.href = `../itemDetail/itemDetail.html.html?id=${bestbooks[idx].id}` 
+  //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
   });
 });
 
@@ -142,7 +142,7 @@ newbooks.forEach((book, idx) => {
 const newitemlist = document.querySelectorAll(".new-container .slider-item");
 newitemlist.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `../Itemdetail/index.html?id=${newbooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
+    window.location.href = `../itemDetail/itemDetail.html?id=${newbooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
   });
 });
 
@@ -166,7 +166,7 @@ steadybooks.forEach((book, idx) => {
 const steadyitemlist = document.querySelectorAll(".steady-container .slider-item");
 steadyitemlist.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `../Itemdetail/index.html?id=${steadybooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
+    window.location.href = `../itemDetail/itemDetail.html?id=${steadybooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
   });
 });
 
@@ -234,9 +234,30 @@ function scrolltoSteady() {
   });
 }
 
-//카테고리 목록 따오기
-const categoryContainer = document.querySelector(".buttonlist2");
-
-var button = document.createElement("button");
 //각 카테고리마다 button 하나씩 만들어서 내용 넣어줌
-//리스트 형태도 ok
+///카테고리 리스트 가져와서 button으로 뿌려주기
+const categorys = ["소설", "만화", "자기개발"];
+
+// try{
+//   const response = fetch(`api/category`, {
+//       method: "GET",       
+//       headers: {'Content-Type': 'application/json'}
+//   })
+//   // categorys = await response.json(); 
+// } catch(e) {
+//   console.log("error msg: ", e)
+// }
+
+//버튼 생성
+const buttonlist2 = document.querySelector(".buttonlist2");
+categorys.forEach(e=>{
+  buttonlist2.innerHTML+=`<button class="catebutton">${e}</button>`
+})
+
+////카테고리들 각각에 이벤트 붙이기
+const catebuttons = document.querySelectorAll(".catebutton") //버튼들의 리스트
+catebuttons.forEach((catebutton,i)=>{
+  catebutton.addEventListener("click", ()=>{ 
+    window.location.href = `../itemList/itemList.html?category=${categorys[i]}`;
+  })
+});
