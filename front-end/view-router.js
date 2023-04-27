@@ -16,6 +16,7 @@ viewsRouter.use("/order", serveStatic("order"));
 viewsRouter.use("/signup", serveStatic("signup"));
 
 //html 연결해주는 매서드
+
 function serveStatic(resource) {
   const resourcePath = path.join(__dirname, `../views/${resource}`);
   const option = { index: `${resource}.html` };
