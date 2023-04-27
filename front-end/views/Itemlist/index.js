@@ -105,7 +105,7 @@ const books = [
 
 books.forEach((book) => {
   booktable.innerHTML += `
-      <tr> 
+      <tr class="each-container"> 
         <td width="5%">
         </td>
         <td width="20%">
@@ -199,3 +199,12 @@ function pushlocal() {
 const cartbutton = document.querySelector(".cartbutton")
 cartbutton.addEventListener("click", showalert);
 cartbutton.addEventListener("click", pushlocal);
+
+
+//각 아이템의 tr 눌렀을 때
+const secondContainer = document.querySelectorAll(".second-table");
+secondContainer.forEach((item, idx) => {
+  item.addEventListener("click", ()=>{
+    window.location.href = `../Itemdetail/index.html?id=${books[idx].id}` //이런식으로 넘어가야
+  }) //각 북의 id로 db에서 찾아오기
+})
