@@ -20,7 +20,8 @@ class UserController {
   // register
   async registerUser(req, res, next) {
     try {
-      const { userId, email, password } = req.body;
+      const { userId, lastName, firstName, email, address, password } =
+        req.body;
       const newUser = await userService.addUser({
         userId,
         lastName,
@@ -96,4 +97,5 @@ class UserController {
   }
 }
 
-module.exports = UserController;
+const userController = UserController();
+module.exports = userController;
