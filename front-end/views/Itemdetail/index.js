@@ -133,4 +133,14 @@ document.addEventListener("DOMContentLoaded", function () {
   cartbutton.addEventListener("click", pushlocal);
 
 
-  
+  //바로구매 버튼 눌렀을 때
+  const directbutton = document.querySelector(".buy-now-btn");
+  directbutton.addEventListener("click", ()=>{
+    const item = [];
+    item.push(clickedbook); //객체 통째로 (현재 아이템)
+    item.push(totalcount);
+    const directItem = JSON.parse(localStorage.getItem("directItem")) || []; //로컬에 기존 있던거 붙이려고 꺼냄 
+    directItem.push(item); //붙임 
+    localStorage.setItem("directItem", JSON.stringify(directItem)); //다시 로컬 넣음 
+    window.location.href = "../order/order.html" // 결제페이지로 이동 
+  })
