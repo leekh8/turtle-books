@@ -8,7 +8,7 @@ class CategoryController {
   // 카테고리 조회 컨트롤러
   // GET 요청으로 들어온 카테고리 정보를 조회
   // 서비스의 결과를 json으로 반환
-  async getCatetory(req, res, next) {
+  async getCatetory(req, res) {
     try{
       const categories = await CategoryService.getCategoryList();
       res.json(categories);
