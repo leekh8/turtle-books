@@ -6,14 +6,16 @@ const usersRouter = require("./routes/user-router"); // user(사용자) router �
 const orderRouter = require("./routes/order-router");
 const productRouter = require("./routes/product-router");
 const categoryRouter = require("./routes/category-router");
-const adminRouter = require("./middlewares/admin-required");
+const adminRouter = require("./routes/admin-router");
 const errorHandler = require("./middlewares/error-handler");
+const viewRouter = require("../front-end/view-router"); // 프론트 라우터
 
 // 미들웨어 적용
 const app = express();
 app.use(cors()); // cors 에러 방지, cors로 다른 도메인의 요청 허용
 app.use(express.json()); // post 요청에서 body 추출, content-type: application/json 형태
 app.use(express.urlencoded({ extended: false })); // content-type: application/x-www-form-urlencoded 형태
+app.use(viewRouter); //프론트
 
 // api 라우터
 app.use("/api/user", usersRouter);

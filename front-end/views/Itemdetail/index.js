@@ -12,6 +12,21 @@ const clickedbook = {
   category: "소설",
 };
 
+//해당 아이템 clickedbook 변수로 가져오기
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id");
+
+try{
+  const response = fetch(`api/product/:id=${id}`, {
+      method: "GET",       
+      headers: {'Content-Type': 'application/json'}
+  })
+  // clickedbook = await response.json(); 
+} catch(e) {
+  console.log("error msg: ", e)
+}
+
+//clickedbook 기반으로 html 짜기 
 const itemcontainer = document.querySelector(".item-container");
 
 itemcontainer.innerHTML = `
