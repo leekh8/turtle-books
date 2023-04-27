@@ -7,7 +7,7 @@
 
 /*
 --- user schema ---
-userName:    사용자 id
+userId:    사용자 id
 password:  비밀번호
 email:     이메일
 lastName:  성
@@ -30,7 +30,7 @@ class UserModel {
     return User.findOne({ email });
   }
 
-  async findById(userName, withReturn) {
+  async findById(userId, withReturn) {
     if (!withReturn) {
       await User.findOne({ _id: userId });
     }
@@ -51,12 +51,12 @@ class UserModel {
     return User.find({});
   }
 
-  async update({ userName, update }, withReturn) {
+  async update({ userId, update }, withReturn) {
     if (!withReturn) {
-      await User.findOneAndUpdate({ _id: userName }, update, {
+      await User.findOneAndUpdate({ _id: userId }, update, {
         returnOriginal: false,
       });
-      return User.findOneAndUpdate({ _id: userName }, update, {
+      return User.findOneAndUpdate({ _id: userId }, update, {
         returnOriginal: false,
       });
     }
