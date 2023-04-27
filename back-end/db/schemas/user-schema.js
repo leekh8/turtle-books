@@ -8,7 +8,7 @@ lastName:  성
 firstName: 이름
 address:   배송지
 birthDate: 생년월일
-userRole:  사용자 권한
+role:  사용자 권한
 */
 
 const { Schema, mongoose } = require("mongoose");
@@ -48,7 +48,7 @@ const UserSchema = new Schema(
       type: String,
       required: false,
     },
-    userRole: {
+    role: {
       type: String,
       required: false,
       enum: ["admin", "user"],
