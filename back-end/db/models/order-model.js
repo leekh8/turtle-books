@@ -1,6 +1,6 @@
 //어플리케이션에서 사용되는 데이터와 그 데이터를 처리
 const { model } = require("mongoose");
-const { OrderSchema } = require("../schemas/order-schema");
+const OrderSchema = require("../schemas/order-schema");
 
 const Order = model("Order", OrderSchema);
 
@@ -46,12 +46,14 @@ class OrderModel {
         .populate("productList");
       return orderList;
     } catch (err) {
-      const error = new Error("현재까지 누적된 주문 목록을 불러들이는데 실패했습니다.");
+      const error = new Error(
+        "현재까지 누적된 주문 목록을 불러들이는데 실패했습니다."
+      );
       error.statusCode = 400;
       throw error;
     }
   }
-  // 
+  //
   async create(orderInfo, buyerFromDB) {
     try {
       let createdNewOrder = await Order.create(orderInfo);
@@ -101,4 +103,3 @@ class OrderModel {
 const orderModel = new OrderModel();
 
 module.exports = orderModel;
-module.exports = order;
