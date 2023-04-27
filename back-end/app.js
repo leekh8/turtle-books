@@ -17,7 +17,8 @@ app.use(express.urlencoded({ extended: false })); // content-type: application/x
 
 // api 라우터
 app.use("/api/user", usersRouter);
-app.use("/api/user/myroom/", orderRouter); // order 연결
+app.use("/api/user/myroom/order", orderRouter);
+app.use("/api/order", orderRouter);
 app.use("/api/product", productRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/admin", adminRouter); // 관리자 페이지 라우터 연결
