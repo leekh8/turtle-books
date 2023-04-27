@@ -173,7 +173,8 @@ tbody > tr:hover {
   margin-left: 50px;
 }
 
-#addProductImg > div {
+#preProductImg {
+  display: block;
   border: gray solid 2px;
   width: 90%;
   height: 85%;

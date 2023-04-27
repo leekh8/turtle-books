@@ -50,14 +50,31 @@
               <!-- 위의 배송지 입력으로 찾은 주소가 아래 필드에 입력됨 -->
               <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                  <label class="label">주소</label>
+                  <label class="label">이름</label>
                 </div>
                 <div class="field-body search">
                   <div class="field">
                     <p class="control">
                       <input
                         class="input"
-                        placeholder="배송받을 주소를 검색해주세요"
+                        placeholder="성함을 작성해주세요."
+                        id="username"
+                        type="text"
+                      />
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="field is-horizontal">
+                <div class="field-label is-normal no-label">
+                  <label class="label">주소</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input"
+                        placeholder="배송받을 주소를 검색해주세요."
                         id="address"
                         type="text"
                         readonly
@@ -75,17 +92,43 @@
                         class="input"
                         id="detailAddress"
                         type="text"
-                        placeholder="상세주소를 입력하세요"
+                        placeholder="상세주소를 입력하세요."
                         autocomplete="on"
                       />
                     </p>
                   </div>
                 </div>
               </div>
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">요청사항</label>
+                </div>
+                <div class="field-body">
+                  <div class="select">
+                    <select>
+                      <option value="0">
+                        배송시 요청사항을 선택해 주세요.
+                      </option>
+                      <option value="1" class="select-option">
+                        배송 전 연락바랍니다.
+                      </option>
+                      <option value="2" class="select-option">
+                        부재 시 경비실에 맡겨주세요.
+                      </option>
+                      <option value="3" class="select-option">
+                        부재 시 문 앞에 놓아주세요.
+                      </option>
+                      <option value="4" class="select-option">
+                        직접 수령하겠습니다.
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="card-content" id="order">
+        <!-- <div class="card-content" id="order">
           <div class="columns">
             <div class="column">
               <h3 class="order-title">주문상품</h3>
@@ -113,7 +156,7 @@
               </table>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="card" id="order">
           <div class="card-content">
             <div class="content">
@@ -127,20 +170,18 @@
       </div>
       <!-- 결제 정보가 담겨 확인 후 결제하기 버튼을 누르는 사이드 바 -->
       <div class="payments-box">
-        <div class="box">
+        <!-- <div class="box">
           <h1 class="title">결제 정보</h1>
-          <!-- 장바구니에서 담았거나, 바로 결제시 선택한 서적의 정보를 받아와 화면에 나타내는 곳 -->
-          <p>상품금액 10,000원</p>
+          <p>상품금액 0원</p>
           <p>배송비 0원</p>
-          <!-- 쿠폰 적용 기능과 포인트 적용은 화면상으로만 그려놓았음 -->
           <p>쿠폰할인 0원</p>
           <p>포인트 사용 0원</p>
           <hr />
-          <p>최종결제금액 10,000원</p>
+          <p>최종결제금액 0원</p>
           <button class="button is-primary is-fullwidth" id="paymentsBtn">
             결제하기
           </button>
-        </div>
+        </div> -->
       </div>
     </main>
   </body>

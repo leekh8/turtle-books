@@ -33,7 +33,7 @@ function MinusNum(numberInput, productInCart) {
   return; //early return
 }
 if (confirm("삭제하시겠습니까?")) {
-  numberInput.value = 1;
+  numberInput.value < 1;
   updateSubtotalPrice(productInCart);
 }
 
