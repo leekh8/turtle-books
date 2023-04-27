@@ -53,7 +53,7 @@ class OrderController {
       next(e);
     }
   }
-  // 주문 정보 가져오기
+  // 주문 정보 가져오기.
   // req에 query가 비어있는지 확인, 비어있다면 주문 번호에 대한 주문 정보를 가져오는 서비스 호출
   // 전체 주문 목록 가져와 res에 전달.
   // query가 있다면 req에서 orderId를 추출, orderId가 없으면 에러 반환.

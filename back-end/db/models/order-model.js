@@ -5,7 +5,7 @@ const OrderSchema = require("../schemas/order-schema");
 const Order = model("Order", OrderSchema);
 
 class OrderModel {
-  //특정 주문 번호에 맞는 주문 정보 조회(단일 조회)
+  //특정 주문 번호에 맞는 주문 정보 조회(단일 조회).
   async findById(orderId) {
     try {
       const order = await Order.findOne({ _id: orderId })
