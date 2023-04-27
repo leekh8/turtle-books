@@ -3,9 +3,10 @@ const cors = require("cors");
 
 // 라우터 연결
 const usersRouter = require("./routes/user-router"); // user(사용자) router 연결
-// const router = require("./routes/order-list")
+const orderRouter = require("./routes/order-router");
 const productRouter = require("./routes/product-router");
 const categoryRouter = require("./routes/category-router");
+const adminRouter = require("./middlewares/admin-required");
 const errorHandler = require("./middlewares/error-handler");
 
 // 미들웨어 적용
@@ -16,9 +17,11 @@ app.use(express.urlencoded({ extended: false })); // content-type: application/x
 
 // api 라우터
 app.use("/api/user", usersRouter);
-// app.use("/api/user/myroom/order-list", router); // order-list 연결
+app.use("/api/user/myroom/order", orderRouter);
+app.use("/api/order", orderRouter);
 app.use("/api/product", productRouter);
 app.use("/api/category", categoryRouter);
+app.use("/api/admin", adminRouter); // 관리자 페이지 라우터 연결
 
 // 에러 처리
 app.use(errorHandler);
