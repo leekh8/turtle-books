@@ -10,13 +10,14 @@
 //해당 아이템 clickedbook 변수로 가져오기
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
+let clickedbook;
 
 try {
   const response = await fetch(`/api/product/detail/${id}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
-  const clickedbook = (await response.json()).data;
+  clickedbook = (await response.json()).data;
   console.log(clickedbook);
   const itemcontainer = document.querySelector(".item-container");
 
@@ -87,7 +88,6 @@ const totaltag = document.querySelector("#totaltag");
 totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price}원`;
 let totalcount = 1;
 
-document.addEventListener("DOMContentLoaded", function () {
   const minusBtn = document.querySelector(".quantity-minus"); // '-'버튼
   const numberInput = document.querySelector(".quantity-input"); //input
   const plusBtn = document.querySelector(".quantity-plus"); //'+' 버튼
@@ -115,7 +115,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   minusBtn.addEventListener("click", minusNum);
   plusBtn.addEventListener("click", plusNum);
-});
 
 //장바구니 버튼 alert
 function showalert() {
