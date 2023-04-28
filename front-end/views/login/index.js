@@ -4,19 +4,19 @@ loginForm.addEventListener("submit", formSubmit);
 
 function formSubmit(e) {
     e.preventDefault();
-    const id = document.querySelector("#id");
-    const pw = document.querySelector("#password");
-    login(id,pw)
+    const email = document.querySelector("#email");
+    const password = document.querySelector("#password");
+    login(email,password)
     console.log("complete")
 }
 
-async function login(id,pw){
+async function login(email,password){
     try{ //저 api에서 만들어준 토큰을 받아서 token에 저장, 로컬스토리지에 넣어놓음
-        const response = fetch("/api/user/login", {
+        const response = await fetch("/api/user/login", {
             method: "POST", 
             body: JSON.stringify({
-                id: id,
-                pw: pw,
+                email: email,
+                password: password,
             }),
             headers: {'Content-Type': 'application/json'}
         })
