@@ -1,110 +1,11 @@
-// const books = [
-//   {
-//     id: 1,
-//     title: "브라질에 비가 내리면 스타벅스 주식을 사라",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description:
-//       "‘숲(경제 흐름)과 나무(종목)’를 함께 보라! 전쟁, 전염병, 기후, 금리, 환율, 인플레이션… 거시경제 지표를 이해하면 변동성은 기회다!",
-//     price: 16200,
-//     imageUrl: "../assets/book1.jpg",
-//     topic: "best",
-//     category: "소설",
-//   },
-//   {
-//     id: 2,
-//     title: "2챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "best",
-//     category: "소설",
-//   },
-//   {
-//     id: 3,
-//     title: "3챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "best",
-//     category: "소설",
-//   },
-//   {
-//     id: 4,
-//     title: "4챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "best",
-//     category: "소설",
-//   },
-//   {
-//     id: 5,
-//     title: "newone",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "new",
-//     category: "소설",
-//   },
-//   {
-//     id: 6,
-//     title: "6챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "best",
-//     category: "만화",
-//   },
-//   {
-//     id: 7,
-//     title: "new2",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "new",
-//     category: "만화",
-//   },
-//   {
-//     id: 8,
-//     title: "steady1",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "steady",
-//     category: "만화",
-//   },
-//   // ... 다른 책들
-// ];
+let books = []; //전체 item 배열로 받음
 
-try{
-  const response = fetch(`/api/product/`, {
+try{ //전체 book 받는 api 
+  const response = await fetch(`/api/product`, {
       method: "GET",       
       headers: {'Content-Type': 'application/json'}
   })
-  const books = await response.json(); 
+  books = await response.json(); 
 } catch(e) {
   console.log("error msg: ", e)
 }
@@ -112,12 +13,14 @@ try{
 // best만 html로 뿌려주기
 const bestbooks = books.filter((e) => e.topic === "best"); //배열
 const bestitems = document.querySelector(".best-items"); //div
+console.log(bestbooks)
 
-bestbooks.forEach((book, idx) => {
+
+bestbooks.forEach((book, idx) => { //category만 수정해주면 됨 
   bestitems.innerHTML += `
             <div class="slider-item">
                 <img src=${book.imageUrl} alt="Book cover">
-                <p class="category">${book.category}</p>
+                <p class="category">${book.category}</p> 
                 <p class="title">${book.title}</p>
             </div>
         `;
@@ -127,7 +30,7 @@ bestbooks.forEach((book, idx) => {
 const bestitemlist = document.querySelectorAll(".best-container .slider-item");
 bestitemlist.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `/itemDetail?id=${bestbooks[idx].id}`;
+    window.location.href = `/itemDetail?id=${bestbooks[idx]._id}`;
     //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
   });
 });
@@ -152,7 +55,7 @@ newbooks.forEach((book, idx) => {
 const newitemlist = document.querySelectorAll(".new-container .slider-item");
 newitemlist.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `/itemDetail?id=${newbooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
+    window.location.href = `/itemDetail?id=${newbooks[idx]._id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
   });
 });
 
@@ -178,7 +81,7 @@ const steadyitemlist = document.querySelectorAll(
 );
 steadyitemlist.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `/itemDetail?id=${steadybooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
+    window.location.href = `/itemDetail?id=${steadybooks[idx]._id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
   });
 });
 

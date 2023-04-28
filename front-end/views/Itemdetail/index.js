@@ -16,16 +16,16 @@
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 
-try{
+try {
   const response = await fetch(`/api/product/detail/${id}`, {
-      method: "GET",       
-      headers: {'Content-Type': 'application/json'}
-  })
-  const clickedbook = (await response.json()).data
-  console.log(clickedbook)
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+  const clickedbook = (await response.json()).data;
+  console.log(clickedbook);
   const itemcontainer = document.querySelector(".item-container");
 
-itemcontainer.innerHTML = `
+  itemcontainer.innerHTML = `
   <div class="left">
     <div
       class="card"
@@ -81,84 +81,82 @@ itemcontainer.innerHTML = `
       </div>
     </div>
   </div>
-`
-} catch(e) {
-  console.log("error msg: ", e)
+`;
+} catch (e) {
+  console.log("error msg: ", e);
 }
 
-
-//clickedbook 기반으로 html 짜기 
-
+//clickedbook 기반으로 html 짜기
 
 const footer = document.querySelector(".footer");
 const totaltag = document.querySelector("#totaltag");
 totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price}원`;
 let totalcount = 1;
 
-
 document.addEventListener("DOMContentLoaded", function () {
-    const minusBtn = document.querySelector(".quantity-minus"); // '-'버튼
-    const numberInput = document.querySelector(".quantity-input"); //input
-    const plusBtn = document.querySelector(".quantity-plus"); //'+' 버튼
-  
-    function minusNum(e) {
-      const input = e.target.nextElementSibling;
-      if (parseInt(input.value) > 1) {
-        //1이하일 경우
-        input.value = parseInt(input.value) - 1;
-      } else {
-        if (confirm("삭제하시겠습니까?")) {
-          input.value = 1;
-        }
-      }
-      totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price * input.value}원`;
-      totalcount = Number(input.value);
-    }
-  
-    function plusNum(e) {
-      const input = e.target.previousElementSibling;
-      input.value = parseInt(input.value) + 1;
-      totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price * input.value}원`;
-      totalcount = Number(input.value);
-    }
-  
-    minusBtn.addEventListener("click", minusNum);
-    plusBtn.addEventListener("click", plusNum);
-  });
+  const minusBtn = document.querySelector(".quantity-minus"); // '-'버튼
+  const numberInput = document.querySelector(".quantity-input"); //input
+  const plusBtn = document.querySelector(".quantity-plus"); //'+' 버튼
 
-  //장바구니 버튼 alert
-  function showalert() {
-    const result = confirm("장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?");
-    if(result) {
-      window.location.href = "/cart" // 장바구니로 이동
+  function minusNum(e) {
+    const input = e.target.nextElementSibling;
+    if (parseInt(input.value) > 1) {
+      //1이하일 경우
+      input.value = parseInt(input.value) - 1;
     } else {
-      return;
+      if (confirm("삭제하시겠습니까?")) {
+        input.value = 1;
+      }
     }
+    totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price * input.value}원`;
+    totalcount = Number(input.value);
   }
 
-  //담은거 로컬스토리지에 넣기
-  function pushlocal() {
-    const item = [];
-    item.push(clickedbook); //객체 통째로 
-    item.push(totalcount);
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; //로컬에 기존 있던거 붙이려고 꺼냄 
-    cartItems.push(item); //붙임 
-    localStorage.setItem("cartItems", JSON.stringify(cartItems)); //다시 로컬 넣음 
+  function plusNum(e) {
+    const input = e.target.previousElementSibling;
+    input.value = parseInt(input.value) + 1;
+    totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price * input.value}원`;
+    totalcount = Number(input.value);
   }
 
-  const cartbutton = document.querySelector(".add-to-cart-btn")
-  cartbutton.addEventListener("click", showalert);
-  cartbutton.addEventListener("click", pushlocal);
+  minusBtn.addEventListener("click", minusNum);
+  plusBtn.addEventListener("click", plusNum);
+});
 
+//장바구니 버튼 alert
+function showalert() {
+  const result = confirm(
+    "장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?"
+  );
+  if (result) {
+    window.location.href = "/cart"; // 장바구니로 이동
+  } else {
+    return;
+  }
+}
 
-  //바로구매 버튼 눌렀을 때
-  const directbutton = document.querySelector(".buy-now-btn");
-  directbutton.addEventListener("click", ()=>{
-    const item = [];
-    item.push(clickedbook); //객체 통째로 (현재 아이템)
-    item.push(totalcount);
-    const directItem = JSON.parse(localStorage.getItem("directItem")) || []; //로컬에 기존 있던거 붙이려고 꺼냄 
-    directItem.push(item); //붙임 
-    localStorage.setItem("directItem", JSON.stringify(directItem)); //다시 로컬 넣음 
-    window.location.href = "/order" // 결제페이지로 이동 
-  })
+//담은거 로컬스토리지에 넣기
+function pushlocal() {
+  const item = [];
+  item.push(clickedbook); //객체 통째로
+  item.push(totalcount);
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; //로컬에 기존 있던거 붙이려고 꺼냄
+  cartItems.push(item); //붙임
+  localStorage.setItem("cartItems", JSON.stringify(cartItems)); //다시 로컬 넣음
+}
+
+const cartbutton = document.querySelector(".add-to-cart-btn");
+cartbutton.addEventListener("click", showalert);
+cartbutton.addEventListener("click", pushlocal);
+
+//바로구매 버튼 눌렀을 때
+const directbutton = document.querySelector(".buy-now-btn");
+directbutton.addEventListener("click", () => {
+  const item = [];
+  item.push(clickedbook); //객체 통째로 (현재 아이템)
+  item.push(totalcount);
+  const directItem = JSON.parse(localStorage.getItem("directItem")) || []; //로컬에 기존 있던거 붙이려고 꺼냄
+  directItem.push(item); //붙임
+  localStorage.setItem("directItem", JSON.stringify(directItem)); //다시 로컬 넣음
+  window.location.href = "/order"; // 결제페이지로 이동
+});
