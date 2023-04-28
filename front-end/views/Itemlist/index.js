@@ -151,7 +151,7 @@ books.forEach((book, idx) => {
       "장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?"
     );
     if (result) {
-      window.location.href = "../cart/cart.html"; // 장바구니로 이동
+      window.location.href = "/cart"; // 장바구니로 이동
     } else {
       return;
     }
@@ -181,7 +181,7 @@ books.forEach((book, idx) => {
     const directItem = JSON.parse(localStorage.getItem("directItem")) || []; //로컬에 기존 있던거 붙이려고 꺼냄 
     directItem.push(item); //붙임 
     localStorage.setItem("directItem", JSON.stringify(directItem)); //다시 로컬 넣음 
-    window.location.href = "../order/order.html" // 결제페이지로 이동 
+    window.location.href = "/order" // 결제페이지로 이동 
   })
 });
 
@@ -233,6 +233,6 @@ document.addEventListener("DOMContentLoaded", function () {
 const secondContainer = document.querySelectorAll(".second-table");
 secondContainer.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `../itemDetail/itemDetail.html?id=${books[idx].id}`; //이런식으로 넘어가야
+    window.location.href = `/itemDetail?id=${books[idx].id}`; //이런식으로 넘어가야
   }); //각 북의 id로 db에서 찾아오기
 });
