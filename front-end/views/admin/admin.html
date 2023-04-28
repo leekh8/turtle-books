@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
   <link rel="stylesheet" href="admin-Menu_and_Header.css">
 
-  <title>admin test 메뉴</title>
+  <title></title>
 </head>
 
 <body>
@@ -92,9 +92,8 @@
         <table id="product-table" class="table is-bordered is-narrow is-fullwidth">
           <thead style="background-color: rgba(220, 220, 220, 0.303);">
             <tr>
-              <th class="th"><button class="deltButnTh button is-small">삭제</button></th>
+              <th class="thDeletBtn th" style="width: 50px;"><button class="deltButnTh button is-small">삭제</button></th>
               <th class="th">상품 이미지</th>
-              <th class="th">상품코드</th>
               <th class="th">카테고리</th>
               <th class="th">Topic</th>
               <th class="th">제목</th>
@@ -103,13 +102,13 @@
               <th class="th">책소개</th>
               <th class="th">작가</th>
               <th class="th">출판사</th>
+              <th class="th">발행일</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <!-- <tr>
               <td class="checkboxTd"><input type="checkbox"></td>
               <td><span class="changeImg" class="productImg"><img src="bookImg.png" alt=""></span></td>
-              <td>상품코드</td>
               <td><span class="categorySelctBox">자기계발</span></td>
               <td><span class="topicSelctBox">steady</span></td>
               <td><span class="changeText" class="productTitle">대충 책 제목</span></td>
@@ -119,7 +118,7 @@
               <td><span class="changeText" class="productAuthor">철수나르철수철수</span></td>
               <td><span class="changeText" class="productPublisher">안믿음사</span></td>
               <td class="btnTd" class="td"><button class="changeBtn" class="button is-small">수정</td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>
@@ -131,16 +130,16 @@
             <table id="ctgrTable" class="table is-bordered is-narrow is-fullwidth">
               <thead style="background-color: rgba(220, 220, 220, 0.303);">
                 <tr>
-                  <th class="th"><button class="deltButnTh button is-small">삭제</button></th>
+                  <th class="thDeletBtn th"><button class="deltButnTh button is-small">삭제</button></th>
                   <th class="th">카테고리 명</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <!-- <tr>
                   <td class="checkboxTd"><input type="checkbox"></td>
                   <td><span class="changeText" class="categorySelctBoxContent">소설</span></td>
                   <td class="btnTd"><button class="changeBtn" class="button is-small">수정</button></td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
           </div>
@@ -180,7 +179,7 @@
         <table class="table is-bordered is-narrow is-fullwidth">
           <thead style="background-color: rgba(220, 220, 220, 0.303);">
             <tr>
-              <th class="th"><button  class="deltButnTh button is-small">삭제</button></th>
+              <th class="thDeletBtn th"><button  class="deltButnTh button is-small">삭제</button></th>
               <th class="th">배송번호</th>
               <th class="th">아이디</th>
               <th class="th">이름</th>
@@ -197,7 +196,7 @@
               <td>김거북</td>
               <td>5,000</td>
               <td>경기도 거북시 거북동 거북로 808 202동 808호</td>
-              <th class="th"><span class="deliveryStateSelctBox">상품 준비중</span></th>
+              <th class="th"><span class="changeText">상품 준비중</span></th>
               <td class="btnTd"><button class="changeBtn" class="button is-small">수정</button></td>
             </tr>
           </tbody>
@@ -216,20 +215,20 @@
           </div>
 
           <div id="productAddBox">
-            <p>상품코드 : <input type="text" id="addSku"></p>
+            <p>제목 : <input id="addTitle" type="text"></p>
             <p>
               category : <select id="category-tap">
-                <option value=""> - </option>
+                <option value="-"> - </option>
               </select>
             </p>
             <p style="display: inline;">topic : <select id="topic-tap">
                 <option class='topic' value=""> - </option>
               </select></p>
-            <p>제목 : <input id="addTitle" type="text"></p>
             <p>가격 : <input id="addPrice" type="text"></p>
             <p>재고 : <input id="addStock" type="text"></p>
             <p>작가 : <input id="addAuthor" type="text"></p>
             <p>출판사 : <input id="addPublisher" type="text"></p>
+            <p>발행일 : <input id="addPublishDate" type="text"></p>
             <p>책 소개 : <input id="addDescription" type="text"></p>
             <input id="addProdctBtn" class="button is-primary" type="submit" value="등록" style="width: 160px;">
           </div>

@@ -32,7 +32,6 @@ const displayDataOnHtml = () => {
             <img class="productImg" src="${book.imageUrl}" alt="책이미지">
             <div class="productNamePrice">
               <h4>
-                【<span class="productCtgry">${book.category}</span>】
                 <span id="productTittle">${book.title}</span>
               </h4>
               <p><span class="eachPrice">${book.price}</span>원</p>
