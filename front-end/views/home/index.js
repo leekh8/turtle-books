@@ -179,9 +179,6 @@ try{
   console.log("error msg: ", e)
 }
 
-// categorys.forEach(e=>{
-//   console.log("167", e.name)
-// })
 
 //버튼 생성
 const buttonlist2 = document.querySelector(".buttonlist2");
