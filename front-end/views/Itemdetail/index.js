@@ -1,33 +1,29 @@
-const clickedbook = {
-  id: 1,
-  title: "브라질에 비가 내리면 스타벅스 주식을 사라",
-  author: "피터 나바로",
-  publisher: "에프엔미디어",
-  publishDate: "2022.04.25",
-  description:
-    "‘숲(경제 흐름)과 나무(종목)’를 함께 보라! 전쟁, 전염병, 기후, 금리, 환율, 인플레이션… 거시경제 지표를 이해하면 변동성은 기회다!",
-  price: 16200,
-  imageUrl: "../assets/book1.jpg",
-  topic: "best",
-  category: "소설",
-};
+// const clickedbook = {
+//   id: 1,
+//   title: "브라질에 비가 내리면 스타벅스 주식을 사라",
+//   author: "피터 나바로",
+//   publisher: "에프엔미디어",
+//   publishDate: "2022.04.25",
+//   description:
+//     "‘숲(경제 흐름)과 나무(종목)’를 함께 보라! 전쟁, 전염병, 기후, 금리, 환율, 인플레이션… 거시경제 지표를 이해하면 변동성은 기회다!",
+//   price: 16200,
+//   imageUrl: "../assets/book1.jpg",
+//   topic: "best",
+//   category: "소설",
+// };
 
 //해당 아이템 clickedbook 변수로 가져오기
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 
 try{
-  const response = fetch(`api/product/:id=${id}`, {
+  const response = await fetch(`/api/product/detail/${id}`, {
       method: "GET",       
       headers: {'Content-Type': 'application/json'}
   })
-  // clickedbook = await response.json(); 
-} catch(e) {
-  console.log("error msg: ", e)
-}
-
-//clickedbook 기반으로 html 짜기 
-const itemcontainer = document.querySelector(".item-container");
+  const clickedbook = (await response.json()).data
+  console.log(clickedbook)
+  const itemcontainer = document.querySelector(".item-container");
 
 itemcontainer.innerHTML = `
   <div class="left">
@@ -86,6 +82,13 @@ itemcontainer.innerHTML = `
     </div>
   </div>
 `
+} catch(e) {
+  console.log("error msg: ", e)
+}
+
+
+//clickedbook 기반으로 html 짜기 
+
 
 const footer = document.querySelector(".footer");
 const totaltag = document.querySelector("#totaltag");

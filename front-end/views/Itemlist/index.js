@@ -1,107 +1,124 @@
 const booktable = document.querySelector("#booktable");
 
-const books = [
-  {
-    id: 1,
-    title: "브라질에 비가 내리면 스타벅스 주식을 사라",
-    author: "피터 나바로",
-    publisher: "에프엔미디어",
-    publishDate: "2022.04.25",
-    description:
-      "‘숲(경제 흐름)과 나무(종목)’를 함께 보라! 전쟁, 전염병, 기후, 금리, 환율, 인플레이션… 거시경제 지표를 이해하면 변동성은 기회다!",
-    price: 16200,
-    imageUrl: "../assets/book1.jpg",
-    topic: "best",
-    category: "소설",
-  },
-  {
-    id: 2,
-    title: "2챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
-    author: "피터 나바로",
-    publisher: "에프엔미디어",
-    publishDate: "2022.04.25",
-    description: "22",
-    price: 17000,
-    imageUrl: "../assets/book2.jpg",
-    topic: "best",
-    category: "소설",
-  },
-  {
-    id: 3,
-    title: "3챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
-    author: "피터 나바로",
-    publisher: "에프엔미디어",
-    publishDate: "2022.04.25",
-    description: "22",
-    price: 17000,
-    imageUrl: "../assets/book2.jpg",
-    topic: "best",
-    category: "소설",
-  },
-  {
-    id: 4,
-    title: "4챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
-    author: "피터 나바로",
-    publisher: "에프엔미디어",
-    publishDate: "2022.04.25",
-    description: "22",
-    price: 17000,
-    imageUrl: "../assets/book2.jpg",
-    topic: "best",
-    category: "소설",
-  },
-  {
-    id: 5,
-    title: "newone",
-    author: "피터 나바로",
-    publisher: "에프엔미디어",
-    publishDate: "2022.04.25",
-    description: "22",
-    price: 17000,
-    imageUrl: "../assets/book2.jpg",
-    topic: "new",
-    category: "소설",
-  },
-  {
-    id: 6,
-    title: "6챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
-    author: "피터 나바로",
-    publisher: "에프엔미디어",
-    publishDate: "2022.04.25",
-    description: "22",
-    price: 17000,
-    imageUrl: "../assets/book2.jpg",
-    topic: "best",
-    category: "만화",
-  },
-  {
-    id: 7,
-    title: "new2",
-    author: "피터 나바로",
-    publisher: "에프엔미디어",
-    publishDate: "2022.04.25",
-    description: "22",
-    price: 17000,
-    imageUrl: "../assets/book2.jpg",
-    topic: "new",
-    category: "만화",
-  },
-  {
-    id: 8,
-    title: "steady1",
-    author: "피터 나바로",
-    publisher: "에프엔미디어",
-    publishDate: "2022.04.25",
-    description: "22",
-    price: 17000,
-    imageUrl: "../assets/book2.jpg",
-    topic: "steady",
-    category: "만화",
-  },
-  // ... 다른 책들
-];
+// const books = [
+//   {
+//     id: 1,
+//     title: "브라질에 비가 내리면 스타벅스 주식을 사라",
+//     author: "피터 나바로",
+//     publisher: "에프엔미디어",
+//     publishDate: "2022.04.25",
+//     description:
+//       "‘숲(경제 흐름)과 나무(종목)’를 함께 보라! 전쟁, 전염병, 기후, 금리, 환율, 인플레이션… 거시경제 지표를 이해하면 변동성은 기회다!",
+//     price: 16200,
+//     imageUrl: "../assets/book1.jpg",
+//     topic: "best",
+//     category: "소설",
+//   },
+//   {
+//     id: 2,
+//     title: "2챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
+//     author: "피터 나바로",
+//     publisher: "에프엔미디어",
+//     publishDate: "2022.04.25",
+//     description: "22",
+//     price: 17000,
+//     imageUrl: "../assets/book2.jpg",
+//     topic: "best",
+//     category: "소설",
+//   },
+//   {
+//     id: 3,
+//     title: "3챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
+//     author: "피터 나바로",
+//     publisher: "에프엔미디어",
+//     publishDate: "2022.04.25",
+//     description: "22",
+//     price: 17000,
+//     imageUrl: "../assets/book2.jpg",
+//     topic: "best",
+//     category: "소설",
+//   },
+//   {
+//     id: 4,
+//     title: "4챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
+//     author: "피터 나바로",
+//     publisher: "에프엔미디어",
+//     publishDate: "2022.04.25",
+//     description: "22",
+//     price: 17000,
+//     imageUrl: "../assets/book2.jpg",
+//     topic: "best",
+//     category: "소설",
+//   },
+//   {
+//     id: 5,
+//     title: "newone",
+//     author: "피터 나바로",
+//     publisher: "에프엔미디어",
+//     publishDate: "2022.04.25",
+//     description: "22",
+//     price: 17000,
+//     imageUrl: "../assets/book2.jpg",
+//     topic: "new",
+//     category: "소설",
+//   },
+//   {
+//     id: 6,
+//     title: "6챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
+//     author: "피터 나바로",
+//     publisher: "에프엔미디어",
+//     publishDate: "2022.04.25",
+//     description: "22",
+//     price: 17000,
+//     imageUrl: "../assets/book2.jpg",
+//     topic: "best",
+//     category: "만화",
+//   },
+//   {
+//     id: 7,
+//     title: "new2",
+//     author: "피터 나바로",
+//     publisher: "에프엔미디어",
+//     publishDate: "2022.04.25",
+//     description: "22",
+//     price: 17000,
+//     imageUrl: "../assets/book2.jpg",
+//     topic: "new",
+//     category: "만화",
+//   },
+//   {
+//     id: 8,
+//     title: "steady1",
+//     author: "피터 나바로",
+//     publisher: "에프엔미디어",
+//     publishDate: "2022.04.25",
+//     description: "22",
+//     price: 17000,
+//     imageUrl: "../assets/book2.jpg",
+//     topic: "steady",
+//     category: "만화",
+//   },
+//   // ... 다른 책들
+// ];
 
-books.forEach((book) => {
+//해당 아이템 clickedbook 변수로 가져오기
+const urlParams = new URLSearchParams(window.location.search);
+const category = urlParams.get("category");
+console.log(category)
+
+try{
+  const response = fetch(`api/product/${category}`, {
+      method: "GET",       
+      headers: {'Content-Type': 'application/json'}
+  })
+  clickedcategory = await response.json(); 
+} catch(e) {
+  console.log("error msg: ", e)
+}
+
+console.log(clickedcategory) //books 대신
+
+clickedcategory.forEach((book) => {
   booktable.innerHTML += `
       <tr class="each-container"> 
         <td width="5%">
@@ -143,7 +160,7 @@ books.forEach((book) => {
     `;
 });
 
-books.forEach((book, idx) => {
+clickedcategory.forEach((book, idx) => {
   ////////////////////////////장바구니
   //장바구니 버튼 alert
   function showalert() {
