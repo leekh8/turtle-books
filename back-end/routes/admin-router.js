@@ -8,7 +8,7 @@ const adminRouter = express.Router();
 // /api/admin/category
 // /api/admin/product
 // /api/admin/userList
-
+adminRouter.get("/", productController.getProduct);
 adminRouter.post("/category", categoryController.createCategory);
 adminRouter.put(
   "/category/:categoryId",
