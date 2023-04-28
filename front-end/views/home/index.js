@@ -151,28 +151,33 @@ function scrolltoSteady() {
 
 //각 카테고리마다 button 하나씩 만들어서 내용 넣어줌
 ///카테고리 리스트 가져와서 button으로 뿌려주기
-const categorys = ["소설", "만화", "자기개발"];
+// const categorys = ["소설", "만화", "자기개발"];
+let categorys = [];
 
-// try{
-//   const response = fetch(`api/category`, {
-//       method: "GET",
-//       headers: {'Content-Type': 'application/json'}
-//   })
-//   // categorys = await response.json();
-// } catch(e) {
-//   console.log("error msg: ", e)
-// }
+try{
+  const response = await fetch(`/api/category`, {
+      method: "GET",
+      headers: {'Content-Type': 'application/json'}
+  })
+  categorys = await response.json();
+} catch(e) {
+  console.log("error msg: ", e)
+}
+
+// categorys.forEach(e=>{
+//   console.log("167", e.name)
+// })
 
 //버튼 생성
 const buttonlist2 = document.querySelector(".buttonlist2");
 categorys.forEach((e) => {
-  buttonlist2.innerHTML += `<button class="catebutton">${e}</button>`;
+  buttonlist2.innerHTML += `<button class="catebutton">${e.name}</button>`;
 });
 
 ////카테고리들 각각에 이벤트 붙이기
 const catebuttons = document.querySelectorAll(".catebutton"); //버튼들의 리스트
 catebuttons.forEach((catebutton, i) => {
   catebutton.addEventListener("click", () => {
-    window.location.href = `/itemList?category=${categorys[i]}`;
+    window.location.href = `/itemList?category=${categorys[i]._id}`;
   });
 });

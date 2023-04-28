@@ -8,7 +8,7 @@ const displayDataOnHtml = () => {
   const haveItem = document.getElementById("haveItem");
 
   if (cartItems.length === 0) {
-    // table 요소 숨기기
+    // 장바구니에 상품이 없을 경우
     haveItem.style.display = "none";
     noItem.style.display = "";
     return;
