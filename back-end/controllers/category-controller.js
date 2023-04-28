@@ -49,10 +49,13 @@ class CategoryController {
   // 해당 ID로 CategoryService호출 후 카테고리 수정
   async updateCategory(req, res) {
     try {
-      const { id } = req.params;
-      const { name } = req.body;
+      const categoryId = req.params;
+      const name = req.body.name;
 
-      const updatedCategory = await CategoryService.updateCategory(id, name);
+      const updatedCategory = await CategoryService.updateCategory(
+        categoryId,
+        name
+      );
 
       res.status(200).json({ success: true, data: updatedCategory });
     } catch (err) {

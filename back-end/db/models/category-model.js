@@ -15,11 +15,14 @@ class CategoryModel {
     const categories = await Category.find({});
     return categories;
   }
-
+  async findByName(name) {
+    const categories = await Category.findOne({ name: name });
+    return categories;
+  }
   async update({ categoryId, update }) {
     const filter = { _id: categoryId };
     const option = { returnOriginal: false };
-    const updatedCategory = await Category.findOndAndUpdate(
+    const updatedCategory = await Category.findOneAndUpdate(
       filter,
       update,
       option

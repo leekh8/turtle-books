@@ -36,7 +36,14 @@ class ProductService {
       throw err;
     }
   }
-
+  async getProductWithCategory(productId) {
+    try {
+      const products = await Product.findById(productId);
+      return products;
+    } catch (err) {
+      throw err;
+    }
+  }
   // 특정 상품 조회 로직서비스
   async getProductById(id) {
     if (!id) throw Error("특정상품을 가져오기 위한 id가 없습니다.");

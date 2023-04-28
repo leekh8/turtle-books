@@ -31,15 +31,16 @@ const userRouter = Router();
 
 userRouter.post("/register", userController.registerUser);
 userRouter.post("/login", userController.loginUser);
-
+userRouter.get("/myroom/:userId", userController.getUser);
 userRouter.patch(
   "/myroom/:userName",
-  loginRequired,
+  // loginRequired,
   userController.updateUserInfo
 );
+userRouter.patch("/myroom/role/:urserId", userController.changeRole);
 userRouter.delete(
-  "/myroom/:userName",
-  loginRequired,
+  "/myroom/:userId",
+  // loginRequired,
   userController.deleteUserInfo
 );
 
