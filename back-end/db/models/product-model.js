@@ -4,11 +4,15 @@ const productSchema = require("../schemas/product-schema");
 const Product = mongoose.model("products", productSchema);
 
 class ProductModel {
-  async findByTitle(title) {
+  async findAll() {
+    const products = await Product.find({});
+    return products;
+  }
+  /* async findByTitle(title) {
     const product = await Product.findOne({ title });
     return product;
   }
-
+*/
   async findById(productId) {
     const product = await Product.findOne({ _id: productId });
     return product;

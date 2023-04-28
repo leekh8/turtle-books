@@ -28,6 +28,15 @@ class ProductService {
 
     return updateProduct;
   }
+  async getProductList() {
+    try {
+      const products = await Product.findAll();
+      return products;
+    } catch (err) {
+      throw err;
+    }
+  }
+
   // 특정 상품 조회 로직서비스
   async getProductById(id) {
     if (!id) throw Error("특정상품을 가져오기 위한 id가 없습니다.");

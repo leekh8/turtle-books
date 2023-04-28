@@ -69,6 +69,18 @@ class ProductController {
       res.status(400).json({ success: false, message: err.message });
     }
   }
+
+  async getProduct(req, res) {
+    try {
+      const products = await ProductService.getProductList();
+      res.status(200).json(products);
+    } catch (err) {
+      res
+        .status(err.statusCode || 500)
+        .json({ success: false, message: err.message });
+    }
+  }
+
   // 특정상품조회, id추출, 해당id로 ProductService호출
   // ProductService로 해당상품id 데이터베이스 조회
   async getProductById(req, res) {
