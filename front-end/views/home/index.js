@@ -1,3 +1,15 @@
+const categoryMap = {
+  "644b84aa129eb3ab966f446f": "스릴러",
+  "644ba6600c20e92db05afd20": "소설",
+  "644bb7ced97bb24f684468b4": "수필",
+  "644bb7d5d97bb24f684468b6": "시",
+  "644bb7dfd97bb24f684468b8": "에세이",
+  "644bb78fd97bb24f684468b0": "만화",
+  "644bb782d97bb24f684468ae": "자기개발",
+};
+
+
+
 let books = []; //전체 item 배열로 받음
 
 try{ //전체 book 받는 api 
@@ -15,13 +27,14 @@ const bestbooks = books.filter((e) => e.topic === "best"); //배열
 const bestitems = document.querySelector(".best-items"); //div
 console.log(bestbooks)
 
-
 bestbooks.forEach((book, idx) => { //category만 수정해주면 됨 
+  const mapkey = book.categoryId;
+  const category = categoryMap[mapkey];
   bestitems.innerHTML += `
             <div class="slider-item">
                 <img src=${book.imageUrl} alt="Book cover">
-                <p class="category">${book.category}</p> 
-                <p class="title">${book.title}</p>
+                <p class="category">${category}</p> 
+                <p class="title1"><b>${book.title}</b></p>
             </div>
         `;
 });
@@ -42,11 +55,13 @@ const newbooks = books.filter((e) => e.topic === "new"); //배열
 const newitems = document.querySelector(".new-items"); //div
 
 newbooks.forEach((book, idx) => {
+  const mapkey = book.categoryId;
+  const category = categoryMap[mapkey];
   newitems.innerHTML += `
             <div class="slider-item">
                 <img src=${book.imageUrl} alt="Book cover">
-                <p class="category">${book.category}</p>
-                <p class="title">${book.title}</p>
+                <p class="category">${category}</p>
+                <p class="title1"><b>${book.title}</b></p>
             </div>
         `;
 });
@@ -66,11 +81,13 @@ const steadybooks = books.filter((e) => e.topic === "steady"); //배열
 const steadyitems = document.querySelector(".steady-items"); //div
 
 steadybooks.forEach((book, idx) => {
+  const mapkey = book.categoryId;
+  const category = categoryMap[mapkey];
   steadyitems.innerHTML += `
             <div class="slider-item">
                 <img src=${book.imageUrl} alt="Book cover">
-                <p class="category">${book.category}</p>
-                <p class="title">${book.title}</p>
+                <p class="category">${category}</p>
+                <p class="title1"><b>${book.title}</b></p>
             </div>
         `;
 });

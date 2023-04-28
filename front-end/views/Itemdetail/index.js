@@ -1,11 +1,13 @@
 // CATEGORY
-// 스릴러    644b84aa129eb3ab966f446f
-// 소설    644ba6600c20e92db05afd20
-// 수필    644bb7ced97bb24f684468b4
-// 시    644bb7d5d97bb24f684468b6
-// 에세이    644bb7dfd97bb24f684468b8
-// 만화    644bb78fd97bb24f684468b0
-// 자기개발    644bb782d97bb24f684468ae
+const categoryMap = {
+  "644b84aa129eb3ab966f446f": "스릴러",
+  "644ba6600c20e92db05afd20": "소설",
+  "644bb7ced97bb24f684468b4": "수필",
+  "644bb7d5d97bb24f684468b6": "시",
+  "644bb7dfd97bb24f684468b8": "에세이",
+  "644bb78fd97bb24f684468b0": "만화",
+  "644bb782d97bb24f684468ae": "자기개발",
+};
 
 //해당 아이템 clickedbook 변수로 가져오기
 const urlParams = new URLSearchParams(window.location.search);
@@ -18,7 +20,11 @@ try {
     headers: { "Content-Type": "application/json" },
   });
   clickedbook = (await response.json()).data;
-  console.log(clickedbook);
+  console.log(clickedbook.categoryId);
+  const mapkey = clickedbook.categoryId;
+  
+  const category = categoryMap[mapkey];
+
   const itemcontainer = document.querySelector(".item-container");
 
   itemcontainer.innerHTML = `
@@ -64,7 +70,7 @@ try {
           <li>주간베스트</li>
         </ul>
         <div>
-          <a>${clickedbook.category}</a>
+          <a>${category}</a>
         </div>
       </div>
       <div class="description">
