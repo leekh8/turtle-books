@@ -23,6 +23,7 @@ const User = mongoose.model("users", UserSchema);
 class UserModel {
   async findByEmail(email) {
     const user = await User.findOne({ email: email });
+
     return user;
   }
 

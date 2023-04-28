@@ -4,10 +4,11 @@ loginForm.addEventListener("submit", formSubmit);
 
 function formSubmit(e) {
     e.preventDefault();
-    const email = document.querySelector("#email");
-    const password = document.querySelector("#password");
+    const emailinput = document.querySelector("#email");
+    const passwordinput = document.querySelector("#password");
+    const email = emailinput.value;
+    const password = passwordinput.value;
     login(email,password)
-    console.log("complete")
 }
 
 async function login(email,password){
@@ -15,7 +16,7 @@ async function login(email,password){
         const response = await fetch("/api/user/login", {
             method: "POST", 
             body: JSON.stringify({
-                email: email,
+                userId: email,
                 password: password,
             }),
             headers: {'Content-Type': 'application/json'}
