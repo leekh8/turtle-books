@@ -24,27 +24,18 @@ const categorys = ["소설", "만화", "자기개발", "dd"];
 // }
 
 //버튼 생성
-// const buttonlist = document.querySelector(".navbar-dropdown");
 const dropdown = document.querySelector('.navbar-dropdown'); // .navbar-dropdown 요소 선택
 categorys.forEach(category=>{
   const newLink = document.createElement('a'); // 새로운 a 태그 생성
   newLink.classList.add('navbar-item'); // 클래스 추가
   newLink.textContent = `${category}`; // 텍스트 콘텐츠 추가
-  
   dropdown.appendChild(newLink); // .navbar-dropdown에 새로운 a 태그 추가
 })
 
 ////카테고리들 각각에 이벤트 붙이기
-// const catebuttons = document.querySelectorAll(".navbar-item") //버튼들의 리스트
-// catebuttons.forEach((catebutton,i)=>{
-//   catebutton.addEventListener("click", ()=>{ 
-//     window.location.href = `../Itemlist/index.html?category=${categorys[i]}`;
-//   })
-// });
-
-// const dropdown = document.querySelector('.navbar-dropdown'); // .navbar-dropdown 요소 선택
-// const newLink = document.createElement('a'); // 새로운 a 태그 생성
-// newLink.classList.add('navbar-item'); // 클래스 추가
-// newLink.textContent = '새로운 링크'; // 텍스트 콘텐츠 추가
-
-// dropdown.appendChild(newLink); // .navbar-dropdown에 새로운 a 태그 추가
+const catebuttons = document.querySelectorAll(".navbar-item") //버튼들의 리스트
+catebuttons.forEach((catebutton,i)=>{
+  catebutton.addEventListener("click", ()=>{ 
+    window.location.href = `../itemList/itemList.html?category=${categorys[i]}`;
+  })
+});
