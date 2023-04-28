@@ -257,8 +257,10 @@ function initializeCart() {
       card.remove();
       removeCartItem(bookId);
     });
-    updateTotalPrice();
+    location.reload(true);
   });
+
+  updateTotalPrice();
 
   const clearButton = document.querySelector("#allDelet");
   clearButton.addEventListener("click", function () {
@@ -279,15 +281,6 @@ function initializeCart() {
       alert("장바구니에 상품을 추가하거나 구매하실 상품을 선택해주세요.");
       return;
     }
-
-    // let TotalPrice = updateTotalPrice();
-    // console.log(TotalPrice);
-    // if (TotalPrice === 0) {
-    //   if (!confirm("전체 상품을 구매하시겠습니까?")) {
-    //     alert("주문을 취소하셨습니다.");
-    //     return;
-    //   }
-    // }
 
     // 선택된 상품들의 정보를 가지고 있는 cartItems 배열에서 해당 상품들을 삭제
     const checkBoxes = document.querySelectorAll(".checkboxs:checked");
@@ -318,7 +311,6 @@ function updateTotalPrice() {
     );
 
     totalPrice += subtotalPrice;
-    return totalPrice;
   });
 
   if (totalPrice < 1) {
