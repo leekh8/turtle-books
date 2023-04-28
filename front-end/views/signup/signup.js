@@ -31,6 +31,7 @@ async function submitForm(e) {
     })
       .then((res) => res.json())
       .then((res) => console.log(res));
+    alert("회원가입에 성공하였습니다!");
   } catch (err) {
     // 로그인 페이지 이동
     console.log(err);
