@@ -1,10 +1,8 @@
 //모델과 뷰를 연결하여 사용자의 요청을 처리(모델과 뷰를 관리), 서비스 사용.
-const { orderService } = require("../service/order-service");
+const orderService = require("../service/order-service");
 
 class OrderController {
-  async pageRender(req, res, next) {
-    res.send("주문 페이지 로드");
-  }
+
   // 주문 추가
   async addOrder(req, res, next) {
     let {
@@ -77,6 +75,8 @@ class OrderController {
       }
     }
   }
+
+
   // 특정 orderId에 대한 주문 정보 가져오기(주문 조회)
   async getOrder(req, res, next) {
     const { orderId } = req.params;

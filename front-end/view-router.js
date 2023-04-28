@@ -14,13 +14,16 @@ viewsRouter.use("/orderCheck", serveStatic("orderCheck"));
 viewsRouter.use("/orderComplete", serveStatic("orderComplete"));
 viewsRouter.use("/order", serveStatic("order"));
 viewsRouter.use("/signup", serveStatic("signup"));
+viewsRouter.use("/header", serveStatic("header"));
 
 viewsRouter.use("/", serveStatic(""));
 
 //html 연결해주는 매서드
 
+viewsRouter.use("/", serveStatic(""));
+
 function serveStatic(resource) {
-  const resourcePath = path.join(__dirname, `./views/${resource}`);
+  const resourcePath = path.join(__dirname, `/views/${resource}`);
   const option = { index: `${resource}.html` };
 
   return express.static(resourcePath, option);

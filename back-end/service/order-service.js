@@ -1,6 +1,6 @@
 //애플리케이션 로직을 처리하고 데이터베이스와 상호 작용.
-const { orderModel } = require("../db/models/order-model");
-const { userModel } = require("../db/models/order-model");
+const orderModel = require("../db/models/order-model");
+const userModel = require("../db/models/order-model");
 
 class OrderService {
   // 주문 추가
