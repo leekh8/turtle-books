@@ -73,7 +73,7 @@ class UserService {
     const { userId, password } = userInfo;
 
     // ID가 db에 존재하는 지 확인
-    const user = await this.userModel.findByEmail({ email: userId });
+    const user = await this.userModel.findByEmail(userId);
     if (!user) {
       console.log(`email error ${userId}`);
       throw new Error("not our registerd email. check again please");
