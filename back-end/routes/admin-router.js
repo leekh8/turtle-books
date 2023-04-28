@@ -20,7 +20,6 @@ adminRouter.delete(
   // adminRequired,
   categoryController.deleteCategory
 );
-//adminRouter.get("/category", categoryController.getCategory);
 adminRouter.post("/product", productController.createProduct);
 adminRouter.delete(
   "/product/:id",
