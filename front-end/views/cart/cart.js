@@ -29,7 +29,7 @@ const displayDataOnHtml = () => {
             <input type="checkbox" class="checkboxs" name="checkbox" id="checkbox_${
               book.id
             }">
-            <img class="productImg" src="${book.imagesrc}" alt="책이미지">
+            <img class="productImg" src="${book.imageUrl}" alt="책이미지">
             <div class="productNamePrice">
               <h4>
                 【<span class="productCtgry">${book.category}</span>】
@@ -164,11 +164,6 @@ function removeCartItem(bookId) {
   cartItems.splice(index, 1);
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
-function removeCartItem(bookId) {
-  const index = cartItems.findIndex((item) => item[0].id === bookId);
-  cartItems.splice(index, 1);
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
-}
 
 function initializeCart() {
   const ProductInCarts = document.querySelectorAll(".card");
@@ -206,12 +201,28 @@ function initializeCart() {
       removeCartItem(bookId);
       updateTotalPrice();
     });
+    const allDeletBtn = document.querySelector("#allDelet");
 
+    allDeletBtn.addEventListener("click", () => {
+      const checkBoxes = document.querySelectorAll(".checkboxs:checked");
+      checkBoxes.forEach(function (checkbox) {
+        const card = checkbox.closest(".card");
+        const bookId = checkbox.id.split("_")[1];
+        card.remove();
+        removeCartItem(bookId);
+      });
+
+      localStorage.removeItem("cartItems"); // 로컬스토리지 내용 제거
+      const productInCart = document.getElementById("productInCart");
+      productInCart.innerHTML = ""; // 카트 화면에서 상품 카드 제거
+      updateTotalPrice(); // 카트 총합 갱신
+    });
     // 초기값으로 계산된 subtotalPrice 값을 출력
     updateSubtotalPrice(productInCart);
   });
 
-  // 선택 삭제 버튼 이벤트 리스너
+  // 선택 삭제 버튼 이벤트 리스너 주석 처리
+  /*
   const selectDeleteBtn = document.querySelector("#selectDelet");
   selectDeleteBtn.addEventListener("click", () => {
     const checkBoxes = document.querySelectorAll(".checkboxs:checked");
@@ -223,6 +234,8 @@ function initializeCart() {
     });
     updateTotalPrice();
   });
+  */
+
   //개별 삭제 버튼
   const deletProduct = document.querySelectorAll(".deletProduct");
   deletProduct.forEach(function (deletBtn) {
@@ -234,6 +247,26 @@ function initializeCart() {
       updateTotalPrice();
     });
   });
+  // 전체 삭제 버튼
+  const allDeletBtn = document.querySelector("#allDelet");
+  allDeletBtn.addEventListener("click", () => {
+    const checkBoxes = document.querySelectorAll(".checkboxs:checked");
+    checkBoxes.forEach(function (checkbox) {
+      const card = checkbox.closest(".card");
+      const bookId = checkbox.id.split("_")[1];
+      card.remove();
+      removeCartItem(bookId);
+    });
+    updateTotalPrice();
+  });
+
+  const clearButton = document.querySelector("#allDelet");
+  clearButton.addEventListener("click", function () {
+    localStorage.removeItem("cartItems"); // 로컬스토리지 내용 제거
+    const productInCart = document.getElementById("productInCart");
+    productInCart.innerHTML = ""; // 카트 화면에서 상품 카드 제거
+    updateTotalPrice(); // 카트 총합 갱신
+  });
 
   // 초기화 후 총합 계산하여 출력
   updateTotalPrice();
@@ -241,6 +274,21 @@ function initializeCart() {
   // 주문하기 버튼 클릭 이벤트 리스너 추가
   const orderButton = document.querySelector("#orderBtn");
   orderButton.addEventListener("click", function () {
+    // 로컬 스토리지에 데이터가 있는지 확인
+    if (cartItems.length === 0) {
+      alert("장바구니에 상품을 추가하거나 구매하실 상품을 선택해주세요.");
+      return;
+    }
+
+    // let TotalPrice = updateTotalPrice();
+    // console.log(TotalPrice);
+    // if (TotalPrice === 0) {
+    //   if (!confirm("전체 상품을 구매하시겠습니까?")) {
+    //     alert("주문을 취소하셨습니다.");
+    //     return;
+    //   }
+    // }
+
     // 선택된 상품들의 정보를 가지고 있는 cartItems 배열에서 해당 상품들을 삭제
     const checkBoxes = document.querySelectorAll(".checkboxs:checked");
     const newCartItems = cartItems.filter(function (item) {
@@ -256,7 +304,6 @@ function initializeCart() {
     window.location.href = "../order/order.html";
   });
 }
-
 document.addEventListener("DOMContentLoaded", initializeCart);
 
 function updateTotalPrice() {
@@ -271,6 +318,7 @@ function updateTotalPrice() {
     );
 
     totalPrice += subtotalPrice;
+    return totalPrice;
   });
 
   if (totalPrice < 1) {
