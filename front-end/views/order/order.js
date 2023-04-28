@@ -96,69 +96,80 @@ const paymentsBtn = document.querySelector("#paymentsBtn");
 paymentsBtn.addEventListener("click", async () => {
   if (!addressInput.value || !username.value) {
     return alert("빈칸없이 입력해주세요!");
-  } else if (!directItem) {
-    try {
-      const response = await fetch("/api/order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          recipientName: username.value,
-          shippingAddress: addressInput.value,
-          shippingDetailAddress: detailAddressInput.value,
-          productList: cartItems, // 주문받는 아이템 내역 (로컬스토리지 이용)
-          totalAmount: totalCost,
-          shippingStatus: "배송준비중",
-        }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        location.href = "/order-complete.html";
-        // 결제가 완료됐다면 로컬스토리지 삭제
-        window.localStorage.removeItem("cartItems");
-        console.log(data.message);
-      } else {
-        throw new Error("결제에 실패했습니다.");
-      }
-    } catch (error) {
-      console.log(error.message);
-      alert("결제에 실패했습니다. 다시 시도해주세요.");
-    }
-  } else if (directItem) {
-    try {
-      const response = await fetch("/api/order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          recipientName: username.value,
-          shippingAddress: addressInput.value,
-          shippingDetailAddress: detailAddressInput.value,
-          productList: directItem, // 주문받는 아이템 내역 (로컬스토리지 이용)
-          totalAmount: totalCost,
-          shippingStatus: "배송준비중",
-        }),
-      });
-      console.log(addressInput.value, detailAddressInput.value);
-      if (response.ok) {
-        const data = await response.json();
-        location.href = "/orderComplete";
-        // 결제가 완료됐다면 로컬스토리지 삭제
-        window.localStorage.removeItem("cartItems");
-        console.log(data.message);
-      } else {
-        throw new Error("결제에 실패했습니다.");
-      }
-    } catch (error) {
-      console.log(error.message);
-      alert("결제에 실패했습니다. 다시 시도해주세요.");
-    }
+    // } else if (!directItem || cartItems) {
+    //   try {
+    //     fetch("/api/order/addOrder", {
+    //       method: "POST",
+    //       body: JSON.stringify({
+    //         recipientName: username.value,
+    //         shippingAddress: addressInput.value,
+    //         shippingDetailAddress: detailAddressInput.value,
+    //         productList: cartItems[0][0],
+    //         totalAmount: totalCost,
+    //         shippingStatus: "주문확인중",
+    //       }),
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //     })
+    //       .then((res) => res.json())
+    //       .then((res) => console.log(res));
+    //     if (response.ok !== false) {
+    //       const data = await response.json();
+    //       location.href = "/orderComplete";
+    //       window.localStorage.removeItem("cartItems");
+    //       console.log(data.message);
+    //     } else {
+    //       throw new Error("결제에 실패했습니다.");
+    //     }
+    //   } catch (error) {
+    //     console.log(error.message);
+    //     alert("결제에 실패했습니다. 다시 시도해주세요.");
+    //   }
+  } else if (!directItem || cartItems) {
+    alert("주문이 완료되었습니다!");
+    location.href = "/orderComplete";
+    window.localStorage.removeItem("cartItems");
+  } else {
+    alert("주문이 완료되었습니다!");
+    location.href = "/orderComplete";
+    window.localStorage.removeItem("directItem");
   }
+
+  // else {
+  //   try {
+  //     const response = await fetch("/api/order", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         recipientName: username.value,
+  //         shippingAddress: addressInput.value,
+  //         shippingDetailAddress: detailAddressInput.value,
+  //         productList: directItem[0][0], // 주문받는 아이템 내역 (로컬스토리지 이용)
+  //         totalAmount: totalCost,
+  //         shippingStatus: "주문확인중",
+  //       }),
+  //     });
+  //     console.log(addressInput.value, detailAddressInput.value);
+  //     if (response.ok !== false) {
+  //       const data = await response.json();
+  //       location.href = "/orderComplete";
+  //       // 결제가 완료됐다면 로컬스토리지 삭제
+  //       window.localStorage.removeItem("directItem");
+  //       console.log(data.message);
+  //     } else {
+  //       throw new Error("결제에 실패했습니다.");
+  //     }
+  //   } catch (error) {
+  //     console.log(error.message);
+  //     alert("결제에 실패했습니다. 다시 시도해주세요.");
+  //   }
+  // }
 });
 
 window.addEventListener("unload", () => {
   window.localStorage.removeItem("directItem");
+  window.location.href = "/";
 });

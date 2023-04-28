@@ -32,12 +32,12 @@ class OrderModel {
       }
       return orderList;
     } catch (err) {
-      const error = new Error("에러 : 다수의 주문 정보를 불러들이는도중 실패했습니다.");
+      const error = new Error(
+        "에러 : 다수의 주문 정보를 불러들이는도중 실패했습니다."
+      );
       error.statusCode = 400;
       throw error;
     }
-
-
   }
   // db에 누적된 모든 유저들의 주문 정보 가져오기(처음부터 끝까지 조회)
   async findAll() {
@@ -60,7 +60,7 @@ class OrderModel {
       let newOrder = await Order.create(orderInfo);
       await buyerInDB.orderList.push(newOrder);
       await buyerInDB.save();
-      newOrder = await newOrder.populate("buyer");
+      // newOrder = await newOrder.populate("buyer");
       newOrder = await newOrder.populate("productList");
 
       return newOrder;
@@ -73,7 +73,7 @@ class OrderModel {
   // // 주문 수정
   // async update(orderId, orderInfo) {
   //   const filter = { _id: orderId };
-    
+
   //   try {
   //     const updatedOrder = await Order.findOneAndUpdate(
   //       filter,
