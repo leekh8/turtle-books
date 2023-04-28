@@ -22,7 +22,7 @@ const UserSchema = require("../schemas/user-schema");
 const User = mongoose.model("users", UserSchema);
 class UserModel {
   async findByEmail(email) {
-    const user = await User.findByEmail(email);
+    const user = await User.findOne({email:email});
     return user;
   }
 
