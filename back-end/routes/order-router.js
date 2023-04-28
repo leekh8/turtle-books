@@ -4,10 +4,8 @@ const orderRouter = Router();
 const orderController = require("../controllers/order-controller");
 const bodyChecker = require("../middlewares/body-checker");
 
-
-orderRouter.post("/", orderController.addOrder); //주문 생성
+orderRouter.post("/addOrder", orderController.addOrder); //주문 생성
 orderRouter.get("/", orderController.getOrderList); //주문 목록 가져오기
-
 
 orderRouter.get("/:orderId", orderController.getOrder); // 특정 주문 번호로 단일 주문 조회
 //orderRouter.put("/:orderId", bodyChecker, orderController.editOrder); // 주문 수정

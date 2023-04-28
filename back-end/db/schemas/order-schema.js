@@ -7,31 +7,27 @@ const OrderSchema = new Schema(
       ref: "users",
       required: true,
     },
-    productList: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Product",
-        required: true,
-      },
-    ],
+    productList: {
+      type: Schema.Types.ObjectId,
+      ref: "Product",
+      required: true,
+    },
     shippingStatus: {
       type: String,
       required: true,
-      default: "배송준비중",
+      default: "주문확인중",
     },
+
     shippingAddress: {
       type: String,
       required: true,
     },
+
     shippingDetailAddress: {
       type: String,
       required: true,
     },
-    // shippingRequestMessage: {
-    //   type: String,
-    //   required: true,
-    //   default: "요청 메시지 없음",
-    // },
+
     totalAmount: {
       type: Number,
       required: true,
@@ -40,10 +36,6 @@ const OrderSchema = new Schema(
       type: String,
       required: true,
     },
-    // recipientPhoneNumber: {
-    //   type: Number,
-    //   required: true,
-    // },
   },
   {
     timestamps: true,

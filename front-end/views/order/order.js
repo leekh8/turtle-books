@@ -96,37 +96,38 @@ const paymentsBtn = document.querySelector("#paymentsBtn");
 paymentsBtn.addEventListener("click", async () => {
   if (!addressInput.value || !username.value) {
     return alert("빈칸없이 입력해주세요!");
-  } else if (!directItem) {
+  } else if (!directItem || cartItems) {
     try {
-      const response = await fetch("/api/order", {
+      fetch("/api/order/addOrder", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({
           recipientName: username.value,
           shippingAddress: addressInput.value,
           shippingDetailAddress: detailAddressInput.value,
-          productList: cartItems, // 주문받는 아이템 내역 (로컬스토리지 이용)
+          productList: cartItems[0][0], // 주문받는 아이템 내역 (로컬스토리지 이용)
           totalAmount: totalCost,
-          shippingStatus: "배송준비중",
+          shippingStatus: "주문확인중",
         }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        location.href = "/order-complete.html";
-        // 결제가 완료됐다면 로컬스토리지 삭제
-        window.localStorage.removeItem("cartItems");
-        console.log(data.message);
-      } else {
-        throw new Error("결제에 실패했습니다.");
-      }
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => console.log(res));
+      // if (response.ok !== false) {
+      //   const data = await response.json();
+      //   location.href = "/orderComplete";
+      //   // 결제가 완료됐다면 로컬스토리지 삭제
+      //   window.localStorage.removeItem("cartItems");
+      //   console.log(data.message);
+      // } else {
+      //   throw new Error("결제에 실패했습니다.");
+      // }
     } catch (error) {
       console.log(error.message);
       alert("결제에 실패했습니다. 다시 시도해주세요.");
     }
-  } else if (directItem) {
+  } else {
     try {
       const response = await fetch("/api/order", {
         method: "POST",
@@ -137,17 +138,17 @@ paymentsBtn.addEventListener("click", async () => {
           recipientName: username.value,
           shippingAddress: addressInput.value,
           shippingDetailAddress: detailAddressInput.value,
-          productList: directItem, // 주문받는 아이템 내역 (로컬스토리지 이용)
+          productList: directItem[0][0], // 주문받는 아이템 내역 (로컬스토리지 이용)
           totalAmount: totalCost,
-          shippingStatus: "배송준비중",
+          shippingStatus: "주문확인중",
         }),
       });
       console.log(addressInput.value, detailAddressInput.value);
-      if (response.ok) {
+      if (response.ok !== false) {
         const data = await response.json();
         location.href = "/orderComplete";
         // 결제가 완료됐다면 로컬스토리지 삭제
-        window.localStorage.removeItem("cartItems");
+        window.localStorage.removeItem("directItem");
         console.log(data.message);
       } else {
         throw new Error("결제에 실패했습니다.");
@@ -161,4 +162,5 @@ paymentsBtn.addEventListener("click", async () => {
 
 window.addEventListener("unload", () => {
   window.localStorage.removeItem("directItem");
+  window.location.href = "/";
 });
