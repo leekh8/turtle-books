@@ -8,8 +8,6 @@ const categoryMap = {
   "644bb782d97bb24f684468ae": "자기개발",
 };
 
-
-
 let books = []; //전체 item 배열로 받음
 
 try{ //전체 book 받는 api 

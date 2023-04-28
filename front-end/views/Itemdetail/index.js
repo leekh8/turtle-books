@@ -20,11 +20,13 @@ try {
     headers: { "Content-Type": "application/json" },
   });
   clickedbook = (await response.json()).data;
-  console.log(clickedbook.categoryId);
   const mapkey = clickedbook.categoryId;
-  
   const category = categoryMap[mapkey];
 
+  const number = clickedbook.price;
+  const formattedNumber = number.toLocaleString('en-US', { maximumFractionDigits: 0 });
+  const price = formattedNumber.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  console.log(price); // "16,200"  
   const itemcontainer = document.querySelector(".item-container");
 
   itemcontainer.innerHTML = `
@@ -61,7 +63,7 @@ try {
           <button>소득공제</button>
         </div>
         <br />
-        <h1><b>${clickedbook.price}원</b></h1>
+        <h1><b>${price}원</b></h1>
       </div>
       <div class="tags">
         <ul>
