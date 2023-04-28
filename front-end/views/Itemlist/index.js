@@ -106,7 +106,6 @@ clickedcategory.forEach((book, idx) => {
 let totalcount = []; //각 item 마다의 카운트
 clickedcategory.forEach((e, i) => (totalcount[i] = 1)); //초기화
 
-document.addEventListener("DOMContentLoaded", function () {
   const minusBtns = document.querySelectorAll(".quantity-minus"); // '-'버튼
   const numberInputs = document.querySelectorAll(".quantity-input"); //input
   const plusBtns = document.querySelectorAll(".quantity-plus"); //'+' 버튼
@@ -143,7 +142,6 @@ document.addEventListener("DOMContentLoaded", function () {
       plusNum(e, i);
     });
   }
-});
 
 ////////
 //각 아이템의 tr 눌렀을 때
