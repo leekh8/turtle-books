@@ -24,19 +24,19 @@ class CategorService {
   }
   // 카테고리 삭제 서비스로직
   // Category 모델을 사용하여 해당ID를 가진 카테고리를 데이터베이스에서 삭제
-  async deleteCategory(id) {
-    if (!id) throw new Error("삭제하기 위한 카테고리ID가 필요합니다.");
+  async deleteCategory(categoryId) {
+    if (!categoryId) throw new Error("삭제하기 위한 카테고리ID가 필요합니다.");
 
-    await Category.deleteById(id);
+    await Category.deleteById(categoryId);
   }
   // 카테고리 수정 서비스 로직
   // Category 모델을 사용하여
   // 해당 ID를 가진 카테고리를 데이터베이스에서 찾고 이름 수정
-  async updateCategory(id, name) {
-    if (!id) throw new Error("수정을 위한 카테고리 ID가 없습니다.");
-    if (!name) throw new Error("수정을 위한 카테고리이름이 없습니다.");
+  async updateCategory(categoryId, toUpdate) {
+    if (!categoryId) throw new Error("수정을 위한 카테고리 ID가 없습니다.");
+    if (!toUpdate) throw new Error("수정을 위한 카테고리이름이 없습니다.");
 
-    const updatedCategory = await Category.update(id, { name }, { new: true });
+    const updatedCategory = await Category.update(categoryId, toUpdate);
 
     return updatedCategory;
   }

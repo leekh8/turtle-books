@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 const productSchema = require("../schemas/product-schema");
-
+const categoryModel = require("../models/category-model");
 const Product = mongoose.model("products", productSchema);
 
 class ProductModel {
   async findAll() {
     const products = await Product.find({});
+
     return products;
   }
   /* async findByTitle(title) {
@@ -20,6 +21,7 @@ class ProductModel {
 
   async findByCategory(categoryId) {
     const product = await Product.find({ categoryId });
+
     return product;
   }
 

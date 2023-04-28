@@ -1,5 +1,5 @@
 function adminRequired(req, res, next) {
-  const userRole = req.userRole;
+  const userRole = req.role;
 
   if (userRole !== "admin") {
     const e = new Error(
