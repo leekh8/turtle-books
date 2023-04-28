@@ -19,18 +19,18 @@ async function submitForm(e) {
   }
 
   try {
-    const response = await fetch("/api/user/register", {
+    fetch("/api/user/register", {
       method: "POST",
       body: JSON.stringify({
         email: email,
         password: password,
       }),
-    });
-    if (response.ok) {
-      alert(`정상적으로 회원가입되었습니다.`);
-      window.location.href = "/login";
-    }
-    console.log(response);
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
   } catch (err) {
     // 로그인 페이지 이동
     console.log(err);
