@@ -13,7 +13,7 @@ class ProductController {
         publisher,
         publishDate,
         price,
-        category,
+        categoryId,
         stock,
         topic,
         decription,
@@ -26,7 +26,7 @@ class ProductController {
         publisher,
         publishDate,
         price,
-        category,
+        categoryId,
         stock,
         topic,
         decription,
@@ -48,7 +48,7 @@ class ProductController {
 
       await ProductService.deleteProduct(id);
 
-      res.status(204).ok();
+      res.status(204).json({ success: true, message: "ok" });
     } catch (err) {
       res.status(400).json({
         success: false,
@@ -59,7 +59,7 @@ class ProductController {
   // 상품수정, 요청처리, 수정할 책 id와 수정할 내용 추출, 추출한 정보 service에 전달, 상품 수정
   async updateProduct(req, res) {
     try {
-      const { id } = req.params;
+      const id = req.params.productId;
       const update = req.body;
 
       const updateProduct = await ProductService.updateProduct(id, update);
@@ -73,9 +73,9 @@ class ProductController {
   // ProductService로 해당상품id 데이터베이스 조회
   async getProductById(req, res) {
     try {
-      const { id } = req.params;
+      const Id = req.params.productId;
 
-      const product = await ProductService.getProductById(id);
+      const product = await ProductService.getProductById(Id);
 
       res.status(200).json({ success: true, data: product });
     } catch (err) {
@@ -87,7 +87,7 @@ class ProductController {
   // ProductService에서는 해당 카테고리에 해당하는 상품들을 데이터베이스에서 조회
   async getProductByCategory(req, res) {
     try {
-      const { category } = req.params;
+      const category = req.params.categoryId;
 
       const products = await ProductService.getProductByCategory(category);
 

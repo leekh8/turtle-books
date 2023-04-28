@@ -16,13 +16,13 @@ class ProductService {
   async deleteProduct(productId) {
     if (!productId) throw new Error("제품을 삭제하기 위한 id가 필요합니다.");
 
-    await Product.findByIdAndDelete(productId);
+    await Product.deleteById(productId);
   }
   // 상품수정 로직
-  async updateProduct(id, toUpdate) {
-    if (!id) throw Error("업데이트에 필요한 id가 없습니다");
+  async updateProduct(productId, toUpdate) {
+    if (!productId) throw Error("업데이트에 필요한 PRODUCT ID가 없습니다");
 
-    const updateProduct = await Product.update({ id, update: toUpdate });
+    const updateProduct = await Product.update({ productId, update: toUpdate });
 
     if (!updateProduct) throw new Error("제품을 찾지 못했습니다.");
 
@@ -44,17 +44,17 @@ class ProductService {
   async getProductByCategory(category) {
     if (!category) throw new Error("상품을 가져오기 위한 카테고리가 없습니다.");
 
-    const products = await Product.findByCategory({ category });
+    const products = await Product.findByCategory(category);
 
     return products;
   }
-  async getProductByTopic(topic) {
-    if (!topic) throw new Error("상품을 가져오기 위한 토픽이 없습니다.");
+  // async getProductByTopic(topic) {
+  //   if (!topic) throw new Error("상품을 가져오기 위한 토픽이 없습니다.");
 
-    const products = await Product.findByTopic({ topic });
+  //   const products = await Product.findByTopic({ topic });
 
-    return products;
-  }
+  //   return products;
+  // }
 }
 
 const productService = new ProductService();

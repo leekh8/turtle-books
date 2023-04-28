@@ -6,7 +6,7 @@ class CategorService {
   // 인자를 받지않고 모든 카테고리 정보 반환
   async getCategoryList() {
     try {
-      const categories = await Category.find({});
+      const categories = await Category.findAll();
       return categories;
     } catch (err) {
       throw err;
@@ -18,9 +18,7 @@ class CategorService {
     if (!newName)
       throw new Error("카테고리를 만들기 위해서는 이름이 필요합니다.");
 
-    const category = new Category(newName);
-
-    await category.save();
+    const category = Category.create(newName);
 
     return category;
   }
@@ -29,7 +27,7 @@ class CategorService {
   async deleteCategory(id) {
     if (!id) throw new Error("삭제하기 위한 카테고리ID가 필요합니다.");
 
-    await Category.findByIdAndDelete(id);
+    await Category.deleteById(id);
   }
   // 카테고리 수정 서비스 로직
   // Category 모델을 사용하여
@@ -38,11 +36,7 @@ class CategorService {
     if (!id) throw new Error("수정을 위한 카테고리 ID가 없습니다.");
     if (!name) throw new Error("수정을 위한 카테고리이름이 없습니다.");
 
-    const updatedCategory = await Category.findByIdAndUpdate(
-      id,
-      { name },
-      { new: true }
-    );
+    const updatedCategory = await Category.update(id, { name }, { new: true });
 
     return updatedCategory;
   }

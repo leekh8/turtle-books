@@ -38,9 +38,10 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
-    category: {
+    categoryId: {
       // 분류
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: "categorys",
       required: true,
     },
     stock: {
