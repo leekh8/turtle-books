@@ -2,19 +2,16 @@
 const orderService = require("../service/order-service");
 
 class OrderController {
-
   // 주문 추가
   async addOrder(req, res, next) {
     let {
       buyer,
       productList,
       shippingStatus,
-      shippingPostCode,
       shippingAddress,
-      shippingRequestMessage,
+      shippingDetailAddress,
       totalAmount,
       recipientName,
-      recipientPhoneNumber,
     } = req.body;
 
     productList = productList.split(",");
@@ -23,11 +20,10 @@ class OrderController {
       !buyer ||
       !productList ||
       !shippingStatus ||
-      !shippingPostCode ||
+      !shippingDetailAddress ||
       !shippingAddress ||
       !totalAmount ||
-      !recipientName ||
-      !recipientPhoneNumber
+      !recipientName
     ) {
       return res.status(400).json("입력 데이터 부족");
     }
@@ -37,12 +33,10 @@ class OrderController {
         buyer,
         productList,
         shippingStatus,
-        shippingPostCode,
+        shippingDetailAddress,
         shippingAddress,
-        shippingRequestMessage,
         totalAmount,
         recipientName,
-        recipientPhoneNumber,
       });
       return res.status(200).json(newOrder);
     } catch (e) {
@@ -75,7 +69,6 @@ class OrderController {
       }
     }
   }
-
 
   // 특정 orderId에 대한 주문 정보 가져오기(주문 조회)
   async getOrder(req, res, next) {

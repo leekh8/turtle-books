@@ -104,10 +104,12 @@ paymentsBtn.addEventListener("click", async () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: username.value,
-          address: addressInput.value,
-          detailAddress: detailAddressInput.value,
-          orderItems: cartItems, // 주문받는 아이템 내역 (로컬스토리지 이용)
+          recipientName: username.value,
+          shippingAddress: addressInput.value,
+          shippingDetailAddress: detailAddressInput.value,
+          productList: cartItems, // 주문받는 아이템 내역 (로컬스토리지 이용)
+          totalAmount: totalCost,
+          shippingStatus: "배송준비중",
         }),
       });
 
@@ -124,7 +126,7 @@ paymentsBtn.addEventListener("click", async () => {
       console.log(error.message);
       alert("결제에 실패했습니다. 다시 시도해주세요.");
     }
-  } else {
+  } else if (directItem) {
     try {
       const response = await fetch("/api/order", {
         method: "POST",
@@ -132,10 +134,12 @@ paymentsBtn.addEventListener("click", async () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: username.value,
-          address: addressInput.value,
-          detailAddress: detailAddressInput.value,
-          orderItems: directItem, // 주문받는 아이템 내역 (로컬스토리지 이용)
+          recipientName: username.value,
+          shippingAddress: addressInput.value,
+          shippingDetailAddress: detailAddressInput.value,
+          productList: directItem, // 주문받는 아이템 내역 (로컬스토리지 이용)
+          totalAmount: totalCost,
+          shippingStatus: "배송준비중",
         }),
       });
       console.log(addressInput.value, detailAddressInput.value);
