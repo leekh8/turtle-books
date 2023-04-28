@@ -1,122 +1,22 @@
 const booktable = document.querySelector("#booktable");
 
-// const books = [
-//   {
-//     id: 1,
-//     title: "브라질에 비가 내리면 스타벅스 주식을 사라",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description:
-//       "‘숲(경제 흐름)과 나무(종목)’를 함께 보라! 전쟁, 전염병, 기후, 금리, 환율, 인플레이션… 거시경제 지표를 이해하면 변동성은 기회다!",
-//     price: 16200,
-//     imageUrl: "../assets/book1.jpg",
-//     topic: "best",
-//     category: "소설",
-//   },
-//   {
-//     id: 2,
-//     title: "2챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "best",
-//     category: "소설",
-//   },
-//   {
-//     id: 3,
-//     title: "3챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "best",
-//     category: "소설",
-//   },
-//   {
-//     id: 4,
-//     title: "4챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "best",
-//     category: "소설",
-//   },
-//   {
-//     id: 5,
-//     title: "newone",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "new",
-//     category: "소설",
-//   },
-//   {
-//     id: 6,
-//     title: "6챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "best",
-//     category: "만화",
-//   },
-//   {
-//     id: 7,
-//     title: "new2",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "new",
-//     category: "만화",
-//   },
-//   {
-//     id: 8,
-//     title: "steady1",
-//     author: "피터 나바로",
-//     publisher: "에프엔미디어",
-//     publishDate: "2022.04.25",
-//     description: "22",
-//     price: 17000,
-//     imageUrl: "../assets/book2.jpg",
-//     topic: "steady",
-//     category: "만화",
-//   },
-//   // ... 다른 책들
-// ];
-
 //해당 아이템 clickedbook 변수로 가져오기
 const urlParams = new URLSearchParams(window.location.search);
-const category = urlParams.get("category");
-console.log(category)
+const categoryId = urlParams.get("category");
+let clickedcategory = [];
+console.log("108", categoryId)
 
 try{
-  const response = fetch(`api/product/${category}`, {
+  const response = await fetch(`/api/product/${categoryId}`, {
       method: "GET",       
       headers: {'Content-Type': 'application/json'}
   })
-  clickedcategory = await response.json(); 
+  clickedcategory = (await response.json()).data; 
 } catch(e) {
   console.log("error msg: ", e)
 }
 
-console.log(clickedcategory) //books 대신
+console.log("120", clickedcategory) //books 대신
 
 clickedcategory.forEach((book) => {
   booktable.innerHTML += `
@@ -204,7 +104,7 @@ clickedcategory.forEach((book, idx) => {
 
 ///////수량 조절 박스 관련
 let totalcount = []; //각 item 마다의 카운트
-books.forEach((e, i) => (totalcount[i] = 1)); //초기화
+clickedcategory.forEach((e, i) => (totalcount[i] = 1)); //초기화
 
 document.addEventListener("DOMContentLoaded", function () {
   const minusBtns = document.querySelectorAll(".quantity-minus"); // '-'버튼
@@ -250,6 +150,6 @@ document.addEventListener("DOMContentLoaded", function () {
 const secondContainer = document.querySelectorAll(".second-table");
 secondContainer.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `/itemDetail?id=${books[idx].id}`; //이런식으로 넘어가야
+    window.location.href = `/itemDetail?id=${clickedcategory[idx]._id}`; //이런식으로 넘어가야
   }); //각 북의 id로 db에서 찾아오기
 });

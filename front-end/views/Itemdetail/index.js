@@ -1,16 +1,11 @@
-// const clickedbook = {
-//   id: 1,
-//   title: "브라질에 비가 내리면 스타벅스 주식을 사라",
-//   author: "피터 나바로",
-//   publisher: "에프엔미디어",
-//   publishDate: "2022.04.25",
-//   description:
-//     "‘숲(경제 흐름)과 나무(종목)’를 함께 보라! 전쟁, 전염병, 기후, 금리, 환율, 인플레이션… 거시경제 지표를 이해하면 변동성은 기회다!",
-//   price: 16200,
-//   imageUrl: "../assets/book1.jpg",
-//   topic: "best",
-//   category: "소설",
-// };
+// CATEGORY
+// 스릴러    644b84aa129eb3ab966f446f
+// 소설    644ba6600c20e92db05afd20
+// 수필    644bb7ced97bb24f684468b4
+// 시    644bb7d5d97bb24f684468b6
+// 에세이    644bb7dfd97bb24f684468b8
+// 만화    644bb78fd97bb24f684468b0
+// 자기개발    644bb782d97bb24f684468ae
 
 //해당 아이템 clickedbook 변수로 가져오기
 const urlParams = new URLSearchParams(window.location.search);
@@ -68,8 +63,7 @@ try {
           <li>주간베스트</li>
         </ul>
         <div>
-          <a>국내도서 > </a><a>경제/경영 > </a><a>재테크/금융 > </a
-          ><a>주식/증권 > </a><a>${clickedbook.category}</a>
+          <a>${clickedbook.category}</a>
         </div>
       </div>
       <div class="description">
