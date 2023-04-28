@@ -15,13 +15,14 @@
 //해당 아이템 clickedbook 변수로 가져오기
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
+let clickedbook;
 
 try {
   const response = await fetch(`/api/product/detail/${id}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
-  const clickedbook = (await response.json()).data;
+  clickedbook = (await response.json()).data;
   console.log(clickedbook);
   const itemcontainer = document.querySelector(".item-container");
 
