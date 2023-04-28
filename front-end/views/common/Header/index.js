@@ -36,6 +36,6 @@ categorys.forEach(category=>{
 const catebuttons = document.querySelectorAll(".navbar-item") //버튼들의 리스트
 catebuttons.forEach((catebutton,i)=>{
   catebutton.addEventListener("click", ()=>{ 
-    window.location.href = `../itemList/itemList.html?category=${categorys[i]}`;
+    window.location.href = `/itemList?category=${categorys[i]}`;
   })
 });

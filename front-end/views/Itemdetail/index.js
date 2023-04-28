@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function showalert() {
     const result = confirm("장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?");
     if(result) {
-      window.location.href = "../cart/cart.html" // 장바구니로 이동
+      window.location.href = "/cart" // 장바구니로 이동
     } else {
       return;
     }
@@ -157,5 +157,5 @@ document.addEventListener("DOMContentLoaded", function () {
     const directItem = JSON.parse(localStorage.getItem("directItem")) || []; //로컬에 기존 있던거 붙이려고 꺼냄 
     directItem.push(item); //붙임 
     localStorage.setItem("directItem", JSON.stringify(directItem)); //다시 로컬 넣음 
-    window.location.href = "../order/order.html" // 결제페이지로 이동 
+    window.location.href = "/order" // 결제페이지로 이동 
   })
