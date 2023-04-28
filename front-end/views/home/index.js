@@ -100,11 +100,11 @@ const books = [
 ];
 
 // best만 html로 뿌려주기
-const bestbooks = books.filter(e=>e.topic==="best") //배열
+const bestbooks = books.filter((e) => e.topic === "best"); //배열
 const bestitems = document.querySelector(".best-items"); //div
 
 bestbooks.forEach((book, idx) => {
-    bestitems.innerHTML += `
+  bestitems.innerHTML += `
             <div class="slider-item">
                 <img src=${book.imagesrc} alt="Book cover">
                 <p class="category">${book.category}</p>
@@ -117,19 +117,19 @@ bestbooks.forEach((book, idx) => {
 const bestitemlist = document.querySelectorAll(".best-container .slider-item");
 bestitemlist.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `../itemDetail/itemDetail.html?id=${bestbooks[idx].id}` 
-  //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
+    window.location.href = `../itemDetail/itemDetail.html?id=${bestbooks[idx].id}`;
+    //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
   });
 });
 
 ////////////////////////
 
 // new만 html로 뿌려주기
-const newbooks = books.filter(e=>e.topic==="new") //배열
+const newbooks = books.filter((e) => e.topic === "new"); //배열
 const newitems = document.querySelector(".new-items"); //div
 
 newbooks.forEach((book, idx) => {
-    newitems.innerHTML += `
+  newitems.innerHTML += `
             <div class="slider-item">
                 <img src=${book.imagesrc} alt="Book cover">
                 <p class="category">${book.category}</p>
@@ -149,11 +149,11 @@ newitemlist.forEach((item, idx) => {
 ////////////////////////
 
 // steady만 html로 뿌려주기
-const steadybooks = books.filter(e=>e.topic==="steady") //배열
+const steadybooks = books.filter((e) => e.topic === "steady"); //배열
 const steadyitems = document.querySelector(".steady-items"); //div
 
 steadybooks.forEach((book, idx) => {
-    steadyitems.innerHTML += `
+  steadyitems.innerHTML += `
             <div class="slider-item">
                 <img src=${book.imagesrc} alt="Book cover">
                 <p class="category">${book.category}</p>
@@ -163,7 +163,9 @@ steadybooks.forEach((book, idx) => {
 });
 
 //각 아이템에 해당 상세 페이지 넘어가게 하는 이벤트 달아주기
-const steadyitemlist = document.querySelectorAll(".steady-container .slider-item");
+const steadyitemlist = document.querySelectorAll(
+  ".steady-container .slider-item"
+);
 steadyitemlist.forEach((item, idx) => {
   item.addEventListener("click", () => {
     window.location.href = `../itemDetail/itemDetail.html?id=${steadybooks[idx].id}`; //쿼리파라미터로 Itemdetail?id=${books[idx].id} - 이게 되려면 books가 best인 것만
@@ -240,24 +242,24 @@ const categorys = ["소설", "만화", "자기개발"];
 
 // try{
 //   const response = fetch(`api/category`, {
-//       method: "GET",       
+//       method: "GET",
 //       headers: {'Content-Type': 'application/json'}
 //   })
-//   // categorys = await response.json(); 
+//   // categorys = await response.json();
 // } catch(e) {
 //   console.log("error msg: ", e)
 // }
 
 //버튼 생성
 const buttonlist2 = document.querySelector(".buttonlist2");
-categorys.forEach(e=>{
-  buttonlist2.innerHTML+=`<button class="catebutton">${e}</button>`
-})
+categorys.forEach((e) => {
+  buttonlist2.innerHTML += `<button class="catebutton">${e}</button>`;
+});
 
 ////카테고리들 각각에 이벤트 붙이기
-const catebuttons = document.querySelectorAll(".catebutton") //버튼들의 리스트
-catebuttons.forEach((catebutton,i)=>{
-  catebutton.addEventListener("click", ()=>{ 
+const catebuttons = document.querySelectorAll(".catebutton"); //버튼들의 리스트
+catebuttons.forEach((catebutton, i) => {
+  catebutton.addEventListener("click", () => {
     window.location.href = `../itemList/itemList.html?category=${categorys[i]}`;
-  })
+  });
 });

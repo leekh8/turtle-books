@@ -138,7 +138,7 @@ paymentsBtn.addEventListener("click", async () => {
           orderItems: directItem, // 주문받는 아이템 내역 (로컬스토리지 이용)
         }),
       });
-      console.log(detailAddress, address);
+      console.log(addressInput.value, detailAddressInput.value);
       if (response.ok) {
         const data = await response.json();
         location.href = "/order-complete.html";
