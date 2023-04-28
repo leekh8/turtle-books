@@ -25,13 +25,22 @@ userRole:  사용자 권한
 // express
 const Router = require("express");
 const userController = require("../controllers/user-controller");
+const loginRequired = require("../middlewares/login-required");
 
 const userRouter = Router();
 
 userRouter.post("/register", userController.registerUser);
 userRouter.post("/login", userController.loginUser);
 
-userRouter.patch("/myroom/:userName", userController.updateUserInfo);
-userRouter.delete("/myroom/:userName", userController.deleteUserInfo);
+userRouter.patch(
+  "/myroom/:userName",
+  loginRequired,
+  userController.updateUserInfo
+);
+userRouter.delete(
+  "/myroom/:userName",
+  loginRequired,
+  userController.deleteUserInfo
+);
 
 module.exports = userRouter;

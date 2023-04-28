@@ -2,13 +2,13 @@ const signupBtn = document.querySelector("#signupBtn");
 
 signupBtn.addEventListener("click", submitForm);
 
-async function submitForm() {
-  const userId = document.getElementById("username").value;
+async function submitForm(e) {
+  e.preventDefault();
+  const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const password2 = document.getElementById("password2").value;
-  const email = document.getElementById("email").value;
 
-  if (userId === "" || password === "" || password2 === "" || email === "") {
+  if (password === "" || password2 === "" || email === "") {
     alert("입력되지 않은 정보가 있습니다.");
     return;
   }
@@ -19,15 +19,21 @@ async function submitForm() {
   }
 
   try {
-    const data = { email, password };
-
-    await fetch.post("/api/user/register", data);
-
-    alert(`정상적으로 회원가입되었습니다.`);
-
-    // 로그인 페이지 이동
-    window.location.href = "/front-end/views/login/index.html";
+    const response = await fetch("/api/user/register", {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+    if (response.ok) {
+      alert(`정상적으로 회원가입되었습니다.`);
+      window.location.href = "/login";
+    }
+    console.log(response);
   } catch (err) {
+    // 로그인 페이지 이동
+    console.log(err);
     alert("오류가 발생하였습니다.");
   }
 }

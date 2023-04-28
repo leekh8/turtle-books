@@ -7,7 +7,7 @@ const clickedbook = {
   description:
     "‘숲(경제 흐름)과 나무(종목)’를 함께 보라! 전쟁, 전염병, 기후, 금리, 환율, 인플레이션… 거시경제 지표를 이해하면 변동성은 기회다!",
   price: 16200,
-  imagesrc: "../assets/book1.jpg",
+  imageUrl: "../assets/book1.jpg",
   topic: "best",
   category: "소설",
 };
@@ -36,7 +36,7 @@ itemcontainer.innerHTML = `
       style="width: 35%; margin-top: 5%; margin-right: -10%"
     >
       <div class="card-image" style="width: 100%">
-        <img src="${clickedbook.imagesrc}" alt="Placeholder image" />
+        <img src="${clickedbook.imageUrl}" alt="Placeholder image" />
       </div>
       <div class="card-content" style="padding: 1rem">
         <div class="media">
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function showalert() {
     const result = confirm("장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?");
     if(result) {
-      window.location.href = "../cart/cart.html" // 장바구니로 이동
+      window.location.href = "/cart" // 장바구니로 이동
     } else {
       return;
     }
@@ -157,5 +157,5 @@ document.addEventListener("DOMContentLoaded", function () {
     const directItem = JSON.parse(localStorage.getItem("directItem")) || []; //로컬에 기존 있던거 붙이려고 꺼냄 
     directItem.push(item); //붙임 
     localStorage.setItem("directItem", JSON.stringify(directItem)); //다시 로컬 넣음 
-    window.location.href = "../order/order.html" // 결제페이지로 이동 
+    window.location.href = "/order" // 결제페이지로 이동 
   })

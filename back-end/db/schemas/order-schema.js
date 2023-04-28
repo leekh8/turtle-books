@@ -1,10 +1,10 @@
-const { Schema } = require('mongoose');
+const { Schema } = require("mongoose");
 
 const OrderSchema = new Schema(
   {
-    buyer: {
+    userId: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "users",
       required: true,
     },
     productList: [
@@ -19,19 +19,19 @@ const OrderSchema = new Schema(
       required: true,
       default: "배송준비중",
     },
-    shippingPostCode: {
+    shippingAddress: {
       type: String,
       required: true,
     },
-    shippingAddress : {
+    shippingDetailAddress: {
       type: String,
-      required : true,
+      required: true,
     },
-    shippingRequestMessage : {
-      type: String,
-      required : true,
-      default : "요청 메시지 없음"
-    },
+    // shippingRequestMessage: {
+    //   type: String,
+    //   required: true,
+    //   default: "요청 메시지 없음",
+    // },
     totalAmount: {
       type: Number,
       required: true,
@@ -40,10 +40,10 @@ const OrderSchema = new Schema(
       type: String,
       required: true,
     },
-    recipientPhoneNumber: {
-      type: Number,
-      required: true,
-    },
+    // recipientPhoneNumber: {
+    //   type: Number,
+    //   required: true,
+    // },
   },
   {
     timestamps: true,
@@ -52,4 +52,3 @@ const OrderSchema = new Schema(
 );
 
 module.exports = OrderSchema;
-

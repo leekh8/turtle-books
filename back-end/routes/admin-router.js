@@ -9,29 +9,29 @@ const adminRouter = express.Router();
 // /api/admin/product
 // /api/admin/userList
 
-adminRouter.post("/category", adminRequired, categoryController.createCategory);
+adminRouter.post("/category", categoryController.createCategory);
 adminRouter.patch(
   "/category/:id",
-  adminRequired,
+  // adminRequired,
   categoryController.updateCategory
 );
 adminRouter.delete(
   "/category/:id",
-  adminRequired,
+  // adminRequired,
   categoryController.deleteCategory
 );
-adminRouter.get("/category", adminRequired, categoryController.getCatetory);
-adminRouter.post("/product", adminRequired, productController.createProduct);
+adminRouter.get("/category", categoryController.getCatetory);
+adminRouter.post("/product", productController.createProduct);
 adminRouter.delete(
   "/product/:id",
-  adminRequired,
+  // adminRequired,
   productController.deleteProduct
 );
-adminRouter.patch(
+adminRouter.put(
   "/product/:id",
-  adminRequired,
+  //adminRequired,
   productController.updateProduct
 );
-adminRouter.get("/userList", adminRequired, userController.getUserList);
+adminRouter.get("/userList", userController.getUserList);
 
 module.exports = adminRouter;

@@ -16,6 +16,8 @@ viewsRouter.use("/order", serveStatic("order"));
 viewsRouter.use("/signup", serveStatic("signup"));
 viewsRouter.use("/header", serveStatic("header"));
 
+viewsRouter.use("/", serveStatic(""));
+
 //html 연결해주는 매서드
 
 viewsRouter.use("/", serveStatic(""));

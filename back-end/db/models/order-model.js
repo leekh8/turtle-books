@@ -70,24 +70,24 @@ class OrderModel {
       throw error;
     }
   }
-  // 주문 수정
-  async update(orderId, orderInfo) {
-    const filter = { _id: orderId };
+  // // 주문 수정
+  // async update(orderId, orderInfo) {
+  //   const filter = { _id: orderId };
     
-    try {
-      const updatedOrder = await Order.findOneAndUpdate(
-        filter,
-        orderInfo,
-      )
-        .populate("buyer")
-        .populate("productList");
-      return updatedOrder;
-    } catch (err) {
-      const error = new Error("에러 : 주문 수정중 실패");
-      error.statusCode = 400;
-      throw error;
-    }
-  }
+  //   try {
+  //     const updatedOrder = await Order.findOneAndUpdate(
+  //       filter,
+  //       orderInfo,
+  //     )
+  //       .populate("buyer")
+  //       .populate("productList");
+  //     return updatedOrder;
+  //   } catch (err) {
+  //     const error = new Error("에러 : 주문 수정중 실패");
+  //     error.statusCode = 400;
+  //     throw error;
+  //   }
+  // }
   // 주문 삭제
   async delete(orderId) {
     try {

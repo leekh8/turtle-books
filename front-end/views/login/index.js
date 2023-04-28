@@ -32,5 +32,5 @@ async function login(email,password){
 //아마도 마이페이지 로그아웃 버튼에 이벤트 걸어줘야.. 
 function logout() {
     localStorage.removeItem("token"); // 토큰을 로컬스토리지에서 제거
-    window.location.href = "../home/index.html"; // 홈화면으로 가게하자
+    window.location.href = "/"; // 홈화면으로 가게하자
 }

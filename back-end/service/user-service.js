@@ -9,8 +9,7 @@
 userId:    사용자 id
 password:  비밀번호
 email:     이메일
-lastName:  성
-firstName: 이름
+fullName:  이름
 address:   배송지
 birthDate: 생년월일
 role:  사용자 권한
@@ -30,17 +29,18 @@ class UserService {
 
   // register
   async addUser(userInfo) {
-    const { userId, password, email } = userInfo;
-
+    const { password, email, role } = userInfo;
+    /*
     // 입력값 확인
     if (!password || !userId || !email) {
       throw new Error(`please check your input 입력값 확인`);
     }
+    */
     // 중복 확인
-    const existId = await this.userModel.findById(userId);
+    /*const existId = await this.userModel.findById(userId);
     if (existId) {
       throw new Error(`already registered ID: ${userId}`);
-    }
+    }*/
     const existEmail = await this.userModel.findByEmail(email);
     if (existEmail) {
       throw new Error("already registered email");
@@ -51,9 +51,9 @@ class UserService {
 
     // 새로운 사용자 정보
     const newUserInfo = {
-      userId,
       password: hashedPassword,
       email,
+      role,
       //lastName,
       //firstName,
       //address,
@@ -70,12 +70,13 @@ class UserService {
 
   // login
   async loginUser(userInfo) {
-    const { userId, password } = userInfo;
+    const { email, password } = userInfo;
 
     // ID가 db에 존재하는 지 확인
-    const user = await userModel.findById(userId);
+    const user = await userModel.findByEmail(email);
     if (!user) {
-      throw new Error("not our ID. check again please");
+      console.log(`email errer ${email}`);
+      throw new Error("not our registerd email. check again please");
     }
 
     // 비밀번호
@@ -104,7 +105,7 @@ class UserService {
     // jwt.sign()
     const token = jwt.sign({ userId: user._id, role: user.role }, secretKey);
 
-    return token;
+    return { token };
   }
 
   // 사용자 목록 조회
