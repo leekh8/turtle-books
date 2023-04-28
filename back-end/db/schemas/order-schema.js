@@ -19,19 +19,19 @@ const OrderSchema = new Schema(
       required: true,
       default: "배송준비중",
     },
-    shippingPostCode: {
-      type: String,
-      required: true,
-    },
     shippingAddress: {
       type: String,
       required: true,
     },
-    shippingRequestMessage: {
+    shippingDetailAddress: {
       type: String,
       required: true,
-      default: "요청 메시지 없음",
     },
+    // shippingRequestMessage: {
+    //   type: String,
+    //   required: true,
+    //   default: "요청 메시지 없음",
+    // },
     totalAmount: {
       type: Number,
       required: true,
@@ -40,10 +40,10 @@ const OrderSchema = new Schema(
       type: String,
       required: true,
     },
-    recipientPhoneNumber: {
-      type: Number,
-      required: true,
-    },
+    // recipientPhoneNumber: {
+    //   type: Number,
+    //   required: true,
+    // },
   },
   {
     timestamps: true,
