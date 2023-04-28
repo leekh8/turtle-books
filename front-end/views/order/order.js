@@ -66,16 +66,27 @@ if (!directItem) {
     quantity += item[1];
   });
 }
-console.log(totalCost);
-const paymentsBox = document.querySelector(".payments-box");
+let fullCost = totalCost + 2500;
 
+const formattedCost = fullCost.toLocaleString("en-US", {
+  maximumFractionDigits: 0,
+});
+
+const formattedNumber = totalCost.toLocaleString("en-US", {
+  maximumFractionDigits: 0,
+});
+
+const fullprice = formattedCost.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+const price = formattedNumber.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+const paymentsBox = document.querySelector(".payments-box");
 paymentsBox.innerHTML += `
         <div class="box">
           <h1 class="title">결제 정보</h1>
           <p class="paymentsLabel">구매 서적</p> 
           <p >${title} 등 ${directItem !== null ? quantity : quantity}개</p>
 
-          <p class="paymentsLabel">주문상품 </p> <p> ${totalCost}원</p>
+          <p class="paymentsLabel">주문상품 </p> <p> ${price}원</p>
 
           <p class="paymentsLabel">배송비</p> <p> 2500원</p>
 
@@ -84,7 +95,7 @@ paymentsBox.innerHTML += `
           <hr>
 
           <p class="totalCost">총 결제금액</p>
-          <p>${totalCost + 2500}원</p>
+          <p>${fullprice}원</p>
           <button class="button is-primary is-fullwidth" id="paymentsBtn">
             결제하기
           </button>
