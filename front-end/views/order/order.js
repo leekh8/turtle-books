@@ -141,7 +141,7 @@ paymentsBtn.addEventListener("click", async () => {
       console.log(addressInput.value, detailAddressInput.value);
       if (response.ok) {
         const data = await response.json();
-        location.href = "/order-complete.html";
+        location.href = "/orderComplete";
         // 결제가 완료됐다면 로컬스토리지 삭제
         window.localStorage.removeItem("cartItems");
         console.log(data.message);
