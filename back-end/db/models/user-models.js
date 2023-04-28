@@ -10,8 +10,7 @@
 userId:    사용자 id
 password:  비밀번호
 email:     이메일
-lastName:  성
-firstName: 이름
+fullName:  이름
 address:   배송지
 birthDate: 생년월일
 role:  사용자 권한
@@ -20,10 +19,10 @@ role:  사용자 권한
 const mongoose = require("mongoose");
 const UserSchema = require("../schemas/user-schema");
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model("users", UserSchema);
 class UserModel {
   async findByEmail(email) {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({email:email});
     return user;
   }
 
@@ -34,8 +33,8 @@ class UserModel {
   }
 
   async create(userInfo) {
-    const createdNewUser = await User.create(userInfo);
-    return createdNewUser;
+    const user = await User.create(userInfo);
+    return user;
   }
 
   async findAll() {
@@ -49,6 +48,11 @@ class UserModel {
 
     const updatedUser = await User.findOneAndUpdate(filter, update, option);
     return updatedUser;
+  }
+
+  async deleteById(userId) {
+    const result = await User.deleteOne({ _id: userId });
+    return result;
   }
 }
 

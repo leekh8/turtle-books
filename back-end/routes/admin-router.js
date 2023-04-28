@@ -10,17 +10,16 @@ const adminRouter = express.Router();
 // /api/admin/userList
 
 adminRouter.post("/category", categoryController.createCategory);
-adminRouter.patch(
-  "/category/:id",
+adminRouter.put(
+  "/category/:categoryId",
   // adminRequired,
   categoryController.updateCategory
 );
 adminRouter.delete(
-  "/category/:id",
+  "/category/:categoryId",
   // adminRequired,
   categoryController.deleteCategory
 );
-
 adminRouter.post("/product", productController.createProduct);
 adminRouter.delete(
   "/product/:id",
@@ -28,7 +27,7 @@ adminRouter.delete(
   productController.deleteProduct
 );
 adminRouter.put(
-  "/product/:id",
+  "/product/:productId",
   //adminRequired,
   productController.updateProduct
 );

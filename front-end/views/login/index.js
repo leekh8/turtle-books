@@ -14,17 +14,14 @@ function formSubmit(e) {
 }
 
 async function login(email,password){
-    try {
-        console.log(email)
-        fetch("/api/user/login", {
-          method: "POST",
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
+    try{ //저 api에서 만들어준 토큰을 받아서 token에 저장, 로컬스토리지에 넣어놓음
+        const response = await fetch("/api/user/login", {
+            method: "POST", 
+            body: JSON.stringify({
+                userId: email,
+                password: password,
+            }),
+            headers: {'Content-Type': 'application/json'}
         })
           .then((res) => res.json())
           .then((res) => console.log("1", res));
