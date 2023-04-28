@@ -26,7 +26,6 @@ try {
   const number = clickedbook.price;
   const formattedNumber = number.toLocaleString('en-US', { maximumFractionDigits: 0 });
   const price = formattedNumber.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  console.log(price); // "16,200"  
   const itemcontainer = document.querySelector(".item-container");
 
   itemcontainer.innerHTML = `

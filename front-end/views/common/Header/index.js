@@ -26,14 +26,15 @@ if (localStorage.getItem("token") !== null) {
 }
 
 ///카테고리 받아와서 뿌려주기
-const categorys = ["소설", "만화", "자기개발", "dd"];
+const categorys = ["소설", "만화", "자기개발", "만화", "수필", "시", "에세이"];
+// let categorys = [];
 
 // try{
-//   const response = fetch(`api/category`, {
+//   const response = await fetch(`api/category`, {
 //       method: "GET",
 //       headers: {'Content-Type': 'application/json'}
 //   })
-//   // categorys = await response.json();
+//   categorys = await response.json();
 // } catch(e) {
 //   console.log("error msg: ", e)
 // }
