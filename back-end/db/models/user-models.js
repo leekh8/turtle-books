@@ -21,45 +21,34 @@ const mongoose = require("mongoose");
 const UserSchema = require("../schemas/user-schema");
 
 const User = mongoose.model("User", UserSchema);
-const withReturn = true;
 class UserModel {
-  async findByEmail(email, withReturn) {
-    if (!withReturn) {
-      await User.findOne({ email });
-    }
-    return User.findOne({ email });
+  async findByEmail(email) {
+    const user = await User.findOne({ email });
+    return user;
   }
 
-  async findById(userId, withReturn) {
-    if (!withReturn) {
-      await User.findOne({ _id: userId });
-    }
-    return User.findOne({ _id: userId });
+  async findById(userId) {
+    const user = await User.findOne({ _id: userId });
+
+    return user;
   }
 
-  async create(userInfo, withReturn) {
-    if (!withReturn) {
-      await User.create(userInfo);
-    }
-    return User.create(userInfo);
+  async create(userInfo) {
+    const createdNewUser = await User.create(userInfo);
+    return createdNewUser;
   }
 
-  async findAll(withReturn) {
-    if (!withReturn) {
-      await User.find({});
-    }
-    return User.find({});
+  async findAll() {
+    const users = await User.find({});
+    return users;
   }
 
-  async update({ userId, update }, withReturn) {
-    if (!withReturn) {
-      await User.findOneAndUpdate({ _id: userId }, update, {
-        returnOriginal: false,
-      });
-      return User.findOneAndUpdate({ _id: userId }, update, {
-        returnOriginal: false,
-      });
-    }
+  async update({ userId, update }) {
+    const filter = { _id: userId };
+    const option = { returnOriginal: false };
+
+    const updatedUser = await User.findOneAndUpdate(filter, update, option);
+    return updatedUser;
   }
 }
 
