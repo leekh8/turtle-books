@@ -30,8 +30,8 @@ const userRouter = Router();
 
 userRouter.post("/register", userController.registerUser);
 userRouter.post("/login", userController.loginUser);
-userRouter.get("/userList", userController.getUserList);
-userRouter.patch("/myroom/:userId", userController.updateUserInfo);
-userRouter.delete("/myroom/:userId", userController.deleteUserInfo);
+
+userRouter.patch("/myroom/:userName", userController.updateUserInfo);
+userRouter.delete("/myroom/:userName", userController.deleteUserInfo);
 
 module.exports = userRouter;

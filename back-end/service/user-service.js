@@ -13,7 +13,7 @@ lastName:  성
 firstName: 이름
 address:   배송지
 birthDate: 생년월일
-userRole:  사용자 권한
+role:  사용자 권한
 */
 
 // user model
@@ -30,17 +30,16 @@ class UserService {
 
   // register
   async addUser(userInfo) {
-    const { userId, password, email, lastName, firstName, address, birthDate } =
-      userInfo;
+    const { userId, password, email } = userInfo;
 
     // 입력값 확인
-    if (!email || !password || !userId) {
-      throw new Error(`please check your input`);
+    if (!password || !userId || !email) {
+      throw new Error(`please check your input 입력값 확인`);
     }
     // 중복 확인
     const existId = await this.userModel.findById(userId);
     if (existId) {
-      throw new Error("already registered ID");
+      throw new Error(`already registered ID: ${userId}`);
     }
     const existEmail = await this.userModel.findByEmail(email);
     if (existEmail) {
@@ -55,10 +54,10 @@ class UserService {
       userId,
       password: hashedPassword,
       email,
-      lastName,
-      firstName,
-      address,
-      birthDate,
+      //lastName,
+      //firstName,
+      //address,
+      //birthDate,
     };
 
     // db에 저장
@@ -74,7 +73,7 @@ class UserService {
     const { userId, password } = userInfo;
 
     // ID가 db에 존재하는 지 확인
-    const user = await this.userModel.findbyId(userId);
+    const user = await userModel.findById(userId);
     if (!user) {
       throw new Error("not our ID. check again please");
     }
@@ -101,12 +100,9 @@ class UserService {
     // secretKey: jwt token 생성시 사용될 비밀키
     const secretKey = process.env.JWT_SECRET_KEY || "secret-key";
 
-    // 토큰 내부에 포함될 정보: userId, userRole
+    // 토큰 내부에 포함될 정보: userId, role
     // jwt.sign()
-    const token = jwt.sign(
-      { userId: user._id, userRole: user.role },
-      secretKey
-    );
+    const token = jwt.sign({ userId: user._id, role: user.role }, secretKey);
 
     return token;
   }
@@ -194,7 +190,7 @@ class UserService {
 
       if (!user) {
         // 조회된 사용자 없으면 에러
-        throw new Error(`User with userId: ${userId} not founded`);
+        throw new Error(`User with Id: ${userId} not founded`);
       }
 
       // 입력한 비밀번호와 db의 비밀번호가 맞는지 확인
@@ -222,4 +218,4 @@ class UserService {
 }
 const userService = new UserService(userModel);
 
-module.exports = { userService };
+module.exports = userService;

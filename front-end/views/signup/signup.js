@@ -21,7 +21,7 @@ async function submitForm() {
   try {
     const data = { userId, email, password };
 
-    await fetch.post("/register", data);
+    await fetch.post("/api/user/register", data);
 
     alert(`정상적으로 회원가입되었습니다.`);
 

@@ -8,16 +8,13 @@ lastName:  성
 firstName: 이름
 address:   배송지
 birthDate: 생년월일
-userRole:  사용자 권한
+role:  사용자 권한
 */
-const { Schema } = require("mongoose");
+
+const { Schema, mongoose } = require("mongoose");
 
 const UserSchema = new Schema(
   {
-    userId: {
-      type: String,
-      required: true,
-    },
     password: {
       type: String,
       required: true,
@@ -25,16 +22,14 @@ const UserSchema = new Schema(
     email: {
       type: String,
       required: true,
-      // 중복 허용 안함
-      unique: 1,
     },
     lastName: {
       type: String,
-      required: true,
+      required: false,
     },
     firstName: {
       type: String,
-      required: true,
+      required: false,
     },
     address: {
       type: new Schema(
@@ -53,10 +48,10 @@ const UserSchema = new Schema(
       type: String,
       required: false,
     },
-    userRole: {
+    role: {
       type: String,
       required: false,
-      default: "basic-user",
+      enum: ["admin", "user"],
     },
   },
   {

@@ -11,39 +11,41 @@ lastName:  성
 firstName: 이름
 address:   배송지
 birthDate: 생년월일
-userRole:  사용자 권한
+role:  사용자 권한
 */
 
 const userService = require("../service/user-service");
 const createError = require("../middlewares/error-handler"); // 오류 처리 미들웨어
 class UserController {
   // register
-  async registerUser(req, res, next) {
+  async registerUser(req, res) {
     try {
-      const { userId, lastName, firstName, email, address, password } =
-        req.body;
+      const { userId, email, password } = req.body;
       const newUser = await userService.addUser({
         userId,
-        lastName,
-        firstName,
+        // lastName,
+        // firstName,
         email,
-        address,
+        // address,
         password,
       });
-      res.status(201).json({ success: true, newUser });
+      res.status(201).json({ success: true, data: newUser });
     } catch (error) {
-      next(createError(400, error.message));
+      res
+        .status(error.status || 500)
+        .json({ success: false, message: error.message });
     }
   }
-
   // login
-  async loginUser(req, res, next) {
+  async loginUser(req, res) {
     try {
       const { userId, password } = req.body;
-      const user = await userService.findUser(userId, password);
+      const user = await userService.loginUser(userId, password);
       res.status(200).json(user);
     } catch (error) {
-      next(createError(400, error.message));
+      res
+        .status(error.status || 500)
+        .json({ success: false, message: error.message });
     }
   }
 
@@ -61,15 +63,8 @@ class UserController {
   async updateUserInfo(req, res, next) {
     try {
       const userId = req.params.userId;
-      const {
-        password,
-        email,
-        lastName,
-        firstName,
-        address,
-        birthDate,
-        userRole,
-      } = req.body;
+      const { password, email, lastName, firstName, address, birthDate, role } =
+        req.body;
       const updatedUser = await userService.updatedUser(userId, {
         password,
         email,
@@ -77,7 +72,7 @@ class UserController {
         firstName,
         address,
         birthDate,
-        userRole,
+        role,
       });
       res.status(200).json(updatedUser);
     } catch (error) {
@@ -97,4 +92,5 @@ class UserController {
   }
 }
 
-module.exports = new UserController();
+const userController = new UserController();
+module.exports = userController;

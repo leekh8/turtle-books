@@ -233,6 +233,6 @@ document.addEventListener("DOMContentLoaded", function () {
 const secondContainer = document.querySelectorAll(".second-table");
 secondContainer.forEach((item, idx) => {
   item.addEventListener("click", () => {
-    window.location.href = `../Itemdetail/index.html?id=${books[idx].id}`; //이런식으로 넘어가야
+    window.location.href = `../itemDetail/itemDetail.html?id=${books[idx].id}`; //이런식으로 넘어가야
   }); //각 북의 id로 db에서 찾아오기
 });

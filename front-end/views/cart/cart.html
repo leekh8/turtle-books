@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./../common/Header/header.css" />
 
     <script src="./../common/checkBox.js"></script><!--체크박스 전체 선택 해제-->
-    <script src="cart-TotalPrice.js"></script>
+    <script src="cart.js"></script>
 </head>
 <body>
   <script>
@@ -25,19 +25,18 @@
       <span><input type="checkbox" id="selectAll"> 
       <label for="selectAll">전체</label></span>
       <div id="deletBtns">
-        <input type="button" id="selectDelet"  class="button is-small" value="삭제">
-        <input type="button" id="inableDelet"  class="button is-small" value="품/절판 삭제">
+        <input type="button" id="selectDelet"  class="button is-small" value="선택 삭제">
       </div>
     </nav>
 
     <div id="cartInfo">
-    <article id="noItem"  style="display: none;"> <!--비회원 장바구니 상품 없을 경우-->
-      <p>장바구니에 담긴 상품이 없어요.</p>
+    <article id="noItem"> <!--비회원 장바구니 상품 없을 경우-->
+      <p>장바구니에 담긴 상품이 없습니다.</p>
     </article>
 
     <article id="haveItem"> <!--장바구니에 상품이 있을 경우-->
-      <div  class="productInCart">
-        <div class="card"> <!--상품 추가시 이부분이-->
+      <div  id="productInCart">
+        <!-- <div class="card"> <!--상품 추가시 이부분이
           <div class="card-content">
             <div class="content">
                 <input type="checkbox" class="checkboxs" name="checkbox">
@@ -61,11 +60,10 @@
                 <div class="arriveAndDelet">
                   <input type="button" value="X" class="deletProduct">
                   <p>택배발송</p>
-                  <p><span id="arriveDate">내일 (4/29, 토)</span> 도착예정</p>
                   </div>
               </div>
               </div>
-            </div>
+            </div> --> 
       </div>
       </article>
     
@@ -86,9 +84,7 @@
           </tr>
         </table>      
       </div>
-      <button id="oderBtn" onclick="" class="button is-primary is-fullwidth">
-        주문하기
-      </button>
+      <input id="orderBtn" class="button is-primary is-fullwidth" type="button" value="주문하기">
     </aside>
   </div>
   </main>

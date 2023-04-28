@@ -95,13 +95,20 @@ document.addEventListener("DOMContentLoaded", () => {
   tpcTable.addEventListener("click", handleChangeBtnClick); //까지
 
   // 삭제 버튼 기능
+
   function handleDeleteBtnClick(e) {
+    console.log("삭제");
     const button = e.target;
+    console.log("button", button);
+
     if (!button.classList.contains("deltButnTh")) return;
-    const table = button.closest("table");
+    const table = button.closest("table"); // 못찾는 중
+    console.log("테이블", table);
+
     const checkedRows = table.querySelectorAll(
       "input[type='checkbox']:checked"
     );
+    console.log("checkedRows", checkedRows);
 
     checkedRows.forEach((checkbox) => {
       checkbox.closest("tr").remove();
