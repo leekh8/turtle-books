@@ -3,7 +3,8 @@ const cors = require("cors");
 
 // 라우터 연결
 const usersRouter = require("./routes/user-router"); // user(사용자) router 연결
-const orderRouter = require("./routes/order-router");
+const orderRouter = require("./routes/order-router"); 
+const orderListRouter = require("./routes/order-list-router.js"); // 회원 주문 조회
 const productRouter = require("./routes/product-router");
 const categoryRouter = require("./routes/category-router");
 const adminRouter = require("./routes/admin-router");
@@ -17,7 +18,7 @@ app.use(express.urlencoded({ extended: false })); // content-type: application/x
 
 // api 라우터
 app.use("/api/user", usersRouter);
-app.use("/api/user/myroom/order", orderRouter);
+app.use("/api/user/myroom/order-list", orderListRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/product", productRouter);
 app.use("/api/category", categoryRouter);
