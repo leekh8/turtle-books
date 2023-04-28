@@ -38,14 +38,16 @@
 
 - 기술 스택 : 
 <FE>
-HTML/CSS/Bulma
-JavaScript
+- HTML/CSS/Bulma
+- JavaScript
+
 
 <BE>
-Node.js
-Express
-MongoDB
-Mongoose
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+
 
 
 ### 4. 프로젝트 팀원 역할 분담
