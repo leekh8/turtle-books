@@ -110,6 +110,8 @@ article {
 tr > .btnTd {
   border: none;
   background-color: white;
+  padding: 0%;
+  margin: 0%;
 }
 
 table > .th {
@@ -228,4 +230,23 @@ select {
 
 td > .changeText {
   border: none;
+}
+
+.productImg {
+  height: 90px; width: 60px;
+}
+.thDeletBtn, .btnTd{
+  width: 60px;
+}
+#tpcTable {
+  width: 50%;
+}
+#tpcTable, #categoryTable, tr>th, .productImg {
+  text-align: center !important;
+}
+#categoryTable{
+width: 75%;
+}
+#categoryContents {
+  margin-left: 100px;
 }
