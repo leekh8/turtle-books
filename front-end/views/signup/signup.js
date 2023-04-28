@@ -19,7 +19,7 @@ async function submitForm() {
   }
 
   try {
-    const data = { userId, email, password };
+    const data = { email, password };
 
     await fetch.post("/api/user/register", data);
 
