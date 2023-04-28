@@ -2,18 +2,7 @@
 const { orderService } = require("../service/order-service");
 
 class OrderController {
-<<<<<<< HEAD
 
-  async orderMainRender(req, res, next){
-    res.send('주문 페이지 로드');
-=======
-  async pageRender(req, res, next) {
-    res.send("주문 페이지 로드");
->>>>>>> b59f6ef42866c014a9c107f34be24bf4a8d6f6ab
-  }
-  async orderListRender(rqe, res, next){
-    res.send('내 주문 목록 페이지 로드');
-  }
   // 주문 추가
   async addOrder(req, res, next) {
     let {

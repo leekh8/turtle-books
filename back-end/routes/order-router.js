@@ -4,7 +4,7 @@ const orderRouter = Router();
 const orderController = require("../controllers/order-controller");
 const bodyChecker = require("../middlewares/body-checker");
 
-orderRouter.get("/", orderController.orderMainRender); // 주문 메인 페이지 렌더링
+
 orderRouter.post("/", orderController.addOrder); //주문 생성
 orderRouter.get("/", orderController.getOrderList); //주문 목록 가져오기
 
