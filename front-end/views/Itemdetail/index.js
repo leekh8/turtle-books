@@ -94,7 +94,6 @@ const totaltag = document.querySelector("#totaltag");
 totaltag.innerHTML = `총 상품 금액 : ${clickedbook.price}원`;
 let totalcount = 1;
 
-document.addEventListener("DOMContentLoaded", function () {
   const minusBtn = document.querySelector(".quantity-minus"); // '-'버튼
   const numberInput = document.querySelector(".quantity-input"); //input
   const plusBtn = document.querySelector(".quantity-plus"); //'+' 버튼
@@ -122,7 +121,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   minusBtn.addEventListener("click", minusNum);
   plusBtn.addEventListener("click", plusNum);
-});
 
 //장바구니 버튼 alert
 function showalert() {
