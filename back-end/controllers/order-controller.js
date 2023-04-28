@@ -5,7 +5,6 @@ class OrderController {
   // 주문 추가
   async addOrder(req, res, next) {
     let {
-      buyer,
       productList,
       shippingStatus,
       shippingAddress,
@@ -14,10 +13,7 @@ class OrderController {
       recipientName,
     } = req.body;
 
-    productList = productList.split(",");
-
     if (
-      !buyer ||
       !productList ||
       !shippingStatus ||
       !shippingDetailAddress ||
@@ -30,7 +26,6 @@ class OrderController {
 
     try {
       const newOrder = await orderService.addOrder({
-        buyer,
         productList,
         shippingStatus,
         shippingDetailAddress,
