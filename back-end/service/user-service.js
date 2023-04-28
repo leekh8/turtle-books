@@ -70,12 +70,12 @@ class UserService {
 
   // login
   async loginUser(userInfo) {
-    const { email, password } = userInfo;
+    const { userId, password } = userInfo;
 
     // ID가 db에 존재하는 지 확인
-    const user = await userModel.findByEmail(email);
+    const user = await this.userModel.findByEmail({ email: userId });
     if (!user) {
-      console.log(`email errer ${email}`);
+      console.log(`email error ${userId}`);
       throw new Error("not our registerd email. check again please");
     }
 
@@ -105,7 +105,9 @@ class UserService {
     // jwt.sign()
     const token = jwt.sign({ userId: user._id, role: user.role }, secretKey);
 
-    return { token };
+    const isAdmin = user.role === "admin";
+
+    return { token, isAdmin };
   }
 
   // 사용자 목록 조회
@@ -116,6 +118,15 @@ class UserService {
     console.log(`get every users`);
 
     return users;
+  }
+
+  async getUserData(userId) {
+    const user = await this.userModel.findById(userId);
+    if (!user) {
+      throw new Error("가입 내역 없음!");
+    }
+
+    return user;
   }
 
   // edit my info
