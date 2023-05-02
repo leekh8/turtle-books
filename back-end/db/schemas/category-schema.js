@@ -12,4 +12,5 @@ const categorySchema = new Schema(
     collection: "category",
   }
 );
-module.exports = categorySchema;
+
+

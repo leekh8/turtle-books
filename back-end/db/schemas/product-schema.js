@@ -1,6 +1,6 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
-const productSchema = new Schema (
+const ProductSchema = new Schema(
   {
     title: { // 제목
       type: String,
@@ -32,6 +32,12 @@ const productSchema = new Schema (
       defautlt : 10,
       required: true,
     },
+    topic: {
+      type : String,
+      required: true,
+      default: "normal",
+      //new, best, steady, normal
+    },
   },
   {
     timestamp: true,
@@ -49,5 +55,5 @@ productSchema.static("formatHashtags", function (category) {
 });
 
 
-
-module.exports = productSchema;
+const ProductModel = model("Product", ProductSchema);
+module.exports = ProductModel;
