@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <script src="../common/loadHTML.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../common/Header/header.css" />
+    <link rel="stylesheet" href="userSideMenu.css" />
+    <!--사이드메뉴 CSS-->
+    <link rel="stylesheet" href="mypage.css" />
+    <!--본문 CSS-->
+    <script src="mypage.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <script>
+      loadHTML("../common/Header/header.html");
+    </script>
+    <main style="height: 90%">
+      <div id="container">
+        <div id="leftSide" class="container">
+          <div id="userProfile">
+            <img
+              id="userImg"
+              src="userImg.png"
+              alt="유저 이미지"
+              class="card"
+            />
+            <!---->
+            <p>
+              <span class="userName" style="font-weight: bold">김거북</span>님
+            </p>
+          </div>
+          <aside class="menu is-horizontal">
+            <!--왼쪽 메뉴-->
+            <ul>
+              <li><a class="sideCtgy" href="/mypage">기본정보</a></li>
+              <li>
+                <a class="sideCtgy" href="/orderCheck">주문내역</a>
+              </li>
+            </ul>
+          </aside>
+        </div>
+
+        <article>
+          <!--내용물-->
+          <h1>기본 정보</h1>
+          <div class="card">
+            <table>
+              <tr>
+                <th class="ths">
+                  이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름
+                </th>
+                <td class="dots">&nbsp;:&nbsp;</td>
+                <td>김거북</td>
+              </tr>
+              <tr>
+                <th class="ths">생년월일</th>
+                <td class="dots">&nbsp;:&nbsp;</td>
+                <td>1875.05.08</td>
+              </tr>
+              <tr>
+                <th class="ths">핸&nbsp;&nbsp;드&nbsp;&nbsp;폰</th>
+                <td class="dots">&nbsp;:&nbsp;</td>
+                <td><span class="changeText">010-0808-8080</span></td>
+              </tr>
+              <tr>
+                <th class="ths">이&nbsp;&nbsp;메&nbsp;&nbsp;일</th>
+                <td class="dots">&nbsp;:&nbsp;</td>
+                <td><span>ggobooks@gamil.com</span></td>
+              </tr>
+              <tr>
+                <th class="ths">
+                  주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소
+                </th>
+                <td class="dots">&nbsp;:&nbsp;</td>
+                <td>
+                  <span class="changeText"
+                    >경기도 어디시 무슨구 무엇로 12, 880동 912호</span
+                  >
+                </td>
+              </tr>
+              <tr>
+                <th class="ths">비밀번호</th>
+                <td class="dots">&nbsp;:&nbsp;</td>
+                <td class="pw">
+                  <span class="changeText">비밀번호는 시크릿</span>
+                </td>
+              </tr>
+            </table>
+            <button class="changeBtn">수정</button>
+          </div>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

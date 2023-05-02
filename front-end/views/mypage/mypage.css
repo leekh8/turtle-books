@@ -1,0 +1,46 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70%;
+}
+td,th{ 
+  width: auto;
+  display: inline-block;
+  font-size: x-large;
+}
+tr {
+  height: 70px;
+}
+table {
+  width: 65%;
+}
+.dots {
+  width: 20px;
+}
+
+.changeText {
+  width: auto;
+}
+
+.changeBtn {
+  margin-top: 4%; 
+  padding: 10px 30px;
+  font-size: large;
+  font-weight: bold;
+  border: #00d1b2 solid 4px;
+  border-radius: 7px;
+}
+
+.changeBtn:hover {
+  background-color: #00d1b2;
+  border-radius: 7px;
+}
+
+.pw {
+  width: 50%;
+  background-color: black;
+  color: black;
+  user-select: none; /*드래그를 막는 CSS*/
+}

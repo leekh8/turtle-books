@@ -23,65 +23,25 @@ userRole:  사용자 권한
 */
 
 // express
-const { Router } = require("express");
+const Router = require("express");
+const userController = require("../controllers/user-controller");
+const loginRequired = require("../middlewares/login-required");
 
 const userRouter = Router();
 
-// register
-userRouter.post("/register", async (req, res, next) => {
-  try {
-    // req의 body에서 데이터 가져옴
-    const { userId, email, password } = req.body;
+userRouter.post("/register", userController.registerUser);
+userRouter.post("/login", userController.loginUser);
+userRouter.get("/myroom/:userId", userController.getUser);
+userRouter.patch(
+  "/myroom/:userName",
+  // loginRequired,
+  userController.updateUserInfo
+);
+userRouter.patch("/myroom/role/:urserId", userController.changeRole);
+userRouter.delete(
+  "/myroom/:userId",
+  // loginRequired,
+  userController.deleteUserInfo
+);
 
-    // 사용자 db에 데이터 추가
-    const newUser = await new userService.addUser({
-      userId,
-      email,
-      password,
-    });
-
-    res.status(201).json(newUser);
-  } catch (error) {
-    next(error);
-  }
-});
-
-// login
-userRouter.post("/login", async (req, res, next) => {
-  try {
-    const { userId, password } = req.body;
-
-    res.status(200).json();
-  } catch (error) {
-    next(error);
-  }
-});
-
-// edit my info
-userRouter.patch("/user/:userId", async (req, res, next) => {
-  try {
-    const userId = req.params.userId;
-
-    const {
-      password,
-      email,
-      lastName,
-      firstName,
-      address,
-      birthDate,
-      userRole,
-    } = req.body;
-  } catch (error) {
-    next(error);
-  }
-});
-
-// delete my info
-userRouter.delete("/user/:userId", async (req, res, next) => {
-  try {
-  } catch (error) {
-    next(error);
-  }
-});
-
-module.exports = { userRouter };
+module.exports = userRouter;

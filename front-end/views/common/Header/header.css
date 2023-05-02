@@ -6,18 +6,18 @@ header {
   z-index: 1;
 }
 
-.inputmargin {
+.navbar-menu .inputmargin {
   margin-top: 10px;
   margin-left: 20px;
   width: 400px;
 }
 
-.search-form {
+.navbar-menu.search-form {
   display: flex;
   align-items: center;
 }
 
-button[type="submit"] {
+.navbar-menu button[type="submit"] {
   background-color: #f8fff3;
   color: #fff;
   border: none;
@@ -28,6 +28,9 @@ button[type="submit"] {
   margin-top: 8px;
 }
 
-button[type="submit"]:hover {
+.navbar-menu button[type="submit"]:hover {
   background-color: #e6ffe9;
+}
+
+#cart {
 }

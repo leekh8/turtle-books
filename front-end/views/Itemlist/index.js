@@ -1,40 +1,31 @@
-
 const booktable = document.querySelector("#booktable");
 
-const books = [
-  {
-    id: 1,
-    title: "브라질에 비가 내리면 스타벅스 주식을 사라",
-    author: "피터 나바로",
-    publisher: "에프엔미디어",
-    publishDate: "2022.04.25",
-    description:
-      "‘숲(경제 흐름)과 나무(종목)’를 함께 보라! 전쟁, 전염병, 기후, 금리, 환율, 인플레이션… 거시경제 지표를 이해하면 변동성은 기회다!",
-    price: 16200,
-    imagesrc: "../assets/book1.jpg",
-  },
-  {
-    id: 2,
-    title: "챗GPT가 내 생각을 훔쳐버린다면!?!?!?",
-    author: "피터 나바로",
-    publisher: "에프엔미디어",
-    publishDate: "2022.04.25",
-    description: "22",
-    price: 17000,
-    imagesrc: "../assets/book2.jpg",
-  },
-  // ... 다른 책들
-];
+//해당 아이템 clickedbook 변수로 가져오기
+const urlParams = new URLSearchParams(window.location.search);
+const categoryId = urlParams.get("category");
+let clickedcategory = [];
+console.log("108", categoryId)
 
-books.forEach((book) => {
-  const tr = document.createElement("tr");
-  tr.innerHTML = ` 
+try{
+  const response = await fetch(`/api/product/${categoryId}`, {
+      method: "GET",       
+      headers: {'Content-Type': 'application/json'}
+  })
+  clickedcategory = (await response.json()).data; 
+} catch(e) {
+  console.log("error msg: ", e)
+}
+
+console.log("120", clickedcategory) //books 대신
+
+clickedcategory.forEach((book) => {
+  booktable.innerHTML += `
+      <tr class="each-container"> 
         <td width="5%">
-            <input type="checkbox" id="${book.id}" name="myCheckbox" />
         </td>
         <td width="20%">
             <img
-            src="${book.imagesrc}";
+            src="${book.imageUrl}";
             alt="Placeholder image"
             class="img1"
             />
@@ -61,20 +52,65 @@ books.forEach((book) => {
                 <button class="quantity-plus">+</button>
             </div>
             <br />
-            <button>장바구니</button><br />
-            <button>바로구매</button>
+            <button class="cartbutton">장바구니</button><br />
+            <button class="buy-now-btn">바로구매</button>
             </div>
         </td>
+      </tr>
     `;
-    booktable.appendChild(tr);
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+clickedcategory.forEach((book, idx) => {
+  ////////////////////////////장바구니
+  //장바구니 버튼 alert
+  function showalert() {
+    const result = confirm(
+      "장바구니에 담겼습니다.\n장바구니로 이동하시겠습니까?"
+    );
+    if (result) {
+      window.location.href = "/cart"; // 장바구니로 이동
+    } else {
+      return;
+    }
+  }
+
+  //담은거 로컬스토리지에 넣기
+  function pushlocal() {
+    const item = [];
+    item.push(book); // 현재 객체 통째로
+    item.push(totalcount[idx]);
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; //로컬에 기존 있던거 붙이려고 꺼냄
+    cartItems.push(item); //붙임
+    localStorage.setItem("cartItems", JSON.stringify(cartItems)); //다시 로컬 넣음
+  }
+
+  const cartbuttons = document.querySelectorAll(".cartbutton");
+  cartbuttons[idx].addEventListener("click", showalert);
+  cartbuttons[idx].addEventListener("click", pushlocal);
+
+  /////////////////바로구매
+  //바로구매 버튼 눌렀을 때
+  const directbuttons = document.querySelectorAll(".buy-now-btn");
+  directbuttons[idx].addEventListener("click", ()=>{
+    const item = [];
+    item.push(book); //객체 통째로 (현재 아이템)
+    item.push(totalcount[idx]);
+    const directItem = JSON.parse(localStorage.getItem("directItem")) || []; //로컬에 기존 있던거 붙이려고 꺼냄 
+    directItem.push(item); //붙임 
+    localStorage.setItem("directItem", JSON.stringify(directItem)); //다시 로컬 넣음 
+    window.location.href = "/order" // 결제페이지로 이동 
+  })
+});
+
+///////수량 조절 박스 관련
+let totalcount = []; //각 item 마다의 카운트
+clickedcategory.forEach((e, i) => (totalcount[i] = 1)); //초기화
+
   const minusBtns = document.querySelectorAll(".quantity-minus"); // '-'버튼
   const numberInputs = document.querySelectorAll(".quantity-input"); //input
   const plusBtns = document.querySelectorAll(".quantity-plus"); //'+' 버튼
 
-  function minusNum(e) {
+  function minusNum(e, i) {
     const input = e.target.nextElementSibling;
     if (parseInt(input.value) > 1) {
       //1이하일 경우
@@ -84,19 +120,34 @@ document.addEventListener("DOMContentLoaded", function () {
         input.value = 1;
       }
     }
+    totalcount[i] = Number(input.value);
   }
 
-  function plusNum(e) {
+  function plusNum(e, i) {
     const input = e.target.previousElementSibling;
     input.value = parseInt(input.value) + 1;
+    totalcount[i] = Number(input.value);
+    console.log(e)
   }
 
   // 체크 박스가 다수일 경우
   for (let i = 0; i < minusBtns.length; i++) {
-    minusBtns[i].addEventListener("click", minusNum);
+    minusBtns[i].addEventListener("click", function (e) {
+      minusNum(e, i);
+    });
   }
 
   for (let i = 0; i < plusBtns.length; i++) {
-    plusBtns[i].addEventListener("click", plusNum);
+    plusBtns[i].addEventListener("click", function (e) {
+      plusNum(e, i);
+    });
   }
+
+////////
+//각 아이템의 tr 눌렀을 때
+const secondContainer = document.querySelectorAll(".second-table");
+secondContainer.forEach((item, idx) => {
+  item.addEventListener("click", () => {
+    window.location.href = `/itemDetail?id=${clickedcategory[idx]._id}`; //이런식으로 넘어가야
+  }); //각 북의 id로 db에서 찾아오기
 });

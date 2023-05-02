@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <link rel="stylesheet" href="admin-Menu_and_Header.css">
+
+  <title></title>
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <div id="headerMiddle">
+        <h1>Turtle-books 관리자 페이지</h1>
+      </div>
+      <div id="headerBtn">
+        <input id="goToMallPage" class="button is-light" type="button" value="쇼핑몰 이동">
+        <input id="logout" class="button is-light" type="button" value="로그아웃">
+      </div>
+    </header>
+    <!-- <nav>
+      <label for="selectAll">
+        <input type="checkbox" id="selectAll">
+        전체
+      </label>
+      <div id="search">
+        <input id="searchbox" type="text">
+        <input id="searchBtn" type="submit" value="검색">
+      </div>
+      <div id="btns">
+        <button>등록</button>
+        <button>삭제</button>
+        <button>저장</button>
+      </div>
+    </nav> -->
+    <aside id="menuWrap">
+      <div>
+        <button id="user-tap" class="tabButtons" data-tab="userContents">유저 관리</button>
+      </div>
+      <div>
+        <button id="product-tap" class="tabButtons" data-tab="productContents">상품 관리</button>
+        <button class="subMenu modal-button" data-modal-target="#productAdd">상품 등록</button>
+      </div>
+      <div>
+        <button id="category-tab" class="tabButtons" data-tab="categoryContents">카테고리 관리</button>
+        <button class="subMenu modal-button" data-modal-target="#categoryAdd">카테고리 등록</button>
+      </div>
+      <div>
+        <button id="oder-tap" class="tabButtons" data-tab="oderContents">주문/결제 관리</button>
+      </div>
+
+    </aside>
+
+    <article>
+      <div id="userContents" class="tabContents">
+        <h2>유저 목록</h2>
+        <table class="table is-bordered is-narrow is-fullwidth">
+          <thead style="background-color: rgba(220, 220, 220, 0.303);">
+            <tr>
+              <!-- <th class="th"><button class="deltButnTh button is-small">삭제</button></th> -->
+              <th class="th">아이디</th>
+              <th class="th">이메일</th>
+              <th class="th">성</th>
+              <th class="th">이름</th>
+              <th class="th">생년월일</th>
+              <th class="th">핸드폰</th>
+              <th class="th">주소</th>
+              <th class="th">비밀번호</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <!-- <td class="checkboxTd"><input type="checkbox"></td> -->
+              <td>ggobooks</td>
+              <td>ggobooks@gamil.com</td>
+              <td>김</td>
+              <td>거북</td>
+              <td>1752.08.08</td>
+              <td>010-8080-8080</td>
+              <td>경기도 거북시 거북동 거북로 808 202동 808호</td>
+              <td>pw는시크릿</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="productContents" class="tabContents">
+        <h2>상품 목록</h2>
+        <table id="product-table" class="table is-bordered is-narrow is-fullwidth">
+          <thead style="background-color: rgba(220, 220, 220, 0.303);">
+            <tr>
+              <th class="thDeletBtn th" style="width: 50px;"><button class="deltButnTh button is-small">삭제</button></th>
+              <th class="th">상품 이미지</th>
+              <th class="th">카테고리</th>
+              <th class="th">Topic</th>
+              <th class="th">제목</th>
+              <th class="th">가격</th>
+              <th class="th">재고</th>
+              <th class="th">책소개</th>
+              <th class="th">작가</th>
+              <th class="th">출판사</th>
+              <th class="th">발행일</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr>
+              <td class="checkboxTd"><input type="checkbox"></td>
+              <td><span class="changeImg" class="productImg"><img src="bookImg.png" alt=""></span></td>
+              <td><span class="categorySelctBox">자기계발</span></td>
+              <td><span class="topicSelctBox">steady</span></td>
+              <td><span class="changeText" class="productTitle">대충 책 제목</span></td>
+              <td><span class="changeText" class="productPrice">1,000</span> 원</td>
+              <td><span class="changeText" class="productStock">500</span> 개</td>
+              <td><span class="changeText" class="productDescription">대충 멋진 책 소개</span></td>
+              <td><span class="changeText" class="productAuthor">철수나르철수철수</span></td>
+              <td><span class="changeText" class="productPublisher">안믿음사</span></td>
+              <td class="btnTd" class="td"><button class="changeBtn" class="button is-small">수정</td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+
+      <div id="categoryContents" class="tabContents">
+        <div id="categoryTabpage">
+          <div id="categoryTable">
+            <h2>카테고리 목록</h2>
+            <table id="ctgrTable" class="table is-bordered is-narrow is-fullwidth">
+              <thead style="background-color: rgba(220, 220, 220, 0.303);">
+                <tr>
+                  <th class="thDeletBtn th"><button class="deltButnTh button is-small">삭제</button></th>
+                  <th class="th">카테고리 명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr>
+                  <td class="checkboxTd"><input type="checkbox"></td>
+                  <td><span class="changeText" class="categorySelctBoxContent">소설</span></td>
+                  <td class="btnTd"><button class="changeBtn" class="button is-small">수정</button></td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+          <div id="topicTable">
+            <h2>Topic 목록</h2>
+            <table id="tpcTable" class="table is-bordered is-narrow is-fullwidth">
+              <thead style="background-color: rgba(220, 220, 220, 0.303);">
+                <tr>
+                  <!-- <th class="th"><button class="deltButnTh button is-small">삭제</button></th> -->
+                  <th class="th">카테고리 명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <!-- <td class="checkboxTd"><input type="checkbox"></td> -->
+                  <td><span class="changeText" class="topicSelctBoxContent">Best</span></td>
+                  <!-- <td class="btnTd"><button class="changeBtn" class="button is-small">수정</button></td> -->
+                </tr>
+                <tr>
+                  <!-- <td class="checkboxTd"><input type="checkbox"></td> -->
+                  <td><span class="changeText" class="topicSelctBoxContent">Steady</span></td>
+                  <!-- <td class="btnTd"><button class="changeBtn" class="button is-small">수정</button></td> -->
+                </tr>
+                <tr>
+                  <!-- <td class="checkboxTd"><input type="checkbox"></td> -->
+                  <td><span class="changeText" class="topicSelctBoxContent">New</span></td>
+                  <!-- <td class="btnTd"><button class="changeBtn" class="button is-small">수정</button></td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="oderContents" class="tabContents">
+        <h2>주문 목록</h2>
+        <table class="table is-bordered is-narrow is-fullwidth">
+          <thead style="background-color: rgba(220, 220, 220, 0.303);">
+            <tr>
+              <th class="thDeletBtn th"><button  class="deltButnTh button is-small">삭제</button></th>
+              <th class="th">배송번호</th>
+              <th class="th">아이디</th>
+              <th class="th">이름</th>
+              <th class="th">총 가격</th>
+              <th class="th">주소</th>
+              <th class="th"><span id="deliveryStateSelctBox">배송상태</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="checkboxTd"><input type="checkbox"></td>
+              <td>106454</td>
+              <td>ggobooks</td>
+              <td>김거북</td>
+              <td>5,000</td>
+              <td>경기도 거북시 거북동 거북로 808 202동 808호</td>
+              <th class="th"><span class="changeText">상품 준비중</span></th>
+              <td class="btnTd"><button class="changeBtn" class="button is-small">수정</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <div id="modals">
+      <div id="productAdd" class="modal" class="modal-content">
+        <button style="background-color: gainsboro;" class="modal-close is-large" aria-label="close"></button>
+        <h2>상품 추가</h2>
+        <div id="productAddContent">
+          <div id="addProductImg">
+            <img id="preProductImg" src="" alt="">
+            <input type="file" id="file-input" style="display: block;">
+          </div>
+
+          <div id="productAddBox">
+            <p>제목 : <input id="addTitle" type="text"></p>
+            <p>
+              category : <select id="category-tap">
+                <option value="-"> - </option>
+              </select>
+            </p>
+            <p style="display: inline;">topic : <select id="topic-tap">
+                <option class='topic' value=""> - </option>
+              </select></p>
+            <p>가격 : <input id="addPrice" type="text"></p>
+            <p>재고 : <input id="addStock" type="text"></p>
+            <p>작가 : <input id="addAuthor" type="text"></p>
+            <p>출판사 : <input id="addPublisher" type="text"></p>
+            <p>발행일 : <input id="addPublishDate" type="text"></p>
+            <p>책 소개 : <input id="addDescription" type="text"></p>
+            <input id="addProdctBtn" class="button is-primary" type="submit" value="등록" style="width: 160px;">
+          </div>
+        </div>
+      </div>
+      <div id="categoryAdd" class="modal" class="card" class="modal-content">
+        <button style="background-color: gainsboro;" class="modal-close is-large" aria-label="close"></button>
+        <div class="ctgrAdd" style="  border: 1px solid gray;">
+          <h2>카테고리 추가</h2>
+          <input id="addCategory" class="categoryAddtextbox" type="text">
+          <input id="addCategoryBtn" class="button is-primary" type="submit" value="등록" style="width: 160px;">
+        </div>
+        <!-- <div class="tpcAdd">
+          <h2>Topic 추가</h2>
+          <input id="addTopic" class="categoryAddtextbox" type="text">
+          <input id="addTopicBtn" class="button is-primary" type="submit" value="등록" style="width: 160px;">
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <script src="admin.js"></script>
+</body>
+<footer></footer>
+
+</html>
