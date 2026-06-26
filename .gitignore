@@ -2,3 +2,7 @@ teamproject
 node_modules
 .vs
 
+
+# secrets
+.env
+.env.*
